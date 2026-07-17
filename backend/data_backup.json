@@ -1,0 +1,425 @@
+{
+  "export_date": "2026-01-27T14:33:10.102286+00:00",
+  "products": [
+    {
+      "product_id": "prod_60771fc588af",
+      "name": "Test Bold Description Product",
+      "description": "<p>This is a <strong>bold</strong> description test</p>",
+      "price": 1500.0,
+      "discount_price": null,
+      "category": "cat_4401d1b5",
+      "image_url": null,
+      "image_urls": null,
+      "stock": 25,
+      "sku": null,
+      "sizes": null,
+      "size_variations": null,
+      "colors": null,
+      "color_variations": null,
+      "variations": null,
+      "ages": null,
+      "brand": null,
+      "weight": null,
+      "warranty": null,
+      "highlights": [
+        {
+          "text": "Feature 1",
+          "bold": false
+        },
+        {
+          "text": "Feature 2 Bold",
+          "bold": true
+        }
+      ],
+      "whats_in_box": null,
+      "specifications": null,
+      "custom_attributes": null,
+      "is_sold_out": false,
+      "rating": 0,
+      "review_count": 0,
+      "created_at": "2026-01-23T12:13:32.075716+00:00"
+    },
+    {
+      "product_id": "prod_bdb1bbccf845",
+      "name": "Test Bold Description Product",
+      "description": "<p>Meet your new everyday obsession. The Aura Black Crossbody bag combines minimalist elegance with undeniable utility. Crafted from a premium, textured vegan leather, its deep black hue offers a versatile sophistication that transitions effortlessly from day to night.\nDesigned for the modern woman on the move, it features a padded pocket to safeguard your phone and multiple card slots for daily essentials, all secured by a smooth, magnetic flap closure. The adjustable, detachable strap allows you to customize your carry\u2014wear it crossbody for hands-free errands, shorten it for a chic shoulder look, or remove it entirely to use as a sleek clutch.\nMore than just a bag, the Aura is your curated companion for coffee runs, office commutes, and evening outings. Its compact yet perfectly proportioned design holds all you need without the bulk, ensuring you look polished and prepared, wherever the day takes you.\n\n<b>Key Features:</b>\n\n- Hands-Free Convenience: Adjustable crossbody strap for ultimate comfort and security.\n- Organized Interior: Features a dedicated phone pocket, card slots, and a main compartment.\n- Versatile Style: Detachable strap converts bag into a chic clutch for evening wear.\n- Premium Finish: Crafted from high-quality, cruelty-free vegan leather with a luxe feel.\n- Secure Closure: Easy-access magnetic flap keeps contents safe.\n\n<b>Specs: \n</b>\n- Dimensions: 9\"W x 6\"H x 2.5\"D. \n- Strap Drop: Adjustable from 20\" to 28\".\n- Material: Premium Vegan Leather</p>",
+      "price": 1000.0,
+      "discount_price": null,
+      "category": "crossbody bags",
+      "image_url": "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_98d2714cc29e",
+      "image_urls": [
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_98d2714cc29e",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_6ede8170edb1",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_d91f64d5de6a",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_4998f35e72e1",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_c7ab48dae7d9"
+      ],
+      "stock": 100,
+      "sku": "TES-2WEC",
+      "sizes": null,
+      "size_variations": null,
+      "colors": null,
+      "color_variations": null,
+      "variations": null,
+      "ages": null,
+      "brand": "GoJuniors",
+      "weight": null,
+      "warranty": "7 Days",
+      "highlights": [
+        {
+          "text": "Feature 1",
+          "bold": false
+        },
+        {
+          "text": "Feature 2 Bold",
+          "bold": true
+        }
+      ],
+      "whats_in_box": [
+        "1x Aura Crossbody Bag"
+      ],
+      "specifications": [
+        {
+          "key": "Dimensions",
+          "value": "9\"W x 6\"H x 2.5\"D"
+        }
+      ],
+      "custom_attributes": {},
+      "is_sold_out": false,
+      "rating": 0,
+      "review_count": 0,
+      "created_at": "2026-01-23T12:13:41.334998+00:00"
+    },
+    {
+      "product_id": "prod_8092de2f68af",
+      "name": "Copy of Test Bold Description Product",
+      "description": "<p>This is a <strong>bold</strong> description test</p>",
+      "price": 1500.0,
+      "discount_price": null,
+      "category": "cat_4401d1b5",
+      "image_url": null,
+      "image_urls": [],
+      "stock": 10,
+      "sizes": [],
+      "colors": [],
+      "ages": "",
+      "brand": "",
+      "weight": "",
+      "warranty": "",
+      "highlights": [
+        {
+          "text": "Feature 1",
+          "bold": false
+        },
+        {
+          "text": "Feature 2 Bold",
+          "bold": true
+        }
+      ],
+      "whats_in_box": [],
+      "specifications": [],
+      "variations": [],
+      "custom_attributes": {},
+      "created_at": "2026-01-23T12:16:32.986530+00:00"
+    },
+    {
+      "product_id": "prod_c772f4552f03",
+      "name": "Test Bold Feature Product",
+      "description": "This is a <strong>BOLD feature</strong> product. It has <b>premium quality</b> materials and is <strong>safe for kids</strong>.",
+      "price": 2500.0,
+      "discount_price": null,
+      "category": "cat_4401d1b5",
+      "image_url": null,
+      "image_urls": null,
+      "stock": 15,
+      "sku": null,
+      "sizes": null,
+      "size_variations": null,
+      "colors": null,
+      "color_variations": null,
+      "variations": null,
+      "ages": null,
+      "brand": null,
+      "weight": null,
+      "warranty": null,
+      "highlights": null,
+      "whats_in_box": null,
+      "specifications": null,
+      "custom_attributes": null,
+      "is_sold_out": false,
+      "rating": 0,
+      "review_count": 0,
+      "created_at": "2026-01-23T12:25:27.645410+00:00"
+    },
+    {
+      "product_id": "prod_d694c2486e10",
+      "name": "Test Warranty Product",
+      "description": "Product with custom warranty",
+      "price": 3000.0,
+      "discount_price": null,
+      "category": "cat_4401d1b5",
+      "image_url": null,
+      "image_urls": null,
+      "stock": 10,
+      "sku": null,
+      "sizes": null,
+      "size_variations": null,
+      "colors": null,
+      "color_variations": null,
+      "variations": null,
+      "ages": null,
+      "brand": null,
+      "weight": null,
+      "warranty": "1 Year Warranty",
+      "highlights": null,
+      "whats_in_box": null,
+      "specifications": null,
+      "custom_attributes": null,
+      "is_sold_out": false,
+      "rating": 0,
+      "review_count": 0,
+      "created_at": "2026-01-23T12:30:14.834175+00:00"
+    },
+    {
+      "product_id": "prod_e6b2f2a6709b",
+      "name": "Complete Test Product",
+      "description": "<p>This is a <strong>complete</strong> product with all fields.</p>",
+      "price": 5000.0,
+      "discount_price": null,
+      "category": "cat_4401d1b5",
+      "image_url": null,
+      "image_urls": null,
+      "stock": 20,
+      "sku": null,
+      "sizes": null,
+      "size_variations": null,
+      "colors": null,
+      "color_variations": null,
+      "variations": null,
+      "ages": null,
+      "brand": "GoJuniors",
+      "weight": "500g",
+      "warranty": "1 Year Warranty",
+      "highlights": [
+        {
+          "text": "Premium Quality Material",
+          "bold": true
+        },
+        {
+          "text": "Safe for Kids",
+          "bold": false
+        },
+        {
+          "text": "Easy to Clean",
+          "bold": false
+        }
+      ],
+      "whats_in_box": [
+        "1x Main Product",
+        "1x Gift Box",
+        "1x Care Instructions"
+      ],
+      "specifications": [
+        {
+          "name": "Material",
+          "value": "100% Cotton"
+        },
+        {
+          "name": "Origin",
+          "value": "Pakistan"
+        },
+        {
+          "name": "Color",
+          "value": "Blue"
+        }
+      ],
+      "custom_attributes": null,
+      "is_sold_out": false,
+      "rating": 0,
+      "review_count": 0,
+      "created_at": "2026-01-23T12:41:32.857798+00:00"
+    },
+    {
+      "product_id": "prod_0d2223b16a17",
+      "name": "Bag with Dimensions",
+      "description": "Stylish bag for kids",
+      "price": 2500.0,
+      "discount_price": null,
+      "category": "cat_c51895da",
+      "image_url": null,
+      "image_urls": null,
+      "stock": 10,
+      "sku": null,
+      "sizes": null,
+      "size_variations": null,
+      "colors": null,
+      "color_variations": null,
+      "variations": null,
+      "ages": null,
+      "brand": null,
+      "weight": "350g",
+      "dimensions": "9\"W x 6\"H x 2.5\"D",
+      "warranty": "6 months",
+      "highlights": null,
+      "whats_in_box": null,
+      "specifications": null,
+      "custom_attributes": null,
+      "is_sold_out": false,
+      "rating": 0,
+      "review_count": 0,
+      "created_at": "2026-01-23T12:56:02.304943+00:00"
+    },
+    {
+      "product_id": "prod_2fe58751cbc7",
+      "name": "Crossbody Bag Simple Specs",
+      "description": "Beautiful crossbody bag",
+      "price": 3500.0,
+      "discount_price": 3400.0,
+      "category": "crossbody bags",
+      "image_url": "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_e8921de2ca19",
+      "image_urls": [
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_e8921de2ca19",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_edf3ab618246",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_c15911876f9e",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_bd4dab52594a",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_ae8a2588f47e",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_7487fa0122da",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_7bb46b1e843a",
+        "https://gojuniors-ecom-test.preview.emergentagent.com/api/images/img_ca82c85d17b0"
+      ],
+      "stock": 15,
+      "sku": "GJ002ET01",
+      "sizes": null,
+      "size_variations": null,
+      "colors": null,
+      "color_variations": null,
+      "variations": null,
+      "ages": null,
+      "brand": "GoJuniors",
+      "weight": "250 g",
+      "dimensions": "9\"W x 6\"H x 2.5\"D",
+      "warranty": "20 Days",
+      "highlights": [
+        {
+          "text": "Feature 1",
+          "bold": false
+        }
+      ],
+      "whats_in_box": [
+        "only bag"
+      ],
+      "specifications": [
+        "Dimensions : 9\"W x 6\"H x 2.5\"D",
+        "Material : 100% Genuine Leather",
+        "Model : Made in Pakistan"
+      ],
+      "custom_attributes": {},
+      "is_sold_out": false,
+      "rating": 0,
+      "review_count": 0,
+      "created_at": "2026-01-23T13:08:48.306937+00:00"
+    }
+  ],
+  "categories": [
+    {
+      "category_id": "cat_4401d1b5",
+      "id": "cat_4401d1b5",
+      "name": "watchs",
+      "icon": "\u231a",
+      "image_url": "https://images.unsplash.com/photo-1607776933951-a39fef9e8c35?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB3YXRjaCUyMHdyaXN0d2F0Y2h8ZW58MHx8fHwxNzY5NDU3MzA4fDA&ixlib=rb-4.1.0&q=85",
+      "parent_id": null,
+      "created_at": "2026-01-23T11:43:48.391344+00:00",
+      "position": 1
+    },
+    {
+      "category_id": "cat_c51895da",
+      "id": "cat_c51895da",
+      "name": "Women Bags",
+      "icon": "\ud83d\udc5c",
+      "image_url": "https://images.unsplash.com/photo-1760624294469-550753ec203a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwxfHx3b21lbiUyMGhhbmRiYWclMjBjcm9zc2JvZHklMjBmYXNoaW9ufGVufDB8fHx8MTc2OTQ1NzMwNXww&ixlib=rb-4.1.0&q=85",
+      "parent_id": null,
+      "created_at": "2026-01-23T11:51:30.571656+00:00",
+      "position": 0
+    },
+    {
+      "category_id": "cat_e5d9da7a",
+      "id": "cat_e5d9da7a",
+      "name": "Crossbody Bags",
+      "icon": "\ud83d\udc5b",
+      "image_url": "https://images.unsplash.com/photo-1760624294514-3548bee70d26?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHx3b21lbiUyMGhhbmRiYWclMjBjcm9zc2JvZHklMjBmYXNoaW9ufGVufDB8fHx8MTc2OTQ1NzMwNXww&ixlib=rb-4.1.0&q=85",
+      "parent_id": "cat_c51895da",
+      "created_at": "2026-01-23T11:51:54.097181+00:00"
+    }
+  ],
+  "custom_attributes": [],
+  "shipping_settings": {
+    "type": "shipping",
+    "free_shipping_minimum": 4000.0,
+    "shipping_fee": 200.0
+  },
+  "site_content": {
+    "type": "content",
+    "about_content": "Welcome to GoJuniors! We are dedicated to providing the best quality products.",
+    "about_image": null,
+    "about_title": "About GoJuniors",
+    "contact_address": "Lahore, Pakistan",
+    "contact_email": "info@gojuniors.com",
+    "contact_hours": "Mon-Sat: 9AM - 6PM",
+    "contact_phone": "0306 0634634",
+    "faqs": [
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept Cash on Delivery (COD) only."
+      },
+      {
+        "question": "How long does delivery take?",
+        "answer": "Delivery usually takes 3-5 business days."
+      },
+      {
+        "question": "Can I return a product?",
+        "answer": "Yes, you can return products within the return period."
+      }
+    ],
+    "footer_description": "Express your unique style with our collection of standout handbags.",
+    "hero_image": null,
+    "hero_subtitle": "Express your unique style with our collection of standout handbags.",
+    "hero_title": "Welcome to GoJuniors. Best Shopping Experience!",
+    "privacy_content": "Privacy Policy for GoJuniors...",
+    "terms_content": "Terms and Conditions for GoJuniors...",
+    "service_features": [
+      {
+        "icon": "\ud83d\ude9a",
+        "title": "delivery charges",
+        "description": "On orders over Rs. 2000"
+      },
+      {
+        "icon": "\ud83d\udce6",
+        "title": "Free Shipping",
+        "description": "On order over Rs. 2000"
+      },
+      {
+        "icon": "\u2705",
+        "title": "Quality Guarantee",
+        "description": "12"
+      }
+    ],
+    "delivery_info": {
+      "shipping_text": "Free 5000+",
+      "cod_text": "Available",
+      "returns_text": "20 Days"
+    }
+  },
+  "theme_settings": {
+    "type": "theme",
+    "accent_color": "#06D6A0",
+    "background_color": "#FDFBF7",
+    "button_text_color": "#FFFFFF",
+    "primary_color": "#FF8FAB",
+    "secondary_color": "#FFD166",
+    "text_color": "#1A1A1A",
+    "watermark_image": null,
+    "watermark_opacity": 0.2,
+    "watermark_position": "bottom-right",
+    "watermark_text": "TestWatermark"
+  }
+}

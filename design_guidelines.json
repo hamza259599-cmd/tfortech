@@ -1,0 +1,162 @@
+{
+  "identity": {
+    "name": "GOJUNIORS",
+    "persona": "The Playful Curator",
+    "vibe": "Joyful, Safe, Imaginative, Organized Chaos",
+    "principles": [
+      "Fusion over Imitation: Mix Montessori aesthetics with Pop Art colors.",
+      "Emotion First: Every click should feel like popping a bubble wrap—satisfying and fun.",
+      "Content is King: Products are the heroes; the UI is the playground.",
+      "Zoom In: Big, bold product imagery. Kids see details.",
+      "Negative Space: Don't clutter. Let the colors breathe."
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "heading": {
+        "family": "Fredoka",
+        "url": "https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap",
+        "weights": ["400", "600", "700"],
+        "usage": "Headings, Buttons, Price Tags, Badges"
+      },
+      "body": {
+        "family": "Outfit",
+        "url": "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap",
+        "weights": ["400", "500"],
+        "usage": "Paragraphs, UI Labels, Inputs, Descriptions"
+      }
+    },
+    "rules": [
+      "NEVER use Inter or Roboto.",
+      "Headings (H1-H3) must use 'Fredoka'.",
+      "Body text must use 'Outfit'.",
+      "Use tight tracking (-0.02em) for large headings.",
+      "Use relaxed leading (1.6) for body text."
+    ]
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "name": "Playful Pink",
+        "hex": "#FF8FAB",
+        "tailwind": "bg-[#FF8FAB] text-white hover:bg-[#FF8FAB]/90"
+      },
+      "secondary": {
+        "name": "Sunshine Yellow",
+        "hex": "#FFD166",
+        "tailwind": "bg-[#FFD166] text-black"
+      },
+      "accent_blue": {
+        "name": "Sky Blue",
+        "hex": "#4CC9F0",
+        "tailwind": "text-[#4CC9F0] border-[#4CC9F0]"
+      },
+      "accent_green": {
+        "name": "Mint Green",
+        "hex": "#06D6A0",
+        "tailwind": "text-[#06D6A0] bg-[#06D6A0]/10"
+      },
+      "background": {
+        "light": "#FDFBF7",
+        "dark": "#1A1A1A"
+      },
+      "text": {
+        "main": "#1A1A1A",
+        "muted": "#6B7280"
+      }
+    },
+    "usage": {
+      "buttons": "Primary Pink for 'Buy Now', Secondary Yellow for 'Add to Cart'.",
+      "badges": "Mint Green for 'New', Sky Blue for 'Best Seller'.",
+      "backgrounds": "Use Soft Cream (#FDFBF7) as the main page background. Pure white only for cards."
+    }
+  },
+  "layout": {
+    "grid_system": {
+      "marketing": "The Tetris Grid (Bento) - Mix 1x1, 2x1, and 2x2 blocks.",
+      "listing": "Responsive Grid: grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6.",
+      "dashboard": "The Control Room - Dense, data-focused, grid-cols-12."
+    },
+    "spacing": {
+      "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+      "section": "py-16 lg:py-24",
+      "card_padding": "p-6"
+    },
+    "radius": {
+      "default": "rounded-2xl",
+      "button": "rounded-full",
+      "input": "rounded-xl"
+    }
+  },
+  "components": {
+    "buttons": {
+      "base": "inline-flex items-center justify-center rounded-full font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+      "variants": {
+        "default": "bg-[#FF8FAB] text-white hover:scale-105 hover:shadow-lg active:scale-95",
+        "outline": "border-2 border-[#1A1A1A] bg-transparent hover:bg-[#1A1A1A] hover:text-white",
+        "ghost": "hover:bg-[#FFD166]/20 text-[#1A1A1A]"
+      }
+    },
+    "cards": {
+      "product": "group relative bg-white rounded-3xl border-2 border-transparent hover:border-[#FFD166] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden",
+      "category": "relative overflow-hidden rounded-3xl aspect-[4/5] group cursor-pointer"
+    },
+    "inputs": {
+      "style": "rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-[#4CC9F0] focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50"
+    }
+  },
+  "assets": {
+    "images": {
+      "hero": [
+        {
+          "url": "https://images.unsplash.com/photo-1715775491904-ef5cdae40f0f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwzfHxoYXBweSUyMGtpZHMlMjBwbGF5aW5nJTIwd2l0aCUyMHdvb2RlbiUyMHRveXN8ZW58MHx8fHwxNzY3NTk3NDE4fDA&ixlib=rb-4.1.0&q=85",
+          "alt": "Kids playing in playground",
+          "category": "hero"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1548972774-1d09980f8e8e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGtpZHMlMjBwbGF5aW5nJTIwd2l0aCUyMHdvb2RlbiUyMHRveXN8ZW58MHx8fHwxNzY3NTk3NDE4fDA&ixlib=rb-4.1.0&q=85",
+          "alt": "Toddlers near railings",
+          "category": "hero_secondary"
+        }
+      ],
+      "categories": {
+        "fashion": "https://images.unsplash.com/photo-1759313560190-d160c3567170?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwZmFzaGlvbiUyMGNsb3RoaW5nJTIwc3R1ZGlvJTIwc2hvdHxlbnwwfHx8fDE3Njc1OTc0MTl8MA&ixlib=rb-4.1.0&q=85",
+        "toys": "https://images.unsplash.com/photo-1565425518476-3229123699c5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwyfHxoYXBweSUyMGtpZHMlMjBwbGF5aW5nJTIwd2l0aCUyMHdvb2RlbiUyMHRveXN8ZW58MHx8fHwxNzY3NTk3NDE4fDA&ixlib=rb-4.1.0&q=85",
+        "educational": "https://images.unsplash.com/photo-1613271752699-ede48a285196?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHw0fHxlZHVjYXRpb25hbCUyMHNjaWVuY2UlMjBraXQlMjBmb3IlMjBraWRzfGVufDB8fHx8MTc2NzU5NzQyMXww&ixlib=rb-4.1.0&q=85"
+      },
+      "backgrounds": [
+        "https://images.unsplash.com/photo-1767474256408-3db5bcc42eb9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGNvbG9yZnVsJTIwM2QlMjBzaGFwZXMlMjBwbGF5ZnVsJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Njc1OTc0MjN8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1651611243377-2c15b94ad613?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMGNvbG9yZnVsJTIwM2QlMjBzaGFwZXMlMjBwbGF5ZnVsJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Njc1OTc0MjN8MA&ixlib=rb-4.1.0&q=85"
+      ]
+    },
+    "icons": "Use 'lucide-react' with rounded stroke endings (stroke-linecap='round')."
+  },
+  "motion": {
+    "hover": "scale-105 transition-transform duration-200 ease-out",
+    "tap": "scale-95 transition-transform duration-100 ease-out",
+    "fade_in": {
+      "initial": { "opacity": 0, "y": 20 },
+      "animate": { "opacity": 1, "y": 0 },
+      "transition": { "duration": 0.5 }
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. THEME: Implement a 'Light Mode' first approach. Dark mode should be deep charcoal (#1A1A1A), not pure black.",
+    "2. FONTS: Import 'Fredoka' and 'Outfit' from Google Fonts in index.css immediately.",
+    "3. SHAPES: Use 'rounded-3xl' for large containers and 'rounded-full' for buttons. Avoid sharp edges.",
+    "4. SHADOWS: Use colored shadows! e.g., 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' for a neo-brutalist pop, or soft pastel shadows.",
+    "5. COMPONENTS: Customize Shadcn components. Remove the default 'slate' look. Make them pop.",
+    "6. IMAGES: Use the provided Unsplash URLs. Do not use placeholders.",
+    "7. LAYOUT: The Home page must use a Bento Grid for categories. Do not just stack rows.",
+    "8. ADMIN: Keep the Admin panel cleaner (Control Room grid) but retain the font personality.",
+    "9. TESTING: Add data-testid to all interactive elements (buttons, inputs, links)."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI Slop' - generic centered layouts.",
+    "Use glassmorphism (backdrop-blur-xl) for sticky headers.",
+    "Never use 'transition: all'. Animate specific properties.",
+    "Use 'sonner' for toasts.",
+    "Export components as named exports.",
+    "Export pages as default exports."
+  ]
+}

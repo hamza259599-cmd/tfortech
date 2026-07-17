@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gojuniors.com/api/sitemap.xml
+
+# Disallow admin and private pages
+Disallow: /admin/
+Disallow: /checkout
+Disallow: /order-success
+Disallow: /profile
+Disallow: /login
+Disallow: /register
+
+# Allow crawling of all public pages
+Allow: /products
+Allow: /product/
+Allow: /categories
+Allow: /about
+Allow: /contact
+Allow: /faq
+Allow: /terms
+Allow: /privacy

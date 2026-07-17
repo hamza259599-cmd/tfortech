@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="24" time="4.410" timestamp="2026-01-20T20:52:43.692615+00:00" hostname="agent-env-19aaf01a-8bf9-4ada-894d-def3c5fc039e"><testcase classname="tests.test_gojuniors_api.TestHealthCheck" name="test_health_endpoint" time="0.068"><failure message="requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)">/root/.venv/lib/python3.11/site-packages/requests/models.py:976: in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/json/decoder.py:355: in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+E   json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+tests/test_gojuniors_api.py:23: in test_health_endpoint
+    data = response.json()
+           ^^^^^^^^^^^^^^^
+/root/.venv/lib/python3.11/site-packages/requests/models.py:980: in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+E   requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)</failure></testcase><testcase classname="tests.test_gojuniors_api.TestHealthCheck" name="test_api_health_endpoint" time="0.035" /><testcase classname="tests.test_gojuniors_api.TestAuth" name="test_login_success" time="0.260" /><testcase classname="tests.test_gojuniors_api.TestAuth" name="test_login_invalid_credentials" time="0.034" /><testcase classname="tests.test_gojuniors_api.TestAuth" name="test_register_new_user" time="0.263" /><testcase classname="tests.test_gojuniors_api.TestAuth" name="test_get_me_without_auth" time="0.039" /><testcase classname="tests.test_gojuniors_api.TestProducts" name="test_get_products" time="0.036" /><testcase classname="tests.test_gojuniors_api.TestProducts" name="test_get_featured_products" time="0.037" /><testcase classname="tests.test_gojuniors_api.TestProducts" name="test_get_products_by_category" time="0.037" /><testcase classname="tests.test_gojuniors_api.TestProducts" name="test_get_product_by_id" time="0.073" /><testcase classname="tests.test_gojuniors_api.TestProducts" name="test_get_nonexistent_product" time="0.041" /><testcase classname="tests.test_gojuniors_api.TestCategories" name="test_get_categories" time="0.035" /><testcase classname="tests.test_gojuniors_api.TestCategories" name="test_categories_have_counts" time="0.034" /><testcase classname="tests.test_gojuniors_api.TestCart" name="test_get_cart" time="0.301" /><testcase classname="tests.test_gojuniors_api.TestCart" name="test_add_to_cart" time="0.343" /><testcase classname="tests.test_gojuniors_api.TestAdminEndpoints" name="test_admin_stats" time="0.295" /><testcase classname="tests.test_gojuniors_api.TestAdminEndpoints" name="test_admin_products" time="0.298" /><testcase classname="tests.test_gojuniors_api.TestAdminEndpoints" name="test_admin_orders" time="0.298" /><testcase classname="tests.test_gojuniors_api.TestAdminEndpoints" name="test_admin_users" time="0.333" /><testcase classname="tests.test_gojuniors_api.TestAdminEndpoints" name="test_admin_shipping" time="0.304"><failure message="AssertionError: assert 'shipping_fee' in {'delivery_time_express': '1-2 days', 'delivery_time_standard': '3-5 days', 'express_shipping_fee': 500.0, 'free_shipping_minimum': 3000.0, ...}">tests/test_gojuniors_api.py:258: in test_admin_shipping
+    assert "shipping_fee" in data
+E   AssertionError: assert 'shipping_fee' in {'delivery_time_express': '1-2 days', 'delivery_time_standard': '3-5 days', 'express_shipping_fee': 500.0, 'free_shipping_minimum': 3000.0, ...}</failure></testcase><testcase classname="tests.test_gojuniors_api.TestCategoryAdmin" name="test_create_update_delete_category" time="0.435" /><testcase classname="tests.test_gojuniors_api.TestShipping" name="test_public_shipping" time="0.037" /><testcase classname="tests.test_gojuniors_api.TestWishlist" name="test_get_wishlist" time="0.303" /><testcase classname="tests.test_gojuniors_api.TestOrders" name="test_get_user_orders" time="0.290" /></testsuite></testsuites>
