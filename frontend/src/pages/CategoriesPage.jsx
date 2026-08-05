@@ -41,7 +41,7 @@ export default function CategoriesPage() {
       {/* SEO Meta Tags */}
       <SEO 
         title="Shop by Category - Kids Clothes, Toys & More"
-        description="Browse all categories at GoJuniors. Find kids' clothes, toys, bags, educational items and more. Quality products with Cash on Delivery across Pakistan."
+        description="Browse all categories at T For Tech. Find kids' clothes, toys, bags, educational items and more. Quality products with Cash on Delivery across Pakistan."
         url="/categories"
       />
       
