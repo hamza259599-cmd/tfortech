@@ -2671,7 +2671,7 @@ export default function ProductPublish() {
                           name="brand"
                           value={formData.brand}
                           onChange={handleInputChange}
-                          placeholder="e.g., GoJuniors, Nike, etc."
+                          placeholder="e.g., Samsung, Apple, etc."
                           className="mt-2"
                           data-testid="brand-input"
                         />
