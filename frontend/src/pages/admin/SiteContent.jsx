@@ -69,12 +69,12 @@ const defaultContent = {
   },
   
   // About Us
-  about_title: "About GoJuniors",
-  about_content: "Welcome to GoJuniors! We are dedicated to providing the best quality products for you and your family.",
+  about_title: "About T For Tech",
+  about_content: "Welcome to T For Tech! We are dedicated to providing the best quality products for you and your family.",
   about_image: "",
   
   // Contact Us
-  contact_email: "info@gojuniors.com",
+  contact_email: "info@T For Tech.com",
   contact_phone: "0306 0634634",
   contact_address: "Lahore, Pakistan",
   contact_hours: "Mon-Sat: 9AM - 6PM",
@@ -87,10 +87,10 @@ const defaultContent = {
   ],
   
   // Terms & Conditions
-  terms_content: "These are the terms and conditions for using GoJuniors...",
+  terms_content: "These are the terms and conditions for using T For Tech...",
   
   // Privacy Policy
-  privacy_content: "This is the privacy policy for GoJuniors..."
+  privacy_content: "This is the privacy policy for T For Tech..."
 };
 
 export default function SiteContent() {
@@ -515,7 +515,7 @@ export default function SiteContent() {
                     <div className="bg-gray-50 rounded-lg p-6 text-center">
                       <div className="text-2xl font-bold inline-flex flex-wrap justify-center">
                         {content.stylish_text?.enabled ? (
-                          "GoJuniors".split('').map((letter, i) => {
+                          "T For Tech".split('').map((letter, i) => {
                             const colors = {
                               playful: ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"],
                               subtle: ["#FF8FAB", "#4ECDC4"],
@@ -547,7 +547,7 @@ export default function SiteContent() {
                             );
                           })
                         ) : (
-                          <span className="text-gray-400">GoJuniors (Stylish Text Disabled)</span>
+                          <span className="text-gray-400">T For Tech (Stylish Text Disabled)</span>
                         )}
                       </div>
                       <p className="text-sm text-gray-500 mt-3">This is how your text will look</p>
