@@ -63,8 +63,8 @@ export default function ContactPage() {
     <Layout>
       {/* SEO Meta Tags */}
       <SEO 
-        title="Contact Us - GoJuniors Customer Support"
-        description="Contact GoJuniors for any questions about kids' clothes, toys, orders or shipping. Reach us via phone, email or our contact form. We're here to help!"
+        title="Contact Us - T For Tech Customer Support"
+        description="Contact T For Tech for any questions about kids' clothes, toys, orders or shipping. Reach us via phone, email or our contact form. We're here to help!"
         url="/contact"
       />
       
@@ -92,7 +92,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-[#1A1A1A]">Email</h3>
-                    <p className="text-gray-600">{content?.contact_email || "info@gojuniors.com"}</p>
+                    <p className="text-gray-600">{content?.contact_email || "info@T For Tech.com"}</p>
                   </div>
                 </div>
 
