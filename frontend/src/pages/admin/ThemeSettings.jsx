@@ -319,7 +319,7 @@ export default function ThemeSettings() {
                     <Input 
                       value={theme.watermark_text || ""}
                       onChange={(e) => handleColorChange('watermark_text', e.target.value)}
-                      placeholder="e.g., GoJuniors"
+                      placeholder="e.g., T For Tech"
                       className="w-full"
                     />
                     <p className="text-xs text-gray-500 mt-1">Text that appears as watermark on your site</p>
@@ -445,7 +445,7 @@ export default function ThemeSettings() {
                   {/* Header Preview */}
                   <div className="p-4 border-b" style={{ backgroundColor: theme.background_color }}>
                     <div className="flex items-center justify-between">
-                      <span className="font-bold" style={{ color: theme.text_color }}>GoJuniors</span>
+                      <span className="font-bold" style={{ color: theme.text_color }}>T For Tech</span>
                       <div className="flex gap-2">
                         <div className="w-6 h-6 rounded-full" style={{ backgroundColor: theme.primary_color }}></div>
                       </div>
