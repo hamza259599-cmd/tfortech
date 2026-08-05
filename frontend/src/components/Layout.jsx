@@ -51,8 +51,8 @@ export const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="nav-logo">
             <span className="font-heading text-2xl font-bold">
-              <span style={{color: 'var(--color-primary)'}}>Go</span>
-              <span style={{color: 'var(--color-text)'}}>Juniors</span>
+              <span style={{color: 'var(--color-primary)'}}>T</span>
+              <span style={{color: 'var(--color-text)'}}>For Tech</span>
             </span>
           </Link>
 
@@ -222,8 +222,8 @@ export const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
               <span className="font-heading text-2xl font-bold">
-                <span style={{color: 'var(--color-primary)'}}>Go</span>
-                <span className="text-white">Juniors</span>
+                <span style={{color: 'var(--color-primary)'}}>T</span>
+                <span className="text-white">For Tech</span>
               </span>
             </div>
             <p className="text-gray-400 leading-relaxed">
@@ -277,7 +277,7 @@ export const Footer = () => {
           <div>
             <h4 className="font-heading font-semibold text-lg mb-4">Contact</h4>
             <ul className="space-y-2 text-gray-400">
-              <li>📧 {siteContent?.contact_email || "info@gojuniors.com"}</li>
+              <li>📧 {siteContent?.contact_email || "arslanchaudhry01786@gmail.com"}</li>
               <li>📞 {siteContent?.contact_phone || "0306 0634634"}</li>
               <li>📍 {siteContent?.contact_address || "Lahore, Pakistan"}</li>
             </ul>
@@ -285,7 +285,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
-          <p>© 2025 GoJuniors. All rights reserved.</p>
+          <p>© 2025 T For Tech. All rights reserved.</p>
         </div>
       </div>
     </footer>
