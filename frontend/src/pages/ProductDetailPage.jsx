@@ -484,7 +484,7 @@ export default function ProductDetailPage() {
   // Share product
   const handleShare = async (method) => {
     const productUrl = window.location.href;
-    const productText = `Check out ${product.name} on GoJuniors!`;
+    const productText = `Check out ${product.name} on T For Tech!`;
 
     if (method === 'copy') {
       try {
@@ -1543,7 +1543,7 @@ export default function ProductDetailPage() {
                 {/* Brand Name - Use device_specs.brand if available */}
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-500 mb-1">Brand Name</p>
-                  <p className="font-medium text-[#1A1A1A]">{product.device_specs?.brand || product.brand || 'GoJuniors'}</p>
+                  <p className="font-medium text-[#1A1A1A]">{product.device_specs?.brand || product.brand || 'T For Tech'}</p>
                 </div>
                 
                 {/* Weight */}
