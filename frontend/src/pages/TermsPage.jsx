@@ -42,8 +42,8 @@ export default function TermsPage() {
     <Layout>
       {/* SEO Meta Tags */}
       <SEO 
-        title="Terms & Conditions - GoJuniors"
-        description="Read GoJuniors Terms and Conditions. Learn about our policies for orders, shipping, returns, and use of our kids' e-commerce platform."
+        title="Terms & Conditions - T For Tech"
+        description="Read T For Tech Terms and Conditions. Learn about our policies for orders, shipping, returns, and use of our kids' e-commerce platform."
         url="/terms"
       />
       
