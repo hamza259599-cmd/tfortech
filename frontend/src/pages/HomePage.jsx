@@ -23,7 +23,7 @@ const API = `${BACKEND_URL}/api`;
 
 // Default placeholder image when no image is available
 const placeholderImage = "https://placehold.co/600x600/F8F9FA/6B7280?text=No+Image";
-const heroPlaceholder = "https://placehold.co/1200x600/FF8FAB/FFFFFF?text=GoJuniors";
+  const heroPlaceholder = "https://placehold.co/1200x600/FFC107/FFFFFF?text=T+For+Tech";
 
 export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
