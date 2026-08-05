@@ -166,9 +166,9 @@ export default function ProductsPage() {
 
   const getSEODescription = () => {
     if (currentCategory) {
-      return `Shop ${currentCategory.name} at GoJuniors. ${currentCategory.product_count || ''} quality kids' products with Cash on Delivery across Pakistan. Free shipping on orders over Rs. 5000.`;
+      return `Shop ${currentCategory.name} at T For Tech. ${currentCategory.product_count || ''} quality kids' products with Cash on Delivery across Pakistan. Free shipping on orders over Rs. 5000.`;
     }
-    return "Browse all products at GoJuniors. Quality kids' clothes, toys, bags, and educational items with Cash on Delivery across Pakistan.";
+    return "Browse all products at T For Tech. Quality kids' clothes, toys, bags, and educational items with Cash on Delivery across Pakistan.";
   };
 
   return (
