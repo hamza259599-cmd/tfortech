@@ -11,15 +11,15 @@ export default function SEO({
   type = "website",
   product = null // For product pages
 }) {
-  const siteName = "GoJuniors";
-  const defaultDescription = "Shop kids' clothes, toys, and educational items at GoJuniors. Quality products with Cash on Delivery across Pakistan.";
-  const defaultImage = "https://gojuniors.com/logo.png";
-  const baseUrl = "https://gojuniors.com";
-  
-  const fullTitle = title ? `${title} | ${siteName}` : siteName;
-  const fullDescription = description || defaultDescription;
-  const fullImage = image || defaultImage;
-  const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
+  const siteName = "T For Tech";
+    const defaultDescription = "Shop the latest tech and gadgets at T For Tech. Quality products with Cash on Delivery across Pakistan.";
+    const defaultImage = "https://tfortech.store/logo.png";
+    const baseUrl = "https://tfortech.store";
+
+    const fullTitle = title ? `${title} | ${siteName}` : siteName;
+    const fullDescription = description || defaultDescription;
+    const fullImage = image || defaultImage;
+    const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
 
   // Product structured data for JSON-LD
   const productSchema = product ? {
