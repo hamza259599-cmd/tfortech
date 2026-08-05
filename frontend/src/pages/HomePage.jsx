@@ -160,7 +160,7 @@ export default function HomePage() {
       {/* SEO Meta Tags */}
       <SEO 
         title="Kids Clothes, Toys & Educational Items"
-        description="Shop quality kids' clothes, toys, bags, and educational items at GoJuniors. Cash on Delivery available across Pakistan. Free shipping on orders over Rs. 5000."
+        description="Shop quality kids' clothes, toys, bags, and educational items at T For Tech. Cash on Delivery available across Pakistan. Free shipping on orders over Rs. 5000."
         url="/"
       />
       
@@ -169,7 +169,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           <img 
             src={siteContent?.hero_image || heroPlaceholder} 
-            alt="GoJuniors" 
+            alt="T For Tech" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A]/80 to-transparent"></div>
