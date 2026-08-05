@@ -42,8 +42,8 @@ export default function AboutPage() {
     <Layout>
       {/* SEO Meta Tags */}
       <SEO 
-        title="About Us - GoJuniors Kids Store"
-        description="Learn about GoJuniors, Pakistan's trusted online store for kids' clothes, toys, and educational items. Quality products with Cash on Delivery."
+        title="About Us - T For Tech Kids Store"
+        description="Learn about T For Tech, Pakistan's trusted online store for kids' clothes, toys, and educational items. Quality products with Cash on Delivery."
         url="/about"
       />
       
