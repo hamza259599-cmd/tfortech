@@ -148,6 +148,10 @@ export default function AdminDashboard() {
               <p className="text-sm text-gray-500">Welcome back! Here's what's happening with your store.</p>
             </div>
                       <div className="flex items-center gap-3">
+          <div className="text-right">
+            <p className="text-sm text-gray-500">Today</p>
+            <p className="font-medium text-[#1A1A1A]">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
+          </div>
             <div className="text-right">
               <p className="text-sm text-gray-500">Live Time</p>
               <p className="font-medium text-[#1A1A1A]">{liveTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>
