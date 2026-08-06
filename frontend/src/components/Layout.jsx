@@ -229,6 +229,17 @@ export const Footer = () => {
             <p className="text-gray-400 leading-relaxed">
               {siteContent?.footer_description || "Express your unique style with our collection of standout handbags. From the must-have classics to this season's conversation pieces, find the perfect accent to define your look."}
             </p>
+                <div className="flex items-center gap-3 mt-4">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FFD166] transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z"/></svg>
+                  </a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FFD166] transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 1.8c-2.67 0-2.99.01-4.04.06-.87.04-1.34.18-1.66.31-.42.16-.72.36-1.03.67-.31.31-.51.61-.67 1.03-.13.32-.27.79-.31 1.66-.05 1.05-.06 1.37-.06 4.04s.01 2.99.06 4.04c.04.87.18 1.34.31 1.66.16.42.36.72.67 1.03.31.31.61.51 1.03.67.32.13.79.27 1.66.31 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.87-.04 1.34-.18 1.66-.31.42-.16.72-.36 1.03-.67.31-.31.51-.61.67-1.03.13-.32.27-.79.31-1.66.05-1.05.06-1.37.06-4.04s-.01-2.99-.06-4.04c-.04-.87-.18-1.34-.31-1.66a2.76 2.76 0 0 0-.67-1.03 2.76 2.76 0 0 0-1.03-.67c-.32-.13-.79-.27-1.66-.31-1.05-.05-1.37-.06-4.04-.06Zm0 3.06a5.14 5.14 0 1 1 0 10.28 5.14 5.14 0 0 1 0-10.28Zm0 1.8a3.34 3.34 0 1 0 0 6.68 3.34 3.34 0 0 0 0-6.68Zm5.34-1.99a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"/></svg>
+                  </a>
+                  <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FFD166] transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.83-.9-1.29-2.07-1.29-3.32h-3.06v13.7a2.9 2.9 0 1 1-2.07-2.78V10.3a5.94 5.94 0 1 0 5.13 5.9V9.35a7.02 7.02 0 0 0 4.09 1.31V7.6a4.1 4.1 0 0 1-2.8-1.78Z"/></svg>
+                  </a>
+                </div>
           </div>
 
           {/* Quick Links - Dynamic */}
@@ -364,6 +375,33 @@ const Watermark = () => {
   );
 };
 
+const WhatsAppButton = () => (
+  <a
+    href="https://wa.me/923033424333"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with us on WhatsApp"
+    style={{
+      position: "fixed",
+      bottom: "24px",
+      right: "24px",
+      width: "60px",
+      height: "60px",
+      background: "#25D366",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 4px 14px rgba(0,0,0,0.3)",
+      zIndex: 9999,
+    }}
+  >
+    <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#fff" d="M16.001 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.258.594 4.376 1.632 6.213L3.2 28.8l6.77-1.605A12.73 12.73 0 0 0 16 28.8c7.07 0 12.8-5.73 12.8-12.8s-5.73-12.8-12.799-12.8Zm0 23.36a10.5 10.5 0 0 1-5.36-1.47l-.384-.228-4.017.953.973-3.914-.25-.402A10.51 10.51 0 0 1 5.44 16c0-5.83 4.73-10.56 10.561-10.56S26.56 10.17 26.56 16 21.831 26.56 16.001 26.56Zm5.786-7.86c-.317-.159-1.874-.925-2.165-1.03-.29-.106-.502-.159-.713.159-.211.317-.818 1.03-1.003 1.242-.185.211-.37.238-.687.08-.317-.16-1.337-.493-2.547-1.572-.941-.84-1.577-1.878-1.762-2.195-.185-.317-.02-.489.139-.647.143-.142.318-.37.476-.556.159-.185.212-.317.318-.529.106-.211.053-.396-.026-.555-.08-.159-.713-1.718-.977-2.353-.257-.618-.518-.534-.713-.544l-.607-.011c-.211 0-.555.079-.846.396-.29.317-1.108 1.083-1.108 2.642s1.134 3.064 1.292 3.276c.159.211 2.232 3.406 5.406 4.777.755.326 1.345.52 1.805.665.758.241 1.448.207 1.994.126.608-.09 1.874-.766 2.139-1.507.264-.74.264-1.375.185-1.508-.08-.132-.29-.211-.607-.37Z"/>
+    </svg>
+  </a>
+);
+
 export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col relative" style={{backgroundColor: 'var(--color-background)'}}>
@@ -371,6 +409,7 @@ export default function Layout({ children }) {
       <Navbar />
       <main className="flex-1 relative z-10">{children}</main>
       <Footer />
+        <WhatsAppButton />
     </div>
   );
 }
