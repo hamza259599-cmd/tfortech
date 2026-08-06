@@ -348,6 +348,13 @@ export default function ProductDetailPage() {
     return product?.image_urls || [product?.image_url];
   };
 
+        const getYouTubeEmbedUrl = (url) => {
+          if (!url) return null;
+          const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+          return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+        };
+
+
   // Get current price based on selected variation
   const getCurrentPrice = () => {
     // First check combined variation
@@ -703,6 +710,19 @@ export default function ProductDetailPage() {
                 Only {product.stock} left!
               </span>
             )}
+              {product.video_url && getYouTubeEmbedUrl(product.video_url) && (
+                <div className="mt-4 rounded-2xl overflow-hidden shadow-lg aspect-video">
+                  <iframe
+                    src={getYouTubeEmbedUrl(product.video_url)}
+                    title={`${product.name} video`}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
+
           </div>
 
           {/* Product Info */}
