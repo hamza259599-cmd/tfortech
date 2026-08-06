@@ -25,6 +25,40 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetchDashboardData();
+
+  const [liveTime, setLiveTime] = useState(new Date());
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    const timer = setInterval(() => setLiveTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const weatherCodeMap = {
+      0: "Clear", 1: "Mostly Clear", 2: "Partly Cloudy", 3: "Cloudy",
+      45: "Fog", 48: "Fog", 51: "Drizzle", 53: "Drizzle", 55: "Drizzle",
+      61: "Light Rain", 63: "Rain", 65: "Heavy Rain",
+      80: "Showers", 81: "Showers", 82: "Heavy Showers",
+      95: "Thunderstorm", 96: "Thunderstorm", 99: "Thunderstorm"
+    };
+    const loadWeather = () => {
+      fetch("https://api.open-meteo.com/v1/forecast?latitude=31.5497&longitude=74.3436&current_weather=true")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.current_weather) {
+            setWeather({
+              temp: Math.round(data.current_weather.temperature),
+              label: weatherCodeMap[data.current_weather.weathercode] || ""
+            });
+          }
+        })
+        .catch(() => setWeather({ temp: "--", label: "Unavailable" }));
+    };
+    loadWeather();
+    const weatherTimer = setInterval(loadWeather, 15 * 60 * 1000);
+    return () => clearInterval(weatherTimer);
+  }, []);
   }, []);
 
   const fetchDashboardData = async () => {
@@ -113,15 +147,22 @@ export default function AdminDashboard() {
               <h1 className="font-heading text-2xl font-bold text-[#1A1A1A]">Dashboard</h1>
               <p className="text-sm text-gray-500">Welcome back! Here's what's happening with your store.</p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-right">
-                <p className="text-sm text-gray-500">Today</p>
-                <p className="font-medium text-[#1A1A1A]">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
-              </div>
-              <div className="w-10 h-10 bg-[#FF8FAB]/10 rounded-xl flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-[#FF8FAB]" />
-              </div>
+                      <div className="flex items-center gap-3">
+            <div className="text-right">
+              <p className="text-sm text-gray-500">Live Time</p>
+              <p className="font-medium text-[#1A1A1A]">{liveTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>
             </div>
+            <div className="w-10 h-10 bg-[#FF8FAB]/10 rounded-xl flex items-center justify-center">
+              <Clock className="w-5 h-5 text-[#FF8FAB]" />
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-500">Lahore Weather</p>
+              <p className="font-medium text-[#1A1A1A]">{weather ? `${weather.temp}°C ${weather.label}` : 'Loading...'}</p>
+            </div>
+            <div className="w-10 h-10 bg-[#FFD166]/20 rounded-xl flex items-center justify-center">
+              <Calendar className="w-5 h-5 text-[#FFD166]" />
+            </div>
+          </div>
           </div>
 
           {/* Stats Cards */}
