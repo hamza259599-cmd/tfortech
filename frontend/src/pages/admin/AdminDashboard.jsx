@@ -25,6 +25,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetchDashboardData();
+  }, []);
 
   const [liveTime, setLiveTime] = useState(new Date());
   const [weather, setWeather] = useState(null);
@@ -58,7 +59,6 @@ export default function AdminDashboard() {
     loadWeather();
     const weatherTimer = setInterval(loadWeather, 15 * 60 * 1000);
     return () => clearInterval(weatherTimer);
-  }, []);
   }, []);
 
   const fetchDashboardData = async () => {
