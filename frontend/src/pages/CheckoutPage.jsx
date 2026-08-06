@@ -7,8 +7,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { useCart, useAuth } from "../App";
 import { toast } from "sonner";
-import { Banknote, ArrowLeft, ShieldCheck } from "lucide-react";
-
+import { Banknote, ArrowLeft, ShieldCheck, Smartphone } from "lucide-react";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
@@ -221,7 +220,7 @@ export default function CheckoutPage() {
                     className={`flex items-center space-x-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
                       paymentMethod === "cod" ? "border-[#FF8FAB] bg-[#FF8FAB]/5" : "border-gray-200 hover:border-[#FFD166]"
                     }`}
-                    data-testid="payment-cod"
+                    data-testid="payment-cod" onClick={() => setPaymentMethod("cod")}
                   >
                     <div className="flex-1 flex items-center gap-4">
                       <div className="w-12 h-12 bg-[#06D6A0]/10 rounded-xl flex items-center justify-center">
@@ -241,7 +240,7 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Order Summary */}
+            <div className={`flex items-center space-x-4 p-4 rounded-xl border-2 cursor-pointer transition-all mt-4 ${paymentMethod === "jazzcash" ? "border-[#FF8FAB] bg-[#FF8FAB]/5" : "border-gray-200 hover:border-[#FFD166]"}`} data-testid="payment-jazzcash" onClick={() => setPaymentMethod("jazzcash")}><div className="flex-1 flex items-center gap-4"><div className="w-12 h-12 bg-[#FFD166]/10 rounded-xl flex items-center justify-center"><Smartphone className="w-6 h-6 text-[#FF8FAB]" /></div><div><Label className="font-medium">JazzCash Transfer</Label><p className="text-sm text-[#6B7280]">Pay via JazzCash mobile account</p></div></div></div>{paymentMethod === "jazzcash" && (<div className="mt-4 p-4 rounded-xl bg-[#FFD166]/10 border-2 border-[#FFD166] text-sm"><p className="font-medium text-[#1A1A1A] mb-2">JazzCash Payment Details</p><p className="text-[#1A1A1A]">Number: <span className="font-bold">0303 3424333</span></p><p className="text-[#1A1A1A]">Account Title: <span className="font-bold">Hafiz Muhammad Arslan</span></p><p className="text-[#6B7280] mt-2">Order place karne ke baad is number par payment transfer karein aur transaction ID WhatsApp par bhej dein. Payment confirm hone par order process hoga.</p></div>)}{/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl p-6 sticky top-24" data-testid="checkout-summary">
                 <h2 className="font-heading text-xl font-bold text-[#1A1A1A] mb-6">
