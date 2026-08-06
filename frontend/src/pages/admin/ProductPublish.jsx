@@ -255,6 +255,8 @@ export default function ProductPublish() {
     weight: "",
     dimensions: "",
     warranty: "",
+   
+    video_url: "",
     is_sold_out: false
   });
 
@@ -433,6 +435,7 @@ export default function ProductPublish() {
         weight: product.weight || "",
         dimensions: product.dimensions || "",
         warranty: product.warranty || "",
+                video_url: product.video_url || "",
         is_sold_out: product.is_sold_out || false
       });
       
@@ -870,6 +873,7 @@ export default function ProductPublish() {
       weight: formData.weight || null,
       dimensions: formData.dimensions || null,
       warranty: formData.warranty || null,
+      video_url: formData.video_url ? formData.video_url.trim() : null,
       sizes: variationTypes.sizes ? sizes.filter(s => s.name.trim()).map(s => s.name) : null,
       size_variations: sizeVariations,
       colors: variationTypes.colors ? colors.filter(c => c.name.trim()).map(c => c.name) : null,
@@ -1232,7 +1236,20 @@ export default function ProductPublish() {
                     </ul>
                   </div>
                   
-                  {/* Gallery Modal */}
+                                  <div className="bg-white border border-gray-200 rounded-xl p-4">
+                  <Label htmlFor="video_url" className="text-sm font-medium">🎬 Product Video (YouTube Link)</Label>
+                  <p className="text-xs text-gray-400 mt-1 mb-2">Paste a YouTube video link to show a product video on the product page (optional).</p>
+                  <Input
+                    id="video_url"
+                    name="video_url"
+                    value={formData.video_url}
+                    onChange={handleInputChange}
+                    placeholder="e.g., https://www.youtube.com/watch?v=xxxxxxxxxxx"
+                    className="mt-1"
+                  />
+                </div>
+
+{/* Gallery Modal */}
                   {galleryModalOpen && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setGalleryModalOpen(false)}>
                       <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[80vh] overflow-hidden" onClick={e => e.stopPropagation()}>
