@@ -73,6 +73,40 @@ const defaultContent = {
   about_content: "Welcome to T For Tech! We are dedicated to providing the best quality products for you and your family.",
   about_image: "",
   
+// About - Our Story Section
+about_story_title: "Our Story",
+about_story_content: "It all started with a simple idea: everyone deserves access to great products without breaking the bank. What began as a small venture has grown into a trusted name loved by thousands of happy customers across Pakistan.",
+about_story_image: "",
+
+// About - Our Values
+about_values: [
+  { icon: "🎯", title: "Quality First", description: "We never compromise on the quality of our products" },
+  { icon: "❤️", title: "Customer Love", description: "Every decision we make starts with our customers" },
+  { icon: "🚀", title: "Innovation", description: "Always improving and finding better ways to serve you" },
+  { icon: "🤝", title: "Trust", description: "Built on honesty, transparency, and reliability" }
+],
+
+// About - Quality & Trust Section
+about_quality_title: "Quality & Trust",
+about_quality_content: "We hold ourselves to the highest standards, sourcing only the best products and backing every order with dependable service and support.",
+about_quality_image1: "",
+about_quality_image2: "",
+about_stats: [
+  { number: "10K+", label: "Happy Customers" },
+  { number: "500+", label: "Products" },
+  { number: "50+", label: "Cities Served" },
+  { number: "4.8", label: "Average Rating" }
+],
+
+// About - Our Journey Timeline
+about_journey: [
+  { year: "2020", title: "The Beginning", description: "T For Tech was founded with a simple vision" },
+  { year: "2022", title: "Growing Fast", description: "Expanded our product range and customer base" },
+  { year: "2024", title: "Going National", description: "Now proudly serving customers across Pakistan" },
+  { year: "2026", title: "Looking Ahead", description: "Continuing to innovate and grow every day" }
+],
+
+  
   // Contact Us
   contact_email: "info@T For Tech.com",
   contact_phone: "0306 0634634",
@@ -197,6 +231,60 @@ export default function SiteContent() {
     const newServices = (content.service_features || []).filter((_, i) => i !== index);
     handleChange("service_features", newServices);
   };
+
+  
+// About Values handlers
+const handleValueChange = (index, field, value) => {
+const newValues = [...(content.about_values || [])];
+newValues[index] = { ...newValues[index], [field]: value };
+handleChange("about_values", newValues);
+};
+
+const addValue = () => {
+const newValues = [...(content.about_values || []), { icon: "⭐", title: "", description: "" }];
+handleChange("about_values", newValues);
+};
+
+const removeValue = (index) => {
+const newValues = (content.about_values || []).filter((_, i) => i !== index);
+handleChange("about_values", newValues);
+};
+
+// About Journey handlers
+const handleJourneyChange = (index, field, value) => {
+const newJourney = [...(content.about_journey || [])];
+newJourney[index] = { ...newJourney[index], [field]: value };
+handleChange("about_journey", newJourney);
+};
+
+const addJourneyItem = () => {
+const newJourney = [...(content.about_journey || []), { year: "", title: "", description: "" }];
+handleChange("about_journey", newJourney);
+};
+
+const removeJourneyItem = (index) => {
+const newJourney = (content.about_journey || []).filter((_, i) => i !== index);
+handleChange("about_journey", newJourney);
+};
+
+// About Stats handlers
+const handleStatChange = (index, field, value) => {
+const newStats = [...(content.about_stats || [])];
+newStats[index] = { ...newStats[index], [field]: value };
+handleChange("about_stats", newStats);
+};
+
+const addStat = () => {
+const newStats = [...(content.about_stats || []), { number: "", label: "" }];
+handleChange("about_stats", newStats);
+};
+
+const removeStat = (index) => {
+const newStats = (content.about_stats || []).filter((_, i) => i !== index);
+handleChange("about_stats", newStats);
+};
+
+
 
   // Popular emoji options for service icons
   const popularEmojis = [
@@ -984,70 +1072,351 @@ export default function SiteContent() {
               </div>
             )}
 
-            {/* About Us Tab */}
-            {activeTab === "about" && (
-              <div className="space-y-6">
-                <h2 className="font-heading text-xl font-bold text-[#1A1A1A] mb-4">About Us Page</h2>
-                
-                <div>
-                  <Label className="text-sm font-medium mb-2 block">Page Title</Label>
-                  <Input
-                    value={content.about_title}
-                    onChange={(e) => handleChange("about_title", e.target.value)}
-                    placeholder="About Us title..."
-                    className="w-full"
-                  />
-                </div>
+              {/* About Us Tab */}
+              {activeTab === "about" && (
+                <div className="space-y-6">
+                  <h2 className="font-heading text-xl font-bold text-[#1A1A1A] mb-4">About Us Page</h2>
 
-                <div>
-                  <Label className="text-sm font-medium mb-2 block">About Content</Label>
-                  <Textarea
-                    value={content.about_content}
-                    onChange={(e) => handleChange("about_content", e.target.value)}
-                    placeholder="Write about your company..."
-                    rows={10}
-                    className="w-full"
-                  />
-                </div>
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Page Title</Label>
+                    <Input
+                      value={content.about_title}
+                      onChange={(e) => handleChange("about_title", e.target.value)}
+                      placeholder="About Us title..."
+                      className="w-full"
+                    />
+                  </div>
 
-                <div>
-                  <Label className="text-sm font-medium mb-2 block">About Us Image</Label>
-                  {content.about_image ? (
-                    <div className="relative">
-                      <img 
-                        src={content.about_image} 
-                        alt="About" 
-                        className="w-full h-48 object-cover rounded-xl"
-                      />
-                      <button
-                        onClick={() => handleChange("about_image", "")}
-                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleImageUpload("about_image", e.target.files[0])}
-                        className="hidden"
-                        disabled={uploading}
-                      />
-                      {uploading ? (
-                        <div className="animate-spin rounded-full h-8 w-8 border-4 border-[#FF8FAB] border-t-transparent"></div>
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">About Content</Label>
+                    <Textarea
+                      value={content.about_content}
+                      onChange={(e) => handleChange("about_content", e.target.value)}
+                      placeholder="Write about your company..."
+                      rows={10}
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">About Us Image</Label>
+                    {content.about_image ? (
+                      <div className="relative">
+                        <img
+                          src={content.about_image}
+                          alt="About"
+                          className="w-full h-48 object-cover rounded-xl"
+                        />
+                        <button
+                          onClick={() => handleChange("about_image", "")}
+                          className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload("about_image", e.target.files[0])}
+                          className="hidden"
+                          disabled={uploading}
+                        />
+                        <Upload className="w-10 h-10 text-gray-400 mb-2" />
+                        <span className="text-gray-500">Click to upload about image</span>
+                      </label>
+                    )}
+                  </div>
+
+                  <hr className="border-gray-200" />
+
+                  <h3 className="font-heading text-lg font-bold text-[#1A1A1A]">Our Story Section</h3>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Story Title</Label>
+                    <Input
+                      value={content.about_story_title}
+                      onChange={(e) => handleChange("about_story_title", e.target.value)}
+                      placeholder="Our Story"
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Story Content</Label>
+                    <Textarea
+                      value={content.about_story_content}
+                      onChange={(e) => handleChange("about_story_content", e.target.value)}
+                      placeholder="Tell your story..."
+                      rows={6}
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Story Image</Label>
+                    {content.about_story_image ? (
+                      <div className="relative">
+                        <img
+                          src={content.about_story_image}
+                          alt="Our Story"
+                          className="w-full h-48 object-cover rounded-xl"
+                        />
+                        <button
+                          onClick={() => handleChange("about_story_image", "")}
+                          className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload("about_story_image", e.target.files[0])}
+                          className="hidden"
+                          disabled={uploading}
+                        />
+                        <Upload className="w-10 h-10 text-gray-400 mb-2" />
+                        <span className="text-gray-500">Click to upload story image</span>
+                      </label>
+                    )}
+                  </div>
+
+                  <hr className="border-gray-200" />
+
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-heading text-lg font-bold text-[#1A1A1A]">Our Values</h3>
+                    <Button onClick={addValue} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                      + Add Value
+                    </Button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {(content.about_values || []).map((value, index) => (
+                      <div key={index} className="border border-gray-200 rounded-xl p-4 relative bg-gray-50">
+                        <button
+                          onClick={() => removeValue(index)}
+                          className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Icon (Emoji)</Label>
+                            <Input
+                              value={value.icon}
+                              onChange={(e) => handleValueChange(index, "icon", e.target.value)}
+                              placeholder="🎯"
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Title</Label>
+                            <Input
+                              value={value.title}
+                              onChange={(e) => handleValueChange(index, "title", e.target.value)}
+                              placeholder="Quality First"
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Description</Label>
+                            <Input
+                              value={value.description}
+                              onChange={(e) => handleValueChange(index, "description", e.target.value)}
+                              placeholder="We never compromise..."
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <hr className="border-gray-200" />
+
+                  <h3 className="font-heading text-lg font-bold text-[#1A1A1A]">Quality & Trust Section</h3>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Quality Section Title</Label>
+                    <Input
+                      value={content.about_quality_title}
+                      onChange={(e) => handleChange("about_quality_title", e.target.value)}
+                      placeholder="Quality & Trust"
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-medium mb-2 block">Quality Section Content</Label>
+                    <Textarea
+                      value={content.about_quality_content}
+                      onChange={(e) => handleChange("about_quality_content", e.target.value)}
+                      placeholder="Describe your quality standards..."
+                      rows={5}
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Quality Image 1</Label>
+                      {content.about_quality_image1 ? (
+                        <div className="relative">
+                          <img
+                            src={content.about_quality_image1}
+                            alt="Quality 1"
+                            className="w-full h-40 object-cover rounded-xl"
+                          />
+                          <button
+                            onClick={() => handleChange("about_quality_image1", "")}
+                            className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
                       ) : (
-                        <>
-                          <Upload className="w-10 h-10 text-gray-400 mb-2" />
-                          <span className="text-gray-500">Click to upload about image</span>
-                        </>
+                        <label className="border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload("about_quality_image1", e.target.files[0])}
+                            className="hidden"
+                            disabled={uploading}
+                          />
+                          <Upload className="w-8 h-8 text-gray-400 mb-2" />
+                          <span className="text-gray-500 text-sm">Click to upload</span>
+                        </label>
                       )}
-                    </label>
-                  )}
+                    </div>
+
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">Quality Image 2</Label>
+                      {content.about_quality_image2 ? (
+                        <div className="relative">
+                          <img
+                            src={content.about_quality_image2}
+                            alt="Quality 2"
+                            className="w-full h-40 object-cover rounded-xl"
+                          />
+                          <button
+                            onClick={() => handleChange("about_quality_image2", "")}
+                            className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ) : (
+                        <label className="border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload("about_quality_image2", e.target.files[0])}
+                            className="hidden"
+                            disabled={uploading}
+                          />
+                          <Upload className="w-8 h-8 text-gray-400 mb-2" />
+                          <span className="text-gray-500 text-sm">Click to upload</span>
+                        </label>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-heading text-base font-bold text-[#1A1A1A]">Stats</h4>
+                    <Button onClick={addStat} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                      + Add Stat
+                    </Button>
+                  </div>
+
+                  <div className="space-y-3">
+                    {(content.about_stats || []).map((stat, index) => (
+                      <div key={index} className="border border-gray-200 rounded-xl p-4 relative bg-gray-50">
+                        <button
+                          onClick={() => removeStat(index)}
+                          className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Number</Label>
+                            <Input
+                              value={stat.number}
+                              onChange={(e) => handleStatChange(index, "number", e.target.value)}
+                              placeholder="10K+"
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Label</Label>
+                            <Input
+                              value={stat.label}
+                              onChange={(e) => handleStatChange(index, "label", e.target.value)}
+                              placeholder="Happy Customers"
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <hr className="border-gray-200" />
+
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-heading text-lg font-bold text-[#1A1A1A]">Our Journey</h3>
+                    <Button onClick={addJourneyItem} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                      + Add Journey Item
+                    </Button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {(content.about_journey || []).map((item, index) => (
+                      <div key={index} className="border border-gray-200 rounded-xl p-4 relative bg-gray-50">
+                        <button
+                          onClick={() => removeJourneyItem(index)}
+                          className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Year</Label>
+                            <Input
+                              value={item.year}
+                              onChange={(e) => handleJourneyChange(index, "year", e.target.value)}
+                              placeholder="2020"
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Title</Label>
+                            <Input
+                              value={item.title}
+                              onChange={(e) => handleJourneyChange(index, "title", e.target.value)}
+                              placeholder="The Beginning"
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-sm font-medium mb-1 block">Description</Label>
+                            <Input
+                              value={item.description}
+                              onChange={(e) => handleJourneyChange(index, "description", e.target.value)}
+                              placeholder="How it all started..."
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {/* Contact Tab */}
             {activeTab === "contact" && (
