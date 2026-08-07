@@ -373,43 +373,14 @@ const Watermark = () => {
       ) : null}
     </div>
   );
-};
-
-const WhatsAppButton = () => (
-  <a
-    href="https://wa.me/923033424333"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Chat with us on WhatsApp"
-    style={{
-      position: "fixed",
-      bottom: "24px",
-      right: "24px",
-      width: "60px",
-      height: "60px",
-      background: "#25D366",
-      borderRadius: "50%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      boxShadow: "0 4px 14px rgba(0,0,0,0.3)",
-      zIndex: 9999,
-    }}
-  >
-    <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#fff" d="M16.001 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.258.594 4.376 1.632 6.213L3.2 28.8l6.77-1.605A12.73 12.73 0 0 0 16 28.8c7.07 0 12.8-5.73 12.8-12.8s-5.73-12.8-12.799-12.8Zm0 23.36a10.5 10.5 0 0 1-5.36-1.47l-.384-.228-4.017.953.973-3.914-.25-.402A10.51 10.51 0 0 1 5.44 16c0-5.83 4.73-10.56 10.561-10.56S26.56 10.17 26.56 16 21.831 26.56 16.001 26.56Zm5.786-7.86c-.317-.159-1.874-.925-2.165-1.03-.29-.106-.502-.159-.713.159-.211.317-.818 1.03-1.003 1.242-.185.211-.37.238-.687.08-.317-.16-1.337-.493-2.547-1.572-.941-.84-1.577-1.878-1.762-2.195-.185-.317-.02-.489.139-.647.143-.142.318-.37.476-.556.159-.185.212-.317.318-.529.106-.211.053-.396-.026-.555-.08-.159-.713-1.718-.977-2.353-.257-.618-.518-.534-.713-.544l-.607-.011c-.211 0-.555.079-.846.396-.29.317-1.108 1.083-1.108 2.642s1.134 3.064 1.292 3.276c.159.211 2.232 3.406 5.406 4.777.755.326 1.345.52 1.805.665.758.241 1.448.207 1.994.126.608-.09 1.874-.766 2.139-1.507.264-.74.264-1.375.185-1.508-.08-.132-.29-.211-.607-.37Z"/>
-    </svg>
-  </a>
-);
-
-export default function Layout({ children }) {
+};const WhatsAppButton = () => { const { cart } = useCart(); const items = (cart && cart.items) || []; const message = items.length > 0 ? "Hi! Main ye order karna chahta hoon:\n" + items.map((item) => item.name + " x" + item.quantity + " - Rs. " + ((item.discount_price || item.price) * item.quantity)).join("\n") + "\n\nTotal: Rs. " + cart.total : "Hi! Mujhe apke products ke baare mein maloomat chahiye."; const waLink = "https://wa.me/923033424333?text=" + encodeURIComponent(message); return (<a href={waLink} target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" style={{ position: "fixed", bottom: "24px", right: "24px", width: "60px", height: "60px", background: "#25D366", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 14px rgba(0,0,0,0.3)", zIndex: 9999, }}><svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M16.001 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.258.594 4.376 1.632 6.213L3.2 28.8l6.77-1.605A12.73 12.73 0 0 0 16 28.8c7.07 0 12.8-5.73 12.8-12.8s-5.73-12.8-12.799-12.8Zm0 23.36a10.5 10.5 0 0 1-5.36-1.47l-.384-.228-4.017.953.973-3.914-.25-.402A10.51 10.51 0 0 1 5.44 16c0-5.83 4.73-10.56 10.561-10.56S26.56 10.17 26.56 16 21.831 26.56 16.001 26.56Zm5.786-7.86c-.317-.159-1.874-.925-2.165-1.03-.29-.106-.502-.159-.713.159-.211.317-.818 1.03-1.003 1.242-.185.211-.37.238-.687.08-.317-.16-1.337-.493-2.547-1.572-.941-.84-1.577-1.878-1.762-2.195-.185-.317-.02-.489.139-.647.143-.142.318-.37.476-.556.159-.185.212-.317.318-.529.106-.211.053-.396-.026-.555-.08-.159-.713-1.718-.977-2.353-.257-.618-.518-.534-.713-.544l-.607-.011c-.211 0-.555.079-.846.396-.29.317-1.108 1.083-1.108 2.642s1.134 3.064 1.292 3.276c.159.211 2.232 3.406 5.406 4.777.755.326 1.345.52 1.805.665.758.241 1.448.207 1.994.126.608-.09 1.874-.766 2.139-1.507.264-.74.264-1.375.185-1.508-.08-.132-.29-.211-.607-.37Z"/></svg></a>); };const CookieConsent = () => { const [visible, setVisible] = useState(() => !localStorage.getItem("cookie_consent")); if (!visible) return null; const accept = () => { localStorage.setItem("cookie_consent", "accepted"); setVisible(false); }; return (<div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "#1A1A1A", color: "#fff", padding: "16px 24px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px", zIndex: 9998, boxShadow: "0 -4px 14px rgba(0,0,0,0.2)" }}><span style={{ fontSize: "14px" }}>Hum aapka experience behtar banane ke liye cookies use karte hain. Site use karke aap hamari cookie policy se agree karte hain.</span><button onClick={accept} style={{ background: "#FF8FAB", color: "#fff", border: "none", borderRadius: "9999px", padding: "8px 20px", fontWeight: 600, cursor: "pointer", flexShrink: 0 }}>Accept</button></div>); };export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col relative" style={{backgroundColor: 'var(--color-background)'}}>
       <Watermark />
       <Navbar />
       <main className="flex-1 relative z-10">{children}</main>
       <Footer />
-        <WhatsAppButton />
+        <WhatsAppButton /><CookieConsent />
     </div>
   );
 }
