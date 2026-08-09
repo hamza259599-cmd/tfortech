@@ -17,13 +17,13 @@ import { toast } from "sonner";
 import ProductCard from "../components/ProductCard";
 import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
+import DealCountdown from "../components/DealCountdown";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Default placeholder image when no image is available
 const placeholderImage = "https://placehold.co/600x600/F8F9FA/6B7280?text=No+Image";
-  const heroPlaceholder = "https://placehold.co/1200x600/FFC107/FFFFFF?text=T+For+Tech";
+const heroPlaceholder = "https://placehold.co/1200x600/FF8FAB/FFFFFF?text=Tfortech";
 
 export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -50,7 +50,6 @@ export default function HomePage() {
           axios.get(`${API}/settings/content`)
         ]);
         setFeaturedProducts(featuredRes.data);
-        // Handle both old array and new paginated format
         const allProducts = allRes.data.products || allRes.data || [];
         setAllProducts(allProducts);
         setSiteContent(contentRes.data);
@@ -90,7 +89,7 @@ export default function HomePage() {
       await axios.put(`${API}/admin/categories/${editingCategory.id}`, categoryFormData, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      toast.success("Category updated! ✅");
+      toast.success("Category updated!");
       setEditCategoryOpen(false);
       fetchCategories();
     } catch (error) {
@@ -116,7 +115,7 @@ export default function HomePage() {
           ...prev, 
           image_url: `${BACKEND_URL}${response.data.image_url}` 
         }));
-        toast.success("Image uploaded! ✅");
+        toast.success("Image uploaded!");
       } catch (error) {
         console.error("Upload error:", error);
         toast.error("Image upload failed");
@@ -127,27 +126,22 @@ export default function HomePage() {
     reader.readAsDataURL(file);
   };
 
-  // Get category image from products in that category (priority: product image > DB image > default)
   const getCategoryImage = (categoryKey) => {
-    // First, try to get image from a product in this category
     const categoryProduct = allProducts.find(p => 
       p.category?.toLowerCase() === categoryKey?.toLowerCase() ||
       p.category === categoryKey
     );
     if (categoryProduct?.image_url) return categoryProduct.image_url;
     
-    // Fallback to category's own image from DB
     const dbCategory = categories.find(c => 
       c.name?.toLowerCase() === categoryKey?.toLowerCase() ||
       c.id === categoryKey
     );
     if (dbCategory?.image_url) return dbCategory.image_url;
     
-    // Final fallback to placeholder
     return placeholderImage;
   };
 
-  // Get category data
   const getCategoryData = (categoryKey) => {
     return categories.find(c => 
       c.name?.toLowerCase() === categoryKey?.toLowerCase() ||
@@ -157,19 +151,17 @@ export default function HomePage() {
 
   return (
     <Layout>
-      {/* SEO Meta Tags */}
       <SEO 
         title="Kids Clothes, Toys & Educational Items"
-        description="Shop quality kids' clothes, toys, bags, and educational items at T For Tech. Cash on Delivery available across Pakistan. Free shipping on orders over Rs. 5000."
+        description="Shop quality kids' clothes, toys, bags, and educational items at Tfortech. Cash on Delivery available across Pakistan. Free shipping on orders over Rs. 5000."
         url="/"
       />
       
-      {/* Hero Section */}
       <section className="relative min-h-[600px] overflow-hidden" data-testid="hero-section">
         <div className="absolute inset-0">
           <img 
             src={siteContent?.hero_image || heroPlaceholder} 
-            alt="T For Tech" 
+            alt="Tfortech" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A]/80 to-transparent"></div>
@@ -183,30 +175,11 @@ export default function HomePage() {
             </span>
             
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              {siteContent?.stylish_text?.enabled && siteContent?.stylish_text?.apply_to?.includes('hero_title') ? (
-                <StylishText 
-                  text={siteContent?.hero_title || "More Than a Bag. It's Your Signature."}
-                  enabled={true}
-                  intensity={siteContent?.stylish_text?.intensity || "medium"}
-                  colors={
-                    siteContent?.stylish_text?.preset === "playful" ? ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"] :
-                    siteContent?.stylish_text?.preset === "subtle" ? ["#FF8FAB", "#4ECDC4", "#FFFFFF"] :
-                    siteContent?.stylish_text?.preset === "rainbow" ? ["#FF6B6B", "#FFA500", "#FFD700", "#4ECDC4", "#45B7D1", "#9B59B6"] :
-                    siteContent?.stylish_text?.preset === "monochrome" ? ["#FFFFFF", "#E5E5E5", "#CCCCCC"] :
-                    ["#FF8FAB", "#FFD166", "#4ECDC4"]
-                  }
-                />
-              ) : siteContent?.hero_title ? (
-                <>
-                  {siteContent.hero_title.split('.')[0]}. <span style={{color: 'var(--color-primary)'}}>{siteContent.hero_title.split('.').slice(1).join('.')}</span>
-                </>
-              ) : (
-                <>More Than a Bag. <span style={{color: 'var(--color-primary)'}}>It's Your Signature.</span></>
-              )}
+              {siteContent?.hero_title || "More Than a Bag. It's Your Signature."}
             </h1>
             
             <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-              {siteContent?.hero_subtitle || "Express your unique style with our collection of standout handbags. From the must-have classics to this season's conversation pieces, find the perfect accent to define your look."}
+              {siteContent?.hero_subtitle || "Express your unique style with our collection of standout handbags."}
             </p>
             
             <div className="flex flex-wrap gap-4">
@@ -225,27 +198,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories Bento Grid - Only show if categories exist */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
+        <DealCountdown />
+      </div>
+
       {categories.length > 0 && (
         <section className="py-16 lg:py-24" data-testid="categories-section">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <div className="flex items-center justify-center gap-4 flex-wrap">
-                <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[#1A1A1A] mb-4">
-                  Categories
-                </h2>
-                {isAdmin && (
-                  <Link to="/admin/categories">
-                    <Button variant="outline" size="sm" className="mb-4 border-[#FF8FAB] text-[#FF8FAB]">
-                      <Settings className="w-4 h-4 mr-1" />
-                      Manage All
-                    </Button>
-                  </Link>
-                )}
-              </div>
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[#1A1A1A] mb-4">
+                Categories
+              </h2>
               <p className="text-[#6B7280] text-lg mb-6">Choose your favorite category</p>
-              
-              {/* View All Button */}
               <Link to="/categories">
                 <Button 
                   variant="outline" 
@@ -257,7 +221,6 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Dynamic Categories Grid - Only Main Categories */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
               {categories
                 .filter(cat => !cat.parent_id && cat.parent_id !== "")
@@ -284,19 +247,6 @@ export default function HomePage() {
                         )}
                       </div>
                     </Link>
-                    {/* Admin Edit Button */}
-                    {isAdmin && (
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleEditCategory(category);
-                        }}
-                        className="absolute top-2 right-2 p-1.5 bg-white/90 hover:bg-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                        title="Edit Category"
-                      >
-                        <Pencil className="w-3 h-3" style={{color: bgColor}} />
-                      </button>
-                    )}
                   </div>
                 );
               })}
@@ -305,65 +255,6 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Category Edit Dialog */}
-      <Dialog open={editCategoryOpen} onOpenChange={setEditCategoryOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>Edit Category</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleCategoryUpdate} className="space-y-4">
-            <div>
-              <Label htmlFor="categoryName">Category Name</Label>
-              <Input
-                id="categoryName"
-                value={categoryFormData.name}
-                onChange={(e) => setCategoryFormData(prev => ({ ...prev, name: e.target.value }))}
-                className="mt-1"
-              />
-            </div>
-
-            <div>
-              <Label>Category Image</Label>
-              <p className="text-xs text-gray-500 mb-2">Upload image from your computer (JPG, PNG)</p>
-              <label className="mt-2 flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:bg-gray-50 hover:border-[#FF8FAB] transition-colors relative overflow-hidden">
-                {imageUploading ? (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 border-3 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
-                    <span className="text-sm text-gray-500">Uploading...</span>
-                  </div>
-                ) : categoryFormData.image_url ? (
-                  <>
-                    <img src={categoryFormData.image_url} alt="Preview" className="h-full w-full object-cover rounded-xl" />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="text-white text-sm font-medium">Click to change image</span>
-                    </div>
-                  </>
-                ) : (
-                  <div className="text-center p-4">
-                    <div className="w-12 h-12 bg-[#FF8FAB]/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <span className="text-2xl">📷</span>
-                    </div>
-                    <span className="text-gray-600 font-medium">Click to upload image</span>
-                    <span className="text-xs text-gray-400 block mt-1">from your computer</span>
-                  </div>
-                )}
-                <input type="file" accept="image/*" onChange={handleCategoryImageUpload} className="hidden" disabled={imageUploading} />
-              </label>
-            </div>
-
-            <div className="flex gap-3 pt-4">
-              <Button type="submit" className="flex-1 bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
-                Update Category
-              </Button>
-              <Button type="button" variant="outline" onClick={() => setEditCategoryOpen(false)}>
-                Cancel
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* Featured Products - Only show if products exist */}
       {featuredProducts.length > 0 && (
         <section className="py-16 bg-white" data-testid="featured-section">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -399,14 +290,13 @@ export default function HomePage() {
       </section>
       )}
 
-      {/* Features - Dynamic from Site Content */}
       <section className="py-16 lg:py-24" data-testid="features-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {(siteContent?.service_features || [
-              { icon: "🚚", title: "Free Delivery", description: "On orders over Rs. 5000" },
-              { icon: "📦", title: "Free Shipping", description: "On order over Rs. 2000" },
-              { icon: "✅", title: "Quality Guarantee", description: "30-day return policy" }
+              { icon: "a", title: "Free Delivery", description: "On orders over Rs. 5000" },
+              { icon: "b", title: "Free Shipping", description: "On order over Rs. 2000" },
+              { icon: "c", title: "Quality Guarantee", description: "30-day return policy" }
             ]).map((feature, index) => {
               const bgColors = ["#FF8FAB", "#FFD166", "#06D6A0"];
               const bgColor = bgColors[index % 3];
