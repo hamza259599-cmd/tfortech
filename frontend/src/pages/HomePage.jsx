@@ -18,6 +18,7 @@ import ProductCard from "../components/ProductCard";
 import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
 import DealCountdown from "../components/DealCountdown";
+import CustomerReviewVideos from "../components/CustomerReviewVideos";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -289,6 +290,8 @@ export default function HomePage() {
         </div>
       </section>
       )}
+
+      <CustomerReviewVideos />
 
       <section className="py-16 lg:py-24" data-testid="features-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
