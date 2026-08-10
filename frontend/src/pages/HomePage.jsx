@@ -19,6 +19,7 @@ import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
 import DealCountdown from "../components/DealCountdown";
 import CustomerReviewVideos from "../components/CustomerReviewVideos";
+import HeroImageLayer, { getBreakpoint } from "../components/HeroImageLayer";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -32,6 +33,8 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [siteContent, setSiteContent] = useState(null);
+  const [heroSettings, setHeroSettings] = useState(null);
+  const [breakpoint, setBreakpoint] = useState(() => getBreakpoint(typeof window !== "undefined" ? window.innerWidth : 1280));
   const [editCategoryOpen, setEditCategoryOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
   const [imageUploading, setImageUploading] = useState(false);
@@ -45,15 +48,17 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [featuredRes, allRes, contentRes] = await Promise.all([
+        const [featuredRes, allRes, contentRes, heroRes] = await Promise.all([
           axios.get(`${API}/products/featured`),
           axios.get(`${API}/products`),
-          axios.get(`${API}/settings/content`)
+          axios.get(`${API}/settings/content`),
+          axios.get(`${API}/settings/hero`).catch(() => ({ data: null }))
         ]);
         setFeaturedProducts(featuredRes.data);
         const allProducts = allRes.data.products || allRes.data || [];
         setAllProducts(allProducts);
         setSiteContent(contentRes.data);
+        setHeroSettings(heroRes.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
@@ -62,6 +67,12 @@ export default function HomePage() {
     };
     fetchData();
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => setBreakpoint(getBreakpoint(window.innerWidth));
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const fetchCategories = async () => {
@@ -160,11 +171,7 @@ export default function HomePage() {
       
       <section className="relative min-h-[600px] overflow-hidden" data-testid="hero-section">
         <div className="absolute inset-0">
-          <img 
-            src={siteContent?.hero_image || heroPlaceholder} 
-            alt="Tfortech" 
-            className="w-full h-full object-cover"
-          />
+          <HeroImageLayer settings={heroSettings} breakpoint={breakpoint} fallbackSrc={heroPlaceholder} alt="Tfortech" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A]/80 to-transparent"></div>
         </div>
         
@@ -176,7 +183,26 @@ export default function HomePage() {
             </span>
             
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              {siteContent?.hero_title || "More Than a Bag. It's Your Signature."}
+              {siteContent?.stylish_text?.enabled && siteContent?.stylish_text?.apply_to?.includes('hero_title') ? (
+                <StylishText 
+                  text={siteContent?.hero_title || "More Than a Bag. It's Your Signature."}
+                  enabled={true}
+                  intensity={siteContent?.stylish_text?.intensity || "medium"}
+                  colors={
+                    siteContent?.stylish_text?.preset === "playful" ? ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"] :
+                    siteContent?.stylish_text?.preset === "subtle" ? ["#FF8FAB", "#4ECDC4", "#FFFFFF"] :
+                    siteContent?.stylish_text?.preset === "rainbow" ? ["#FF6B6B", "#FFA500", "#FFD700", "#4ECDC4", "#45B7D1", "#9B59B6"] :
+                    siteContent?.stylish_text?.preset === "monochrome" ? ["#FFFFFF", "#E5E5E5", "#CCCCCC"] :
+                    ["#FF8FAB", "#FFD166", "#4ECDC4"]
+                  }
+                />
+              ) : siteContent?.hero_title ? (
+                <>
+                  {siteContent.hero_title.split('.')[0]}. <span style={{color: 'var(--color-primary)'}}>{siteContent.hero_title.split('.').slice(1).join('.')}</span>
+                </>
+              ) : (
+                <>More Than a Bag. <span style={{color: 'var(--color-primary)'}}>It's Your Signature.</span></>
+              )}
             </h1>
             
             <p className="text-lg text-gray-200 mb-8 leading-relaxed">
