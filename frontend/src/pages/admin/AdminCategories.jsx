@@ -484,8 +484,7 @@ export default function AdminCategories() {
         if (errorCount > 0) {
                 toast.error(lastErrorDetail || `${errorCount} category(ies) failed to delete`);
         }
-    }
-
+    
     setSelectedCategories(new Set());
     fetchCategories();
   };
