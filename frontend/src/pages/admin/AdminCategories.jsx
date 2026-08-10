@@ -421,7 +421,7 @@ export default function AdminCategories() {
       fetchCategories();
     } catch (error) {
       console.error("Error deleting category:", error);
-      toast.error("Something went wrong");
+      toast.error(error.response?.data?.detail || "Something went wrong");
     }
   };
 
@@ -465,6 +465,7 @@ export default function AdminCategories() {
 
     let successCount = 0;
     let errorCount = 0;
+        let lastErrorDetail = "";
 
     for (const categoryId of selectedCategories) {
       try {
@@ -472,16 +473,17 @@ export default function AdminCategories() {
           headers: { Authorization: `Bearer ${token}` }
         });
         successCount++;
-      } catch (error) {
-        errorCount++;
-      }
+      } catch (error) {        errorCount++;
+                               lastErrorDetail = error.response?.data?.detail || "";
+                      }
     }
 
-    if (successCount > 0) {
-      toast.success(`${successCount} category(ies) deleted!`);
-    }
-    if (errorCount > 0) {
-      toast.error(`${errorCount} category(ies) failed to delete`);
+        if (successCount > 0) {
+                toast.success(`${successCount} category(ies) deleted!`);
+        }
+        if (errorCount > 0) {
+                toast.error(lastErrorDetail || `${errorCount} category(ies) failed to delete`);
+        }
     }
 
     setSelectedCategories(new Set());
