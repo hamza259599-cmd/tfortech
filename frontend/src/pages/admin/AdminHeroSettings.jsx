@@ -1,12 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { ArrowLeft, Monitor, Tablet, Smartphone, RotateCcw, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, Monitor, Tablet, Smartphone, RotateCcw, Image as ImageIcon, Upload, Loader2 } from "lucide-react";
 import AdminSidebar from "../../components/AdminSidebar";
 import HeroImageLayer from "../../components/HeroImageLayer";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const MAX_UPLOAD_MB = 3;
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    if (file.size > MAX_UPLOAD_MB * 1024 * 1024) {
+      reject(new Error(`Please choose an image under ${MAX_UPLOAD_MB}MB`));
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error("Couldn't read that file"));
+    reader.readAsDataURL(file);
+  });
+}
 
 const DEFAULT_SETTINGS = {
   image: {
@@ -53,6 +67,10 @@ export default function AdminHeroSettings() {
   const [saving, setSaving] = useState(false);
   const [previewBp, setPreviewBp] = useState("desktop");
   const [activeTab, setActiveTab] = useState("image"); // image | watermark
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadingWatermark, setUploadingWatermark] = useState(false);
+  const imageFileRef = useRef(null);
+  const watermarkFileRef = useRef(null);
 
   useEffect(() => {
     fetchSettings();
@@ -95,6 +113,38 @@ export default function AdminHeroSettings() {
     if (!window.confirm("Reset the hero image and watermark to default position and size?")) return;
     setSettings(DEFAULT_SETTINGS);
     toast.success("Reset \u2014 click Save to apply");
+  };
+
+  const handleImageFileSelect = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+    setUploadingImage(true);
+    try {
+      const dataUrl = await readFileAsDataUrl(file);
+      setSettings((s) => ({ ...s, image: { ...s.image, url: dataUrl } }));
+      toast.success("Image loaded \u2014 click Save to publish it");
+    } catch (err) {
+      toast.error(err.message || "Couldn't load that image");
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  const handleWatermarkFileSelect = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+    setUploadingWatermark(true);
+    try {
+      const dataUrl = await readFileAsDataUrl(file);
+      setSettings((s) => ({ ...s, watermark: { ...s.watermark, url: dataUrl } }));
+      toast.success("Watermark loaded \u2014 click Save to publish it");
+    } catch (err) {
+      toast.error(err.message || "Couldn't load that image");
+    } finally {
+      setUploadingWatermark(false);
+    }
   };
 
   const imgBp = settings.image[previewBp];
@@ -206,7 +256,26 @@ export default function AdminHeroSettings() {
           {activeTab === "image" ? (
             <div className="bg-white rounded-xl p-6 shadow-sm space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Image</label>
+                <div className="flex gap-2 mb-2">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={imageFileRef}
+                    onChange={handleImageFileSelect}
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => imageFileRef.current?.click()}
+                    disabled={uploadingImage}
+                    className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    {uploadingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                    {uploadingImage ? "Loading..." : "Upload from your computer"}
+                  </button>
+                </div>
+                <p className="text-xs text-gray-400 mb-2">Or paste a link instead (max {MAX_UPLOAD_MB}MB for uploads):</p>
                 <input
                   type="text"
                   value={settings.image.url || ""}
@@ -279,7 +348,26 @@ export default function AdminHeroSettings() {
           ) : (
             <div className="bg-white rounded-xl p-6 shadow-sm space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Watermark Image URL</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Watermark Image</label>
+                <div className="flex gap-2 mb-2">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={watermarkFileRef}
+                    onChange={handleWatermarkFileSelect}
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => watermarkFileRef.current?.click()}
+                    disabled={uploadingWatermark}
+                    className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    {uploadingWatermark ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                    {uploadingWatermark ? "Loading..." : "Upload from your computer"}
+                  </button>
+                </div>
+                <p className="text-xs text-gray-400 mb-2">Or paste a link instead (max {MAX_UPLOAD_MB}MB for uploads):</p>
                 <input
                   type="text"
                   value={settings.watermark.url || ""}
