@@ -53,6 +53,7 @@ import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminCampaigns from "./pages/admin/AdminCampaigns";
 import AdminDeals from "./pages/admin/AdminDeals";
 import AdminReviewVideos from "./pages/admin/AdminReviewVideos";
+import AdminHeroSettings from "./pages/admin/AdminHeroSettings";
 import VisitorTracker from "./components/VisitorTracker";
 
 const ScrollToTop = () => {
@@ -174,6 +175,7 @@ function AppRouter() {
       <Route path="/admin/analytics" element={<ProtectedRoute adminOnly><AdminAnalytics /></ProtectedRoute>} />
       <Route path="/admin/deals" element={<ProtectedRoute adminOnly><AdminDeals /></ProtectedRoute>} />
       <Route path="/admin/review-videos" element={<ProtectedRoute adminOnly><AdminReviewVideos /></ProtectedRoute>} />
+      <Route path="/admin/hero" element={<ProtectedRoute adminOnly><AdminHeroSettings /></ProtectedRoute>} />
       <Route path="/admin/campaigns" element={<ProtectedRoute adminOnly><AdminCampaigns /></ProtectedRoute>} />
     </Routes>
     </>
