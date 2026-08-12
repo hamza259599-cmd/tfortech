@@ -1090,7 +1090,7 @@ export default function ProductPublish() {
                                       onClick={() => {
                                         setFormData(prev => ({
                                           ...prev,
-                                          category: cat.name.toLowerCase(),
+                                        category: cat.category_id || cat.id,
                                           categoryPath: cat.name
                                         }));
                                         setCategoryModalOpen(false);
@@ -1099,7 +1099,7 @@ export default function ProductPublish() {
                                         fetchDeviceConfig(cat.name);
                                       }}
                                       className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
-                                        formData.category === cat.name.toLowerCase() 
+                        formData.category === (cat.category_id || cat.id)
                                           ? 'bg-[#FF8FAB]/10 text-[#FF8FAB] border-2 border-[#FF8FAB]' 
                                           : 'hover:bg-gray-50 text-gray-700 border border-gray-200'
                                       }`}
