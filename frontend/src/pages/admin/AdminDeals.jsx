@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { Plus, ArrowLeft, X, Trash2, Zap, Clock, CheckCircle2, XCircle } from "lucide-react";
+import { ImagePlus } from "lucide-react";
 import AdminSidebar from "../../components/AdminSidebar";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -35,12 +36,39 @@ export default function AdminDeals() {
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(emptyDeal);
   const [saving, setSaving] = useState(false);
+      const [imageUploading, setImageUploading] = useState(false);
+
+    function handleDealImageUpload(file) {
+          if (!file) return;
+          if (!["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type)) {
+                  toast.error("Please upload a JPG, PNG or WebP image");
+                  return;
+          }
+          if (file.size > 4 * 1024 * 1024) {
+                  toast.error("Image is too large. Please use an image under 4MB.");
+                  return;
+          }
+          setImageUploading(true);
+          const reader = new FileReader();
+          reader.onloadend = async () => {
+                  try {
+                            const response = await axios.post(`${API}/upload/image`, { image: reader.result });
+                            const imageUrl = `${process.env.REACT_APP_BACKEND_URL}${response.data.image_url}`;
+                            setForm((f) => ({ ...f, banner_image: imageUrl }));
+                            toast.success("Image uploaded!");
+                  } catch (err) {
+                            toast.error("Failed to upload image");
+                  } finally {
+                            setImageUploading(false);
+                  }
+          };
+          reader.readAsDataURL(file);
+    }
 
   useEffect(() => {
     fetchDeals();
-    fetchProducts();
+      fetchProducts();
   }, []);
-
   const fetchDeals = async () => {
     try {
       const res = await axios.get(`${API}/admin/deals`);
@@ -237,13 +265,37 @@ export default function AdminDeals() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Banner image URL (optional)</label>
-                <input
-                  type="text" value={form.banner_image}
-                  onChange={(e) => setForm({ ...form, banner_image: e.target.value })}
-                  placeholder="https://..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
-                />
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Deal Image</label>
+                            <p className="text-xs text-gray-400 mb-2">Upload directly from your computer. No external link needed.</p>p>
+                {form.banner_image ? (
+                          <div className="relative rounded-xl overflow-hidden border border-gray-200 bg-black">
+                                            <img src={form.banner_image} alt="Deal preview" className="w-full max-h-56 object-contain" />
+                                            <button
+                                                                  type="button"
+                                                                  onClick={() => setForm({ ...form, banner_image: "" })}
+                                                                  className="absolute top-2 right-2 bg-white/90 hover:bg-white text-gray-700 rounded-full p-1.5 shadow"
+                                                                >
+                                                                <X className="w-4 h-4" />
+                                            </button>
+                                            <label className="absolute bottom-2 right-2 bg-white/90 hover:bg-white text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full shadow cursor-pointer">
+                                              {imageUploading ? "Uploading..." : "Replace"}
+                                                                <input type="file" accept="image/jpeg,image/jpg,image/png,image/webp" className="hidden" disabled={imageUploading} onChange={(e) => handleDealImageUpload(e.target.files[0])} />
+                                            </label>
+                          </div>
+                        ) : (
+                          <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 rounded-xl py-8 cursor-pointer hover:border-[#FF8FAB] hover:bg-[#FF8FAB]/5 transition-colors">
+                            {imageUploading ? (
+                                                <span className="text-sm text-gray-500">Uploading image...</span>
+                                              ) : (
+                                                <>
+                                                                      <ImagePlus className="w-8 h-8 text-gray-400" />
+                                                                      <span className="text-sm text-gray-500">Click to upload deal image</span>
+                                                                      <span className="text-xs text-gray-400">JPG, PNG or WebP</span>
+                                                </>
+                                              )}
+                                            <input type="file" accept="image/jpeg,image/jpg,image/png,image/webp" className="hidden" disabled={imageUploading} onChange={(e) => handleDealImageUpload(e.target.files[0])} />
+                          </label>
+                            )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
