@@ -51,7 +51,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import SiteContent from "./pages/admin/SiteContent";
 import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminCampaigns from "./pages/admin/AdminCampaigns";
-import AdminDeals from "./pages/admin/AdminDeals";
+import AdminDeals from "./pages/admin/AdminDeals";import AdminHeroDeals from "./pages/admin/AdminHeroDeals";
 import AdminReviewVideos from "./pages/admin/AdminReviewVideos";
 import AdminHeroSettings from "./pages/admin/AdminHeroSettings";
 import VisitorTracker from "./components/VisitorTracker";
