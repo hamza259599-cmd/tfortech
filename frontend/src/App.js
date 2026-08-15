@@ -4,6 +4,7 @@ import axios from "axios";
 import { Toaster } from "./components/ui/sonner";
 import { HelmetProvider } from "react-helmet-async";
 
+// Context
 const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
@@ -13,6 +14,7 @@ export const useCart = () => useContext(CartContext);
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Add token to all requests
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('auth_token');
   if (token) {
@@ -21,6 +23,7 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
+// Pages (lazy imports would be better but keeping simple for now)
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
@@ -51,11 +54,13 @@ import CategoriesPage from "./pages/CategoriesPage";
 import SiteContent from "./pages/admin/SiteContent";
 import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminCampaigns from "./pages/admin/AdminCampaigns";
-import AdminDeals from "./pages/admin/AdminDeals";import AdminHeroDeals from "./pages/admin/AdminHeroDeals";
+import AdminDeals from "./pages/admin/AdminDeals";
+import AdminHeroDeals from "./pages/admin/AdminHeroDeals";
 import AdminReviewVideos from "./pages/admin/AdminReviewVideos";
 import AdminHeroSettings from "./pages/admin/AdminHeroSettings";
 import VisitorTracker from "./components/VisitorTracker";
 
+// Scroll to Top Component - ensures page starts from top on navigation
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   
@@ -66,6 +71,7 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Auth Callback Component
 const AuthCallback = () => {
   const hasProcessed = useRef(false);
   const { setUser, setIsAuthenticated } = useAuth();
@@ -108,6 +114,7 @@ const AuthCallback = () => {
   );
 };
 
+// Protected Route
 const ProtectedRoute = ({ children, adminOnly = false }) => {
   const { user, isAuthenticated, loading } = useAuth();
 
@@ -130,9 +137,11 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
   return children;
 };
 
+// App Router
 function AppRouter() {
   const location = useLocation();
 
+  // Check for session_id in hash - synchronous check before render
   if (location.hash?.includes("session_id=")) {
     return <AuthCallback />;
   }
@@ -174,6 +183,7 @@ function AppRouter() {
       <Route path="/admin/reviews" element={<ProtectedRoute adminOnly><AdminReviews /></ProtectedRoute>} />
       <Route path="/admin/analytics" element={<ProtectedRoute adminOnly><AdminAnalytics /></ProtectedRoute>} />
       <Route path="/admin/deals" element={<ProtectedRoute adminOnly><AdminDeals /></ProtectedRoute>} />
+      <Route path="/admin/hero-deals" element={<ProtectedRoute adminOnly><AdminHeroDeals /></ProtectedRoute>} />
       <Route path="/admin/review-videos" element={<ProtectedRoute adminOnly><AdminReviewVideos /></ProtectedRoute>} />
       <Route path="/admin/hero" element={<ProtectedRoute adminOnly><AdminHeroSettings /></ProtectedRoute>} />
       <Route path="/admin/campaigns" element={<ProtectedRoute adminOnly><AdminCampaigns /></ProtectedRoute>} />
@@ -182,6 +192,7 @@ function AppRouter() {
   );
 }
 
+// Auth Provider
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -239,6 +250,10 @@ function AuthProvider({ children }) {
   };
 
   const googleLogin = () => {
+    // Google login previously went through Emergent's hosted auth proxy, which no longer
+    // applies now that this app runs independently. Needs its own Google OAuth client
+    // (Google Cloud Console) before this can be re-enabled. Email/password login below
+    // works fully in the meantime.
     alert('Google login is temporarily unavailable. Please use email and password to sign in.');
   };
 
@@ -249,6 +264,7 @@ function AuthProvider({ children }) {
   );
 }
 
+// Cart Provider
 function CartProvider({ children }) {
   const [cart, setCart] = useState({ items: [], total: 0 });
   const [loading, setLoading] = useState(false);
@@ -321,6 +337,7 @@ function CartProvider({ children }) {
   );
 }
 
+// Theme Provider - Fetches and applies theme colors
 function ThemeProvider({ children }) {
   useEffect(() => {
     const fetchTheme = async () => {
@@ -328,6 +345,7 @@ function ThemeProvider({ children }) {
         const response = await axios.get(`${API}/settings/theme`);
         const theme = response.data;
         
+        // Apply theme colors as CSS variables
         const root = document.documentElement;
         root.style.setProperty('--color-primary', theme.primary_color || '#FF8FAB');
         root.style.setProperty('--color-secondary', theme.secondary_color || '#FFD166');
@@ -336,6 +354,7 @@ function ThemeProvider({ children }) {
         root.style.setProperty('--color-background', theme.background_color || '#FDFBF7');
         root.style.setProperty('--color-button-text', theme.button_text_color || '#FFFFFF');
         
+        // Also set body background
         document.body.style.backgroundColor = theme.background_color || '#FDFBF7';
       } catch (error) {
         console.error("Error fetching theme:", error);
@@ -348,11 +367,13 @@ function ThemeProvider({ children }) {
 }
 
 function App() {
+  // Seed data on first load
   useEffect(() => {
     const seedData = async () => {
       try {
         await axios.post(`${API}/seed`);
       } catch (error) {
+        // Silently fail if already seeded
       }
     };
     seedData();
