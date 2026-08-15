@@ -55,10 +55,10 @@ export default function AdminSidebar() {
           <Zap className="w-5 h-5" />
           Flash Deals
         </Link>
-                <Link to="/admin/hero-deals" className={linkClass("/admin/hero-deals")}>
-                            <Zap className="w-5 h-5" />
-                            Hero Flash Deals
-                </Link>
+        <Link to="/admin/hero-deals" className={linkClass("/admin/hero-deals")}>
+          <Zap className="w-5 h-5" />
+          Hero Flash Deals
+        </Link>
         <Link to="/admin/review-videos" className={linkClass("/admin/review-videos")}>
           <Video className="w-5 h-5" />
           Review Videos
