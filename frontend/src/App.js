@@ -42,7 +42,6 @@ import PrivacyPage from "./pages/PrivacyPage";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminOrders from "./pages/admin/AdminOrders";
-import AdminCategories from "./pages/admin/AdminCategories";
 import AdminShipping from "./pages/admin/AdminShipping";
 import AdminUsers from "./pages/admin/AdminUsers";
 import ProductPublish from "./pages/admin/ProductPublish";
@@ -173,7 +172,6 @@ function AppRouter() {
       <Route path="/admin/products/new" element={<ProtectedRoute adminOnly><ProductPublish /></ProtectedRoute>} />
       <Route path="/admin/products/edit/:id" element={<ProtectedRoute adminOnly><ProductPublish /></ProtectedRoute>} />
       <Route path="/admin/orders" element={<ProtectedRoute adminOnly><AdminOrders /></ProtectedRoute>} />
-      <Route path="/admin/categories" element={<ProtectedRoute adminOnly><AdminCategories /></ProtectedRoute>} />
       <Route path="/admin/users" element={<ProtectedRoute adminOnly><AdminUsers /></ProtectedRoute>} />
       <Route path="/admin/shipping" element={<ProtectedRoute adminOnly><AdminShipping /></ProtectedRoute>} />
       <Route path="/admin/theme" element={<ProtectedRoute adminOnly><ThemeSettings /></ProtectedRoute>} />

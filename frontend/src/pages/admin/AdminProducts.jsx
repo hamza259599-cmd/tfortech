@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "../../components/ui/select";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, Eye, ExternalLink, Copy, Check, X, CheckSquare, Square } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, ExternalLink, Copy, Check, X, CheckSquare, Square, Image } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -464,6 +464,81 @@ export default function AdminProducts() {
             </h1>
 
             <div className="flex gap-3 flex-wrap">
+              {/* New Category Button + Dialog */}
+              <Dialog open={categoryDialogOpen} onOpenChange={(open) => { setCategoryDialogOpen(open); if (!open) { setCategoryFormData({ name: "", icon: "📦", image_url: "" }); setCategoryImagePreview(null); } }}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="rounded-full border-[#FF8FAB] text-[#FF8FAB] hover:bg-[#FF8FAB]/10" data-testid="new-category-btn">
+                    <Plus className="w-5 h-5 mr-2" />
+                    New Category
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="font-heading text-xl">New Category</DialogTitle>
+                  </DialogHeader>
+                  <form onSubmit={handleCategorySubmit} className="space-y-4 mt-4">
+                    <div>
+                      <Label htmlFor="category-name">Name *</Label>
+                      <Input
+                        id="category-name"
+                        value={categoryFormData.name}
+                        onChange={(e) => setCategoryFormData({ ...categoryFormData, name: e.target.value })}
+                        placeholder="e.g., Laptops, Accessories"
+                        required
+                        className="mt-1"
+                        data-testid="category-name-input"
+                      />
+                    </div>
+                    <div>
+                      <Label>Icon</Label>
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {categoryEmojis.map((emoji) => (
+                          <button
+                            key={emoji}
+                            type="button"
+                            onClick={() => setCategoryFormData({ ...categoryFormData, icon: emoji })}
+                            className={`w-8 h-8 text-base rounded-lg border transition-all hover:scale-110 ${
+                              categoryFormData.icon === emoji ? "border-[#FF8FAB] bg-[#FF8FAB]/10 border-2" : "border-gray-200"
+                            }`}
+                          >
+                            {emoji}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <Label>Image (Optional)</Label>
+                      <div className="mt-2">
+                        <label className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:bg-gray-50">
+                          {categoryImageUploading ? (
+                            <div className="flex items-center gap-2">
+                              <div className="w-5 h-5 border-2 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                              <span className="text-sm text-gray-500">Uploading...</span>
+                            </div>
+                          ) : categoryImagePreview ? (
+                            <img src={categoryImagePreview} alt="Preview" className="w-full h-full object-cover rounded-xl" />
+                          ) : (
+                            <div className="flex flex-col items-center">
+                              <Image className="w-6 h-6 text-gray-400 mb-1" />
+                              <span className="text-xs text-gray-500">Click to upload</span>
+                            </div>
+                          )}
+                          <input type="file" accept="image/*" onChange={handleCategoryImageUpload} className="hidden" />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 pt-4">
+                      <Button type="submit" className="flex-1 bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full" data-testid="submit-category-btn">
+                        Add
+                      </Button>
+                      <Button type="button" variant="outline" onClick={() => setCategoryDialogOpen(false)} className="rounded-full">
+                        Cancel
+                      </Button>
+                    </div>
+                  </form>
+                </DialogContent>
+              </Dialog>
+
               {/* Single Product Add Button - Links to Daraz-style page */}
               <Link to="/admin/products/new">
                 <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full" data-testid="add-product-btn">
