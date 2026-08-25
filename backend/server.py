@@ -12,6 +12,7 @@ from datetime import datetime, timezone, timedelta
 import bcrypt
 import jwt
 import httpx
+import re
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -579,8 +580,13 @@ class ProductCreate(BaseModel):
     is_sold_out: bool = False
     rating: Optional[float] = 0
     review_count: Optional[int] = 0
-
-class ProductResponse(BaseModel):
+    # Featured product control (admin toggle)
+    is_featured: bool = False
+    featured_order: Optional[int] = 0
+    # SEO fields
+    meta_title: Optional[str] = None
+    meta_description: Optional[str] = None
+    slug: Optional[str] = None
     product_id: str
     name: str
     description: str
@@ -609,6 +615,11 @@ class ProductResponse(BaseModel):
     is_sold_out: bool = False
     rating: Optional[float] = 0
     review_count: Optional[int] = 0
+    is_featured: bool = False
+    featured_order: Optional[int] = 0
+    meta_title: Optional[str] = None
+    meta_description: Optional[str] = None
+    slug: Optional[str] = None
     created_at: str
 
 class ReviewCreate(BaseModel):
@@ -965,10 +976,40 @@ async def get_products(
         "pages": (total + limit - 1) // limit  # Ceiling division
     }
 
+def slugify(text: str) -> str:
+    text = text.lower().strip()
+    text = re.sub(r'[^a-z0-9]+', '-', text)
+    return text.strip('-')
+
+async def make_unique_slug(base_text: str, exclude_product_id: Optional[str] = None) -> str:
+    base_slug = slugify(base_text) or f"product-{uuid.uuid4().hex[:6]}"
+    slug = base_slug
+    counter = 1
+    while True:
+        query = {"slug": slug}
+        if exclude_product_id:
+            query["product_id"] = {"$ne": exclude_product_id}
+        existing = await db.products.find_one(query)
+        if not existing:
+            return slug
+        counter += 1
+        slug = f"{base_slug}-{counter}"
+
 @api_router.get("/products/featured")
 async def get_featured_products():
-    products = await db.products.find({}, {"_id": 0}).limit(8).to_list(8)
+    # Return admin-selected featured products, ordered by featured_order
+    products = await db.products.find({"is_featured": True}, {"_id": 0}).sort("featured_order", 1).limit(12).to_list(12)
+    if not products:
+        # Fallback: no featured products set yet, show latest 8 so homepage isn't empty
+        products = await db.products.find({}, {"_id": 0}).sort("created_at", -1).limit(8).to_list(8)
     return products
+
+@api_router.get("/products/slug/{slug}")
+async def get_product_by_slug(slug: str):
+    product = await db.products.find_one({"slug": slug}, {"_id": 0})
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return product
 
 @api_router.get("/products/{product_id}")
 async def get_product(product_id: str):
@@ -982,28 +1023,48 @@ async def create_product(product: ProductCreate, request: Request):
     await require_admin(request)
     
     product_id = f"prod_{uuid.uuid4().hex[:12]}"
+    product_data = product.model_dump()
+    product_data["slug"] = await make_unique_slug(product.slug or product.name)
     product_doc = {
         "product_id": product_id,
-        **product.model_dump(),
+        **product_data,
         "created_at": datetime.now(timezone.utc).isoformat()
     }
     
     await db.products.insert_one(product_doc)
-    return {"product_id": product_id, **product.model_dump(), "created_at": product_doc["created_at"]}
+    return {"product_id": product_id, **product_data, "created_at": product_doc["created_at"]}
 
 @api_router.put("/products/{product_id}")
 async def update_product(product_id: str, product: ProductCreate, request: Request):
     await require_admin(request)
     
+    product_data = product.model_dump()
+    product_data["slug"] = await make_unique_slug(product.slug or product.name, exclude_product_id=product_id)
+    
     result = await db.products.update_one(
         {"product_id": product_id},
-        {"$set": product.model_dump()}
+        {"$set": product_data}
     )
     
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Product not found")
     
     return {"message": "Product updated"}
+
+class FeaturedUpdate(BaseModel):
+    is_featured: bool
+    featured_order: Optional[int] = 0
+
+@api_router.patch("/admin/products/{product_id}/featured")
+async def set_product_featured(product_id: str, data: FeaturedUpdate, request: Request):
+    await require_admin(request)
+    result = await db.products.update_one(
+        {"product_id": product_id},
+        {"$set": {"is_featured": data.is_featured, "featured_order": data.featured_order}}
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return {"message": "Featured status updated"}
 
 # Stock Update Model
 class StockUpdate(BaseModel):
@@ -1602,7 +1663,7 @@ async def update_order_status(order_id: str, request: Request):
     body = await request.json()
     new_status = body.get("status")
     
-    if new_status not in ["pending", "confirmed", "shipped", "delivered", "cancelled"]:
+    if new_status not in ["pending", "confirmed", "processing", "shipped", "delivered", "cancelled"]:
         raise HTTPException(status_code=400, detail="Invalid status")
     
     update_data = {"status": new_status}
@@ -1618,6 +1679,14 @@ async def update_order_status(order_id: str, request: Request):
     
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Order not found")
+    
+    # Send WhatsApp notification once, when order is confirmed (never duplicates)
+    if new_status == "confirmed":
+        order = await db.orders.find_one({"order_id": order_id}, {"_id": 0})
+        if order and not order.get("whatsapp_notified"):
+            sent = await send_whatsapp_order_notification(order)
+            if sent:
+                await db.orders.update_one({"order_id": order_id}, {"$set": {"whatsapp_notified": True}})
     
     return {"message": "Order status updated"}
 
@@ -2226,6 +2295,90 @@ async def update_theme_settings(theme: ThemeSettings, request: Request):
     return {"message": "Theme settings updated"}
 
 # ==================== GALLERY ====================
+
+class WhatsAppSettings(BaseModel):
+    enabled: bool = False
+    notify_number: Optional[str] = None  # Admin's WhatsApp number to receive order alerts, e.g. 92XXXXXXXXXX
+    message_template: str = (
+        "New Order Received 🎉\n\n"
+        "Order ID: #{order_id}\n"
+        "Customer: {customer_name}\n"
+        "Phone: {phone}\n"
+        "Products: {products}\n"
+        "Total: Rs. {total}\n"
+        "Payment Method: {payment_method}\n"
+        "Delivery Address: {address}\n\n"
+        "Please check the Admin Panel for complete order details."
+    )
+
+@api_router.get("/admin/settings/whatsapp")
+async def get_whatsapp_settings(request: Request):
+    await require_admin(request)
+    settings = await db.settings.find_one({"type": "whatsapp"}, {"_id": 0})
+    if not settings:
+        return WhatsAppSettings().model_dump()
+    settings.pop("type", None)
+    return settings
+
+@api_router.post("/admin/settings/whatsapp")
+async def update_whatsapp_settings(settings: WhatsAppSettings, request: Request):
+    await require_admin(request)
+    await db.settings.update_one(
+        {"type": "whatsapp"},
+        {"$set": {"type": "whatsapp", **settings.model_dump()}},
+        upsert=True
+    )
+    return {"message": "WhatsApp settings updated"}
+
+async def send_whatsapp_order_notification(order: dict) -> bool:
+    """
+    Sends an order notification via the official WhatsApp Cloud API (Meta).
+    Requires WHATSAPP_ACCESS_TOKEN and WHATSAPP_PHONE_NUMBER_ID env vars to be set
+    (never exposed to frontend). If not configured, this safely no-ops and logs,
+    so order processing is never blocked or broken.
+    """
+    try:
+        settings = await db.settings.find_one({"type": "whatsapp"}, {"_id": 0})
+        if not settings or not settings.get("enabled") or not settings.get("notify_number"):
+            return False
+
+        access_token = os.environ.get("WHATSAPP_ACCESS_TOKEN")
+        phone_number_id = os.environ.get("WHATSAPP_PHONE_NUMBER_ID")
+        if not access_token or not phone_number_id:
+            logging.warning("WhatsApp notification skipped: WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID not configured in environment.")
+            return False
+
+        items = order.get("items", [])
+        product_names = ", ".join([i.get("name", "") for i in items]) if items else "N/A"
+        template = settings.get("message_template") or WhatsAppSettings().message_template
+        message = template.format(
+            order_id=order.get("order_id", "")[-6:],
+            customer_name=order.get("customer_name", order.get("phone", "Customer")),
+            phone=order.get("phone", ""),
+            products=product_names,
+            total=order.get("total_amount", 0),
+            payment_method=order.get("payment_method", ""),
+            address=f"{order.get('shipping_address', '')}, {order.get('city', '')}"
+        )
+
+        to_number = settings["notify_number"].lstrip("+")
+        url = f"https://graph.facebook.com/v19.0/{phone_number_id}/messages"
+        headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
+        payload = {
+            "messaging_product": "whatsapp",
+            "to": to_number,
+            "type": "text",
+            "text": {"body": message}
+        }
+        async with httpx.AsyncClient(timeout=10) as client:
+            resp = await client.post(url, headers=headers, json=payload)
+            if resp.status_code >= 400:
+                logging.error(f"WhatsApp API error {resp.status_code}: {resp.text}")
+                return False
+        return True
+    except Exception as e:
+        logging.error(f"WhatsApp notification failed: {e}")
+        return False
 
 class GalleryImage(BaseModel):
     title: Optional[str] = None

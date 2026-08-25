@@ -57,6 +57,7 @@ import AdminDeals from "./pages/admin/AdminDeals";
 import AdminHeroDeals from "./pages/admin/AdminHeroDeals";
 import AdminReviewVideos from "./pages/admin/AdminReviewVideos";
 import AdminHeroSettings from "./pages/admin/AdminHeroSettings";
+import WhatsAppSettings from "./pages/admin/WhatsAppSettings";
 import VisitorTracker from "./components/VisitorTracker";
 
 // Scroll to Top Component - ensures page starts from top on navigation
@@ -184,6 +185,7 @@ function AppRouter() {
       <Route path="/admin/hero-deals" element={<ProtectedRoute adminOnly><AdminHeroDeals /></ProtectedRoute>} />
       <Route path="/admin/review-videos" element={<ProtectedRoute adminOnly><AdminReviewVideos /></ProtectedRoute>} />
       <Route path="/admin/hero" element={<ProtectedRoute adminOnly><AdminHeroSettings /></ProtectedRoute>} />
+      <Route path="/admin/whatsapp" element={<ProtectedRoute adminOnly><WhatsAppSettings /></ProtectedRoute>} />
       <Route path="/admin/campaigns" element={<ProtectedRoute adminOnly><AdminCampaigns /></ProtectedRoute>} />
     </Routes>
     </>

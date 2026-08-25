@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useCart } from "../App";
-import { ShoppingCart, User, Menu, X, LogOut, Package, LayoutDashboard, Heart } from "lucide-react";
+import { ShoppingCart, User, Menu, X, LogOut, Package, LayoutDashboard, Heart, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import axios from "axios";
@@ -27,10 +27,9 @@ export const Navbar = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(`${API}/categories`);
-        // Get only parent categories (no parent_id) and limit to 5 for navbar
+        // Show all parent categories in nav dropdown
         const parentCategories = response.data
-          .filter(cat => !cat.parent_id)
-          .slice(0, 5);
+          .filter(cat => !cat.parent_id);
         setNavCategories(parentCategories);
       } catch (error) {
         console.error("Error fetching nav categories:", error);
@@ -56,19 +55,35 @@ export const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation - Dynamic Categories */}
+          {/* Desktop Navigation - Categories Dropdown */}
           <div className="hidden md:flex items-center gap-8">
-            {navCategories.map((category) => (
-              <Link 
-                key={category.id}
-                to={`/products/${category.id}`} 
-                className="hover:opacity-80 transition-colors font-medium"
-                style={{color: 'var(--color-text)'}}
-                data-testid={`nav-${category.id}`}
-              >
-                {category.name}
-              </Link>
-            ))}
+            {navCategories.length > 0 && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    className="flex items-center gap-1 hover:opacity-80 transition-colors font-medium"
+                    style={{color: 'var(--color-text)'}}
+                    data-testid="nav-categories-dropdown"
+                  >
+                    Categories
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-56 max-h-96 overflow-y-auto">
+                  {navCategories.map((category) => (
+                    <DropdownMenuItem key={category.id} asChild>
+                      <Link
+                        to={`/products/${category.id}`}
+                        className="w-full cursor-pointer"
+                        data-testid={`nav-${category.id}`}
+                      >
+                        {category.icon ? `${category.icon} ` : ""}{category.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
 
           {/* Right Side */}

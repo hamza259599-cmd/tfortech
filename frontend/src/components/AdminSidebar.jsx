@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, Box, ClipboardList, Users, Truck, Palette, FileText, Image, Star, TrendingUp, Megaphone, Zap, Video, GalleryHorizontal } from "lucide-react";
+import { LayoutDashboard, Box, ClipboardList, Users, Truck, Palette, FileText, Image, Star, TrendingUp, Megaphone, Zap, Video, GalleryHorizontal, MessageCircle } from "lucide-react";
 
 export default function AdminSidebar() {
   const location = useLocation();
@@ -62,6 +62,10 @@ export default function AdminSidebar() {
         <Link to="/admin/hero" className={linkClass("/admin/hero")}>
           <GalleryHorizontal className="w-5 h-5" />
           Hero Section
+        </Link>
+        <Link to="/admin/whatsapp" className={linkClass("/admin/whatsapp")}>
+          <MessageCircle className="w-5 h-5" />
+          WhatsApp Alerts
         </Link>
         <Link to="/admin/reviews" className={linkClass("/admin/reviews")}>
           <Star className="w-5 h-5" />

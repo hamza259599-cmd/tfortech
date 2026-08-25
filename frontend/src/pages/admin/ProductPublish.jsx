@@ -5,6 +5,7 @@ import { Navbar } from "../../components/Layout";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
+import { Textarea } from "../../components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -257,7 +258,11 @@ export default function ProductPublish() {
     warranty: "",
    
     video_url: "",
-    is_sold_out: false
+    is_sold_out: false,
+    is_featured: false,
+    meta_title: "",
+    meta_description: "",
+    slug: ""
   });
 
   // Custom description fields
@@ -436,7 +441,11 @@ export default function ProductPublish() {
         dimensions: product.dimensions || "",
         warranty: product.warranty || "",
                 video_url: product.video_url || "",
-        is_sold_out: product.is_sold_out || false
+        is_sold_out: product.is_sold_out || false,
+        is_featured: product.is_featured || false,
+        meta_title: product.meta_title || "",
+        meta_description: product.meta_description || "",
+        slug: product.slug || ""
       });
       
       // Load color variations with full data (images, prices, stock)
@@ -880,6 +889,10 @@ export default function ProductPublish() {
       color_variations: colorVariations,
       variations: finalCombinedVariations, // Combined color+size variations with individual prices & stock
       is_sold_out: formData.is_sold_out,
+      is_featured: formData.is_featured,
+      meta_title: formData.meta_title ? formData.meta_title.trim() : null,
+      meta_description: formData.meta_description ? formData.meta_description.trim() : null,
+      slug: formData.slug ? formData.slug.trim() : null,
       // Device specifications for Mobiles/Laptops
       device_specs: isElectronicsCategory() ? {
         brand: selectedDeviceAttrs.brand || null,
@@ -1399,6 +1412,71 @@ export default function ProductPublish() {
                           Product will not be available for purchase
                         </span>
                       )}
+                    </div>
+
+                    <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl mt-4">
+                      <input
+                        type="checkbox"
+                        id="is_featured"
+                        name="is_featured"
+                        checked={formData.is_featured}
+                        onChange={handleInputChange}
+                        className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                        data-testid="is-featured-checkbox"
+                      />
+                      <label htmlFor="is_featured" className="text-sm font-medium cursor-pointer">
+                        Show in Featured Products (Homepage)
+                      </label>
+                      {formData.is_featured && (
+                        <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                          Will appear on homepage
+                        </span>
+                      )}
+                    </div>
+
+                    {/* SEO Settings */}
+                    <div className="mt-6 p-4 bg-gray-50 rounded-xl space-y-4">
+                      <h3 className="font-heading font-bold text-lg">SEO Settings</h3>
+                      <div>
+                        <Label htmlFor="meta_title">Meta Title</Label>
+                        <Input
+                          id="meta_title"
+                          name="meta_title"
+                          value={formData.meta_title}
+                          onChange={handleInputChange}
+                          placeholder={formData.name || "Product meta title for search engines"}
+                          className="mt-2"
+                          data-testid="meta-title-input"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="meta_description">Meta Description</Label>
+                        <Textarea
+                          id="meta_description"
+                          name="meta_description"
+                          value={formData.meta_description}
+                          onChange={handleInputChange}
+                          placeholder="Short description shown in Google search results"
+                          className="mt-2"
+                          rows={2}
+                          data-testid="meta-description-input"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="slug">URL Slug</Label>
+                        <Input
+                          id="slug"
+                          name="slug"
+                          value={formData.slug}
+                          onChange={handleInputChange}
+                          placeholder="auto-generated-from-name-if-left-blank"
+                          className="mt-2"
+                          data-testid="slug-input"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          URL: /product/{formData.slug || "auto-generated-from-name"}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
