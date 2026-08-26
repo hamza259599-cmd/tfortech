@@ -1690,6 +1690,15 @@ async def update_order_status(order_id: str, request: Request):
     
     return {"message": "Order status updated"}
 
+@api_router.delete("/admin/orders/{order_id}")
+async def delete_order(order_id: str, request: Request):
+    """Permanently delete an order from the database (admin only). Not a soft delete."""
+    await require_admin(request)
+    result = await db.orders.delete_one({"order_id": order_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return {"message": "Order deleted"}
+
 @api_router.get("/admin/stats")
 async def get_admin_stats(request: Request):
     await require_admin(request)

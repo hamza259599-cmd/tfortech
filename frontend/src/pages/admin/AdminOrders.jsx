@@ -19,6 +19,7 @@ const API = `${BACKEND_URL}/api`;
 const statusColors = {
   pending: "bg-[#FFD166]/10 text-[#FFD166] border-[#FFD166]",
   confirmed: "bg-[#4CC9F0]/10 text-[#4CC9F0] border-[#4CC9F0]",
+  processing: "bg-[#9B59B6]/10 text-[#9B59B6] border-[#9B59B6]",
   shipped: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]",
   delivered: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]",
   cancelled: "bg-red-100 text-red-600 border-red-600"
@@ -27,6 +28,7 @@ const statusColors = {
 const statusLabels = {
   pending: "Pending",
   confirmed: "Confirmed",
+  processing: "Processing",
   shipped: "Shipped",
   delivered: "Delivered",
   cancelled: "Cancelled"
@@ -35,6 +37,7 @@ const statusLabels = {
 const statusIcons = {
   pending: Clock,
   confirmed: CheckCircle,
+  processing: Package,
   shipped: Truck,
   delivered: Package,
   cancelled: XCircle
@@ -85,6 +88,20 @@ export default function AdminOrders() {
     } catch (error) {
       console.error("Error cancelling order:", error);
       toast.error("Failed to cancel order");
+    }
+  };
+
+  const handleDeleteOrder = async (orderId) => {
+    if (!window.confirm("Are you sure you want to permanently delete this item? This action cannot be undone.")) return;
+
+    try {
+      await axios.delete(`${API}/admin/orders/${orderId}`);
+      // Update UI immediately without requiring a manual refresh
+      setOrders((prev) => prev.filter((o) => o.order_id !== orderId));
+      toast.success("Deleted successfully.");
+    } catch (error) {
+      console.error("Error deleting order:", error);
+      toast.error("Unable to delete. Please try again.");
     }
   };
 
@@ -246,11 +263,20 @@ export default function AdminOrders() {
                           <SelectContent>
                             <SelectItem value="pending">Pending</SelectItem>
                             <SelectItem value="confirmed">Confirmed</SelectItem>
+                            <SelectItem value="processing">Processing</SelectItem>
                             <SelectItem value="shipped">Shipped</SelectItem>
                             <SelectItem value="delivered">Delivered</SelectItem>
                             <SelectItem value="cancelled">Cancelled</SelectItem>
                           </SelectContent>
                         </Select>
+
+                        <button
+                          onClick={() => handleDeleteOrder(order.order_id)}
+                          className="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                          data-testid={`delete-order-${order.order_id}`}
+                        >
+                          Delete
+                        </button>
                       </div>
                     </div>
                   </div>
