@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Layout from "../components/Layout";
+import AnnouncementBar from "../components/AnnouncementBar";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -224,6 +225,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <AnnouncementBar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
         <DealCountdown />

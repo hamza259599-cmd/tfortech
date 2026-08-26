@@ -55,6 +55,7 @@ import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminCampaigns from "./pages/admin/AdminCampaigns";
 import AdminDeals from "./pages/admin/AdminDeals";
 import AdminHeroDeals from "./pages/admin/AdminHeroDeals";
+import AdminAnnouncements from "./pages/admin/AdminAnnouncements";
 import AdminReviewVideos from "./pages/admin/AdminReviewVideos";
 import AdminHeroSettings from "./pages/admin/AdminHeroSettings";
 import WhatsAppSettings from "./pages/admin/WhatsAppSettings";
@@ -183,6 +184,7 @@ function AppRouter() {
       <Route path="/admin/analytics" element={<ProtectedRoute adminOnly><AdminAnalytics /></ProtectedRoute>} />
       <Route path="/admin/deals" element={<ProtectedRoute adminOnly><AdminDeals /></ProtectedRoute>} />
       <Route path="/admin/hero-deals" element={<ProtectedRoute adminOnly><AdminHeroDeals /></ProtectedRoute>} />
+      <Route path="/admin/announcements" element={<ProtectedRoute adminOnly><AdminAnnouncements /></ProtectedRoute>} />
       <Route path="/admin/review-videos" element={<ProtectedRoute adminOnly><AdminReviewVideos /></ProtectedRoute>} />
       <Route path="/admin/hero" element={<ProtectedRoute adminOnly><AdminHeroSettings /></ProtectedRoute>} />
       <Route path="/admin/whatsapp" element={<ProtectedRoute adminOnly><WhatsAppSettings /></ProtectedRoute>} />

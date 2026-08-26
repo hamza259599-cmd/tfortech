@@ -2627,6 +2627,64 @@ async def get_public_review_videos():
     videos = await db.review_videos.find({"is_active": True}, {"_id": 0}).sort("sort_order", 1).to_list(500)
     return videos
 
+# ==================== ANNOUNCEMENT BAR ====================
+class AnnouncementCreate(BaseModel):
+    text: str
+    is_active: bool = True
+    sort_order: int = 0
+
+@api_router.get("/admin/announcements")
+async def admin_list_announcements(request: Request):
+    await require_admin(request)
+    items = await db.announcements.find({}, {"_id": 0}).sort("sort_order", 1).to_list(200)
+    return items
+
+@api_router.post("/admin/announcements")
+async def create_announcement(item: AnnouncementCreate, request: Request):
+    await require_admin(request)
+    count = await db.announcements.count_documents({})
+    doc = {
+        "id": f"ann_{uuid.uuid4().hex[:12]}",
+        **item.model_dump(),
+        "sort_order": count,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.announcements.insert_one(doc)
+    doc.pop("_id", None)
+    return doc
+
+@api_router.put("/admin/announcements/{ann_id}")
+async def update_announcement(ann_id: str, request: Request):
+    await require_admin(request)
+    body = await request.json()
+    result = await db.announcements.update_one({"id": ann_id}, {"$set": body})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Announcement not found")
+    return {"message": "Announcement updated"}
+
+@api_router.delete("/admin/announcements/{ann_id}")
+async def delete_announcement(ann_id: str, request: Request):
+    await require_admin(request)
+    result = await db.announcements.delete_one({"id": ann_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Announcement not found")
+    return {"message": "Announcement deleted"}
+
+class AnnouncementReorderRequest(BaseModel):
+    order: List[str]
+
+@api_router.post("/admin/announcements/reorder")
+async def reorder_announcements(reorder_data: AnnouncementReorderRequest, request: Request):
+    await require_admin(request)
+    for idx, ann_id in enumerate(reorder_data.order):
+        await db.announcements.update_one({"id": ann_id}, {"$set": {"sort_order": idx}})
+    return {"message": "Announcements reordered"}
+
+@api_router.get("/announcements")
+async def get_public_announcements():
+    items = await db.announcements.find({"is_active": True}, {"_id": 0}).sort("sort_order", 1).to_list(200)
+    return items
+
 class GalleryImage(BaseModel):
     title: Optional[str] = None
     image_url: str
