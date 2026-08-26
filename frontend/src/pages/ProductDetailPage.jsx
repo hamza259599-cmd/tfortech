@@ -1530,18 +1530,6 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* What's in the Box */}
-            {product.whats_in_box && product.whats_in_box.length > 0 && (
-              <div className="p-6 border-b border-gray-100">
-                <h3 className="font-semibold text-lg text-[#1A1A1A] mb-4">What&apos;s in the Box</h3>
-                <ul className="space-y-2 list-disc list-inside">
-                  {product.whats_in_box.map((item, index) => (
-                    <li key={index} className="text-gray-600">{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             {/* Custom Specifications */}
             {product.specifications && product.specifications.length > 0 && (
               <div className="p-6 border-b border-gray-100">

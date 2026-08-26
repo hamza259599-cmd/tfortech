@@ -18,7 +18,7 @@ import {
   LayoutDashboard, Box, ClipboardList, Tags, Truck, 
   Image, Plus, Trash2, ArrowLeft, Save, X, Search,
   ChevronRight, DollarSign, Palette, Ruler, Info, FileText,
-  Eye, ExternalLink, List, Package, Settings, Bold, Sparkles, Type, Check,
+  Eye, ExternalLink, List, Settings, Bold, Sparkles, Type, Check,
   Cpu, HardDrive, Tag, Shield, Wrench
 } from "lucide-react";
 import AdminSidebar from "../../components/AdminSidebar";
@@ -267,7 +267,6 @@ export default function ProductPublish() {
 
   // Custom description fields
   const [highlights, setHighlights] = useState([{ text: "", bold: false }]);
-  const [whatsInBox, setWhatsInBox] = useState([""]);
   const [specifications, setSpecifications] = useState([{ text: "", bold: false }]);
   
   // Stylish Words - words to render with playful styling
@@ -492,9 +491,6 @@ export default function ProductPublish() {
       // Load custom description fields
       if (product.highlights && product.highlights.length > 0) {
         setHighlights(product.highlights);
-      }
-      if (product.whats_in_box && product.whats_in_box.length > 0) {
-        setWhatsInBox(product.whats_in_box);
       }
       if (product.specifications && product.specifications.length > 0) {
         // Handle both old format (string) and new format (object with text and bold)
@@ -909,7 +905,6 @@ export default function ProductPublish() {
       highlights: highlights
         .filter(h => typeof h === 'string' ? h.trim() : h.text?.trim())
         .map(h => typeof h === 'string' ? { text: h, bold: false } : h),
-      whats_in_box: whatsInBox.filter(w => w.trim()),
       specifications: specifications
         .filter(s => typeof s === 'string' ? s.trim() : s.text?.trim())
         .map(s => typeof s === 'string' ? { text: s, bold: false } : s),
@@ -2624,53 +2619,6 @@ export default function ProductPublish() {
                             <button
                               type="button"
                               onClick={() => setHighlights(prev => prev.filter((_, i) => i !== index))}
-                              className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* What's in the Box */}
-                  <div className="bg-white rounded-xl border p-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="font-medium text-lg flex items-center gap-2">
-                        <Package className="w-5 h-5 text-[#4CC9F0]" />
-                        What&apos;s in the Box
-                      </h4>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setWhatsInBox(prev => [...prev, ""])}
-                        data-testid="add-box-item-btn"
-                      >
-                        <Plus className="w-4 h-4 mr-1" /> Add Item
-                      </Button>
-                    </div>
-                    <p className="text-sm text-gray-500 mb-3">List all items included in the package</p>
-                    <div className="space-y-2">
-                      {whatsInBox.map((item, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <span className="text-[#4CC9F0] font-bold">{index + 1}.</span>
-                          <Input
-                            value={item}
-                            onChange={(e) => {
-                              const newItems = [...whatsInBox];
-                              newItems[index] = e.target.value;
-                              setWhatsInBox(newItems);
-                            }}
-                            placeholder={`Item ${index + 1}, e.g., "1x T-Shirt", "Gift Box"`}
-                            className="flex-1"
-                            data-testid={`box-item-input-${index}`}
-                          />
-                          {whatsInBox.length > 1 && (
-                            <button
-                              type="button"
-                              onClick={() => setWhatsInBox(prev => prev.filter((_, i) => i !== index))}
                               className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
                             >
                               <Trash2 className="w-4 h-4" />
