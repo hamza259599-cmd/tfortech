@@ -54,11 +54,11 @@ export default function AdminReviews() {
   const handleDelete = async (reviewId) => {
     try {
       await axios.delete(`${API}/admin/reviews/${reviewId}`);
-      toast.success("Review deleted!");
+      toast.success("Deleted successfully.");
       setDeleteConfirm(null);
       fetchReviews();
     } catch (error) {
-      toast.error("Failed to delete review");
+      toast.error("Unable to delete. Please try again.");
     }
   };
 
@@ -283,8 +283,8 @@ export default function AdminReviews() {
                   <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Trash2 className="w-8 h-8 text-red-600" />
                   </div>
-                  <h3 className="font-heading text-xl font-bold mb-2">Delete Review?</h3>
-                  <p className="text-gray-500">This action cannot be undone. The review will be permanently deleted.</p>
+                  <h3 className="font-heading text-xl font-bold mb-2">Delete Item?</h3>
+                  <p className="text-gray-500">Are you sure you want to permanently delete this item? This action cannot be undone.</p>
                 </div>
                 
                 <div className="flex gap-3">

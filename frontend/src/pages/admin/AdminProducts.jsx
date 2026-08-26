@@ -302,15 +302,15 @@ export default function AdminProducts() {
   };
 
   const handleDelete = async (productId) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    if (!window.confirm("Are you sure you want to permanently delete this item? This action cannot be undone.")) return;
 
     try {
       await axios.delete(`${API}/products/${productId}`);
-      toast.success("Product deleted");
+      toast.success("Deleted successfully.");
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);
-      toast.error("Something went wrong");
+      toast.error("Unable to delete. Please try again.");
     }
   };
 
@@ -362,7 +362,7 @@ export default function AdminProducts() {
       return;
     }
     
-    if (!window.confirm(`Are you sure you want to delete ${selectedProducts.size} product(s)?`)) return;
+    if (!window.confirm(`Are you sure you want to permanently delete ${selectedProducts.size} item(s)? This action cannot be undone.`)) return;
 
     let successCount = 0;
     let errorCount = 0;

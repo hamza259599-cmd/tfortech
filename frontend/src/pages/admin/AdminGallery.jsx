@@ -119,15 +119,15 @@ export default function AdminGallery() {
   };
 
   const handleDeleteImage = async (imageId) => {
-    if (!window.confirm("Are you sure you want to delete this image from gallery?")) return;
+    if (!window.confirm("Are you sure you want to permanently delete this item? This action cannot be undone.")) return;
 
     try {
       await axios.delete(`${API}/admin/gallery/${imageId}`);
-      toast.success("Image deleted from gallery!");
+      toast.success("Deleted successfully.");
       fetchAllImages();
     } catch (error) {
       console.error("Error deleting image:", error);
-      toast.error("Failed to delete image");
+      toast.error("Unable to delete. Please try again.");
     }
   };
 

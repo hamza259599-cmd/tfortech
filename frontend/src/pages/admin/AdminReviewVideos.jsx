@@ -93,13 +93,13 @@ export default function AdminReviewVideos() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete this review video? This can't be undone.")) return;
+    if (!window.confirm("Are you sure you want to permanently delete this item? This action cannot be undone.")) return;
     try {
       await axios.delete(`${API}/admin/review-videos/${id}`);
-      toast.success("Review video deleted");
+      toast.success("Deleted successfully.");
       fetchVideos();
     } catch (e) {
-      toast.error("Failed to delete review video");
+      toast.error("Unable to delete. Please try again.");
     }
   };
 

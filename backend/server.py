@@ -2380,6 +2380,62 @@ async def send_whatsapp_order_notification(order: dict) -> bool:
         logging.error(f"WhatsApp notification failed: {e}")
         return False
 
+class HeroBreakpointConfig(BaseModel):
+    scale: float = 1
+    x: float = 50
+    y: float = 50
+    width: float = 100
+    height: float = 100
+
+class HeroWatermarkBreakpointConfig(BaseModel):
+    scale: float = 1
+    x: float = 90
+    y: float = 90
+
+DEFAULT_HERO_BP = {"scale": 1, "x": 50, "y": 50, "width": 100, "height": 100}
+DEFAULT_WM_BP = {"scale": 1, "x": 90, "y": 90}
+
+class HeroImageConfig(BaseModel):
+    url: str = ""
+    fit_mode: str = "cover"  # cover | contain | custom
+    desktop: dict = Field(default_factory=lambda: dict(DEFAULT_HERO_BP))
+    tablet: dict = Field(default_factory=lambda: dict(DEFAULT_HERO_BP))
+    mobile: dict = Field(default_factory=lambda: dict(DEFAULT_HERO_BP))
+
+class HeroWatermarkConfig(BaseModel):
+    url: str = ""
+    opacity: float = 0.5
+    desktop: dict = Field(default_factory=lambda: dict(DEFAULT_WM_BP))
+    tablet: dict = Field(default_factory=lambda: dict(DEFAULT_WM_BP))
+    mobile: dict = Field(default_factory=lambda: dict(DEFAULT_WM_BP))
+
+class HeroSettings(BaseModel):
+    media_type: str = "image"  # image | video | animation
+    media_enabled: bool = True
+    video_url: Optional[str] = None
+    animation_url: Optional[str] = None
+    image: HeroImageConfig = Field(default_factory=HeroImageConfig)
+    watermark: HeroWatermarkConfig = Field(default_factory=HeroWatermarkConfig)
+
+@api_router.get("/settings/hero")
+async def get_hero_settings():
+    """Public endpoint - homepage reads hero media config from here."""
+    settings = await db.settings.find_one({"type": "hero"}, {"_id": 0})
+    if not settings:
+        return HeroSettings().model_dump()
+    settings.pop("type", None)
+    return settings
+
+@api_router.post("/admin/settings/hero")
+async def update_hero_settings(settings: HeroSettings, request: Request):
+    await require_admin(request)
+    await db.settings.update_one(
+        {"type": "hero"},
+        {"$set": {"type": "hero", **settings.model_dump()}},
+        upsert=True
+    )
+    return {"message": "Hero settings updated"}
+
 class GalleryImage(BaseModel):
     title: Optional[str] = None
     image_url: str

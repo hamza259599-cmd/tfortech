@@ -136,13 +136,13 @@ export default function AdminDeals() {
   };
 
   const handleDelete = async (dealId) => {
-    if (!window.confirm("Delete this deal? This can't be undone.")) return;
+    if (!window.confirm("Are you sure you want to permanently delete this item? This action cannot be undone.")) return;
     try {
       await axios.delete(`${API}/admin/deals/${dealId}`);
-      toast.success("Deal deleted");
+      toast.success("Deleted successfully.");
       fetchDeals();
     } catch (e) {
-      toast.error("Failed to delete deal");
+      toast.error("Unable to delete. Please try again.");
     }
   };
 

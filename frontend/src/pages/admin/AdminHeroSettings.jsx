@@ -8,11 +8,12 @@ import HeroImageLayer from "../../components/HeroImageLayer";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const MAX_UPLOAD_MB = 3;
+const MAX_VIDEO_MB = 15;
 
-function readFileAsDataUrl(file) {
+function readFileAsDataUrl(file, maxMb = MAX_UPLOAD_MB) {
   return new Promise((resolve, reject) => {
-    if (file.size > MAX_UPLOAD_MB * 1024 * 1024) {
-      reject(new Error(`Please choose an image under ${MAX_UPLOAD_MB}MB`));
+    if (file.size > maxMb * 1024 * 1024) {
+      reject(new Error(`Please choose a file under ${maxMb}MB`));
       return;
     }
     const reader = new FileReader();
@@ -23,6 +24,10 @@ function readFileAsDataUrl(file) {
 }
 
 const DEFAULT_SETTINGS = {
+  media_type: "image",
+  media_enabled: true,
+  video_url: "",
+  animation_url: "",
   image: {
     url: "",
     fit_mode: "cover",
@@ -80,6 +85,10 @@ export default function AdminHeroSettings() {
     try {
       const res = await axios.get(`${API}/settings/hero`);
       setSettings({
+        media_type: res.data.media_type || "image",
+        media_enabled: res.data.media_enabled !== false,
+        video_url: res.data.video_url || "",
+        animation_url: res.data.animation_url || "",
         image: { ...DEFAULT_SETTINGS.image, ...res.data.image },
         watermark: { ...DEFAULT_SETTINGS.watermark, ...res.data.watermark },
       });
@@ -145,6 +154,53 @@ export default function AdminHeroSettings() {
     } finally {
       setUploadingWatermark(false);
     }
+  };
+
+  const [uploadingVideo, setUploadingVideo] = useState(false);
+  const [uploadingAnimation, setUploadingAnimation] = useState(false);
+  const videoFileRef = useRef(null);
+  const animationFileRef = useRef(null);
+
+  const handleVideoFileSelect = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+    setUploadingVideo(true);
+    try {
+      const dataUrl = await readFileAsDataUrl(file, MAX_VIDEO_MB);
+      setSettings((s) => ({ ...s, video_url: dataUrl }));
+      toast.success("Video loaded \u2014 click Save to publish it");
+    } catch (err) {
+      toast.error(err.message || "Couldn't load that video");
+    } finally {
+      setUploadingVideo(false);
+    }
+  };
+
+  const handleAnimationFileSelect = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+    setUploadingAnimation(true);
+    try {
+      const dataUrl = await readFileAsDataUrl(file, MAX_VIDEO_MB);
+      setSettings((s) => ({ ...s, animation_url: dataUrl }));
+      toast.success("Animation loaded \u2014 click Save to publish it");
+    } catch (err) {
+      toast.error(err.message || "Couldn't load that file");
+    } finally {
+      setUploadingAnimation(false);
+    }
+  };
+
+  const handleRemoveVideo = () => {
+    setSettings((s) => ({ ...s, video_url: "" }));
+    toast.success("Video removed \u2014 click Save to apply");
+  };
+
+  const handleRemoveAnimation = () => {
+    setSettings((s) => ({ ...s, animation_url: "" }));
+    toast.success("Animation removed \u2014 click Save to apply");
   };
 
   const imgBp = settings.image[previewBp];
@@ -233,8 +289,17 @@ export default function AdminHeroSettings() {
             </div>
           </div>
 
-          {/* Tabs: Image / Watermark */}
+          {/* Tabs: Media Type / Image / Watermark */}
           <div className="flex gap-2">
+            <button
+              onClick={() => setActiveTab("media")}
+              className={`px-5 py-2.5 rounded-xl font-medium transition-colors ${
+                activeTab === "media" ? "bg-[#1A1A1A] text-white" : "bg-white text-gray-600 hover:bg-gray-50"
+              }`}
+              data-testid="hero-tab-media"
+            >
+              Hero Media
+            </button>
             <button
               onClick={() => setActiveTab("image")}
               className={`px-5 py-2.5 rounded-xl font-medium transition-colors ${
@@ -253,7 +318,131 @@ export default function AdminHeroSettings() {
             </button>
           </div>
 
-          {activeTab === "image" ? (
+          {activeTab === "media" ? (
+            <div className="bg-white rounded-xl p-6 shadow-sm space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Hero Media Type</label>
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { key: "image", label: "Static Image" },
+                    { key: "video", label: "Video" },
+                    { key: "animation", label: "Animation" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.key}
+                      onClick={() => setSettings((s) => ({ ...s, media_type: opt.key }))}
+                      className={`px-4 py-2.5 rounded-xl font-medium transition-colors border ${
+                        settings.media_type === opt.key
+                          ? "bg-[#FF8FAB]/10 border-[#FF8FAB] text-[#FF8FAB]"
+                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                      }`}
+                      data-testid={`hero-media-type-${opt.key}`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-400 mt-2">
+                  Choose what plays in the hero section. Video and Animation automatically fall back to the Hero Image if they fail to load.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
+                <input
+                  type="checkbox"
+                  id="media_enabled"
+                  checked={settings.media_enabled}
+                  onChange={(e) => setSettings((s) => ({ ...s, media_enabled: e.target.checked }))}
+                  className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                  data-testid="hero-media-enabled"
+                />
+                <label htmlFor="media_enabled" className="text-sm font-medium cursor-pointer">
+                  Enable selected media type (uncheck to always show the static image)
+                </label>
+              </div>
+
+              {settings.media_type === "video" && (
+                <div className="border-t border-gray-100 pt-5">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Hero Video</label>
+                  <div className="flex gap-2 mb-2">
+                    <input type="file" accept="video/*" ref={videoFileRef} onChange={handleVideoFileSelect} className="hidden" />
+                    <button
+                      type="button"
+                      onClick={() => videoFileRef.current?.click()}
+                      disabled={uploadingVideo}
+                      className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                      data-testid="hero-video-upload-btn"
+                    >
+                      {uploadingVideo ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                      {uploadingVideo ? "Loading..." : "Upload video from your computer"}
+                    </button>
+                    {settings.video_url && (
+                      <button
+                        type="button"
+                        onClick={handleRemoveVideo}
+                        className="px-4 py-3 border border-red-200 text-red-600 rounded-xl hover:bg-red-50"
+                        data-testid="hero-video-remove-btn"
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-400 mb-2">Or paste a video link instead (max {MAX_VIDEO_MB}MB for uploads):</p>
+                  <input
+                    type="text"
+                    value={settings.video_url || ""}
+                    onChange={(e) => setSettings((s) => ({ ...s, video_url: e.target.value }))}
+                    placeholder="https://... .mp4"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  />
+                  {settings.video_url && (
+                    <video src={settings.video_url} autoPlay muted loop playsInline className="w-full mt-4 rounded-xl max-h-64 object-cover" />
+                  )}
+                  <p className="text-xs text-gray-400 mt-2">Video plays muted, autoplays, loops, and fills the hero area automatically.</p>
+                </div>
+              )}
+
+              {settings.media_type === "animation" && (
+                <div className="border-t border-gray-100 pt-5">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Hero Animation (GIF / animated WEBP)</label>
+                  <div className="flex gap-2 mb-2">
+                    <input type="file" accept="image/gif,image/webp,image/apng,image/*" ref={animationFileRef} onChange={handleAnimationFileSelect} className="hidden" />
+                    <button
+                      type="button"
+                      onClick={() => animationFileRef.current?.click()}
+                      disabled={uploadingAnimation}
+                      className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                      data-testid="hero-animation-upload-btn"
+                    >
+                      {uploadingAnimation ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                      {uploadingAnimation ? "Loading..." : "Upload animation from your computer"}
+                    </button>
+                    {settings.animation_url && (
+                      <button
+                        type="button"
+                        onClick={handleRemoveAnimation}
+                        className="px-4 py-3 border border-red-200 text-red-600 rounded-xl hover:bg-red-50"
+                        data-testid="hero-animation-remove-btn"
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-400 mb-2">Or paste a link instead (max {MAX_VIDEO_MB}MB for uploads):</p>
+                  <input
+                    type="text"
+                    value={settings.animation_url || ""}
+                    onChange={(e) => setSettings((s) => ({ ...s, animation_url: e.target.value }))}
+                    placeholder="https://... .gif or .webp"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  />
+                  {settings.animation_url && (
+                    <img src={settings.animation_url} alt="Animation preview" className="w-full mt-4 rounded-xl max-h-64 object-cover" />
+                  )}
+                </div>
+              )}
+            </div>
+          ) : activeTab === "image" ? (
             <div className="bg-white rounded-xl p-6 shadow-sm space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Image</label>

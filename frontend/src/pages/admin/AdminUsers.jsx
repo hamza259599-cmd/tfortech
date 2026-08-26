@@ -131,7 +131,7 @@ export default function AdminUsers() {
   };
 
   const handleDeleteUser = async (userId, userName) => {
-    if (!window.confirm(`Are you sure you want to delete user "${userName}"? This action cannot be undone.`)) {
+    if (!window.confirm(`Are you sure you want to permanently delete user "${userName}"? This action cannot be undone.`)) {
       return;
     }
     
@@ -140,11 +140,11 @@ export default function AdminUsers() {
       await axios.delete(`${API}/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      toast.success("User deleted successfully");
+      toast.success("Deleted successfully.");
       fetchUsers();
     } catch (error) {
       console.error("Error deleting user:", error);
-      toast.error(error.response?.data?.detail || "Failed to delete user");
+      toast.error(error.response?.data?.detail || "Unable to delete. Please try again.");
     }
   };
 

@@ -180,13 +180,13 @@ export default function AdminHeroDeals() {
   }
 
   async function handleDelete(id) {
-    if (!window.confirm("Delete this flash deal?")) return;
+    if (!window.confirm("Are you sure you want to permanently delete this item? This action cannot be undone.")) return;
     try {
       await axios.delete(`${API}/admin/hero-deals/${id}`);
-      toast.success("Deal deleted");
+      toast.success("Deleted successfully.");
       fetchDeals();
     } catch (e) {
-      toast.error("Failed to delete deal");
+      toast.error("Unable to delete. Please try again.");
     }
   }
 
