@@ -2471,6 +2471,162 @@ async def update_hero_settings(settings: HeroSettings, request: Request):
     )
     return {"message": "Hero settings updated"}
 
+# ==================== FLASH DEALS (Hero Deals) ====================
+class DealCreate(BaseModel):
+    title: str
+    description: Optional[str] = None
+    banner_image: Optional[str] = None
+    product_id: Optional[str] = None
+    category_id: Optional[str] = None
+    original_price: Optional[float] = None
+    sale_price: Optional[float] = None
+    discount_type: str = "percent"  # "percent" or "amount"
+    discount_value: Optional[float] = None
+    start_time: str  # ISO datetime
+    end_time: str    # ISO datetime
+    countdown_enabled: bool = True
+    shop_now_text: str = "Shop Now"
+    shop_now_link: Optional[str] = None
+    review_video_url: Optional[str] = None
+    is_active: bool = True
+    order: int = 0
+
+def _is_deal_currently_active(deal: dict) -> bool:
+    if not deal.get("is_active"):
+        return False
+    try:
+        now = datetime.now(timezone.utc)
+        start = datetime.fromisoformat(deal["start_time"].replace("Z", "+00:00"))
+        end = datetime.fromisoformat(deal["end_time"].replace("Z", "+00:00"))
+        return start <= now < end
+    except Exception:
+        return False
+
+@api_router.get("/admin/hero-deals")
+async def admin_list_deals(request: Request):
+    await require_admin(request)
+    deals = await db.hero_deals.find({}, {"_id": 0}).sort("order", 1).to_list(1000)
+    return deals
+
+@api_router.post("/admin/hero-deals")
+async def create_deal(deal: DealCreate, request: Request):
+    await require_admin(request)
+    count = await db.hero_deals.count_documents({})
+    deal_doc = {
+        "id": f"deal_{uuid.uuid4().hex[:12]}",
+        **deal.model_dump(),
+        "order": count,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.hero_deals.insert_one(deal_doc)
+    deal_doc.pop("_id", None)
+    return deal_doc
+
+@api_router.put("/admin/hero-deals/{deal_id}")
+async def update_deal(deal_id: str, deal: DealCreate, request: Request):
+    await require_admin(request)
+    result = await db.hero_deals.update_one(
+        {"id": deal_id},
+        {"$set": deal.model_dump(exclude={"order"})}
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Deal not found")
+    return {"message": "Deal updated"}
+
+@api_router.delete("/admin/hero-deals/{deal_id}")
+async def delete_deal(deal_id: str, request: Request):
+    await require_admin(request)
+    result = await db.hero_deals.delete_one({"id": deal_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Deal not found")
+    return {"message": "Deal deleted"}
+
+class DealReorderRequest(BaseModel):
+    order: List[str]
+
+@api_router.post("/admin/hero-deals/reorder")
+async def reorder_deals(reorder_data: DealReorderRequest, request: Request):
+    await require_admin(request)
+    for idx, deal_id in enumerate(reorder_data.order):
+        await db.hero_deals.update_one({"id": deal_id}, {"$set": {"order": idx}})
+    return {"message": "Deals reordered"}
+
+@api_router.get("/deals")
+async def get_active_deals():
+    """Public: only currently-active deals (enabled + within start/end window),
+    no fixed limit on how many can be active at once."""
+    all_deals = await db.hero_deals.find({"is_active": True}, {"_id": 0}).sort("order", 1).to_list(1000)
+    return [d for d in all_deals if _is_deal_currently_active(d)]
+
+@api_router.get("/hero-deals")
+async def get_active_hero_deals():
+    """Same active-deal set as /deals, exposed for the homepage carousel."""
+    all_deals = await db.hero_deals.find({"is_active": True}, {"_id": 0}).sort("order", 1).to_list(1000)
+    return [d for d in all_deals if _is_deal_currently_active(d)]
+
+# ==================== REVIEW VIDEOS (YouTube) ====================
+class ReviewVideoCreate(BaseModel):
+    customer_name: Optional[str] = None
+    video_url: str
+    thumbnail_url: Optional[str] = None
+    caption: Optional[str] = None
+    rating: Optional[int] = 5
+    sort_order: Optional[int] = 0
+    is_active: bool = True
+
+@api_router.get("/admin/review-videos")
+async def admin_list_review_videos(request: Request):
+    await require_admin(request)
+    videos = await db.review_videos.find({}, {"_id": 0}).sort("sort_order", 1).to_list(500)
+    return videos
+
+@api_router.post("/admin/review-videos")
+async def create_review_video(video: ReviewVideoCreate, request: Request):
+    await require_admin(request)
+    doc = {
+        "id": f"revv_{uuid.uuid4().hex[:12]}",
+        **video.model_dump(),
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.review_videos.insert_one(doc)
+    doc.pop("_id", None)
+    return doc
+
+@api_router.put("/admin/review-videos/{video_id}")
+async def update_review_video(video_id: str, request: Request):
+    await require_admin(request)
+    body = await request.json()
+    # Supports partial updates (e.g. just {"is_active": false} for the enable/disable toggle)
+    result = await db.review_videos.update_one({"id": video_id}, {"$set": body})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Review video not found")
+    return {"message": "Review video updated"}
+
+@api_router.delete("/admin/review-videos/{video_id}")
+async def delete_review_video(video_id: str, request: Request):
+    await require_admin(request)
+    result = await db.review_videos.delete_one({"id": video_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Review video not found")
+    return {"message": "Review video deleted"}
+
+@api_router.post("/admin/review-videos/validate")
+async def validate_review_video_url(request: Request):
+    """Validates a YouTube URL and returns the extracted video ID + embed URL."""
+    await require_admin(request)
+    body = await request.json()
+    url = body.get("url", "")
+    match = re.search(r'(?:youtube\.com/watch\?v=|youtu\.be/|youtube\.com/shorts/)([\w-]+)', url)
+    if not match:
+        raise HTTPException(status_code=400, detail="Not a valid YouTube URL")
+    video_id = match.group(1)
+    return {"valid": True, "video_id": video_id, "embed_url": f"https://www.youtube.com/embed/{video_id}"}
+
+@api_router.get("/review-videos")
+async def get_public_review_videos():
+    videos = await db.review_videos.find({"is_active": True}, {"_id": 0}).sort("sort_order", 1).to_list(500)
+    return videos
+
 class GalleryImage(BaseModel):
     title: Optional[str] = None
     image_url: str
