@@ -23,6 +23,7 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [whatsappSettings, setWhatsappSettings] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedVariation, setSelectedVariation] = useState(null); // Combined color+size variation
@@ -125,6 +126,18 @@ export default function ProductDetailPage() {
       }
     };
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchWhatsappSettings = async () => {
+      try {
+        const response = await axios.get(`${API}/settings/whatsapp`);
+        setWhatsappSettings(response.data);
+      } catch (error) {
+        console.error("Error fetching WhatsApp settings:", error);
+      }
+    };
+    fetchWhatsappSettings();
   }, []);
 
   // Fetch product, wishlist status, and reviews
@@ -388,6 +401,28 @@ export default function ProductDetailPage() {
   // Handle size selection
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
+  };
+
+  const handleOrderOnWhatsApp = () => {
+    if (!whatsappSettings?.notify_number) {
+      toast.error("WhatsApp ordering is not configured yet.");
+      return;
+    }
+    const template = whatsappSettings.order_message_template ||
+      "Hello, I want to order:\n\nProduct: {{product_name}}\nPrice: Rs. {{price}}\nQuantity: {{quantity}}\nProduct Link: {{product_url}}";
+    const effectivePrice = product.discount_price || product.price;
+    const message = template
+      .replaceAll("{{product_name}}", product.name || "")
+      .replaceAll("{{price}}", effectivePrice != null ? String(effectivePrice) : "")
+      .replaceAll("{{quantity}}", String(quantity))
+      .replaceAll("{{product_url}}", window.location.href)
+      .replaceAll("{{sku}}", product.sku || "")
+      .replaceAll("{{category}}", product.category || "")
+      .replaceAll("{{description}}", product.description || "");
+
+    const phone = whatsappSettings.notify_number.replace(/[^0-9]/g, "");
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const handleAddToCart = async () => {
@@ -1275,24 +1310,44 @@ export default function ProductDetailPage() {
               </Button>
             </div>
 
-            {/* Buy Now Button */}
-            <Button
-              onClick={() => {
-                handleAddToCart();
-                setTimeout(() => {
-                  window.location.href = '/checkout';
-                }, 500);
-              }}
-              disabled={getCurrentStock() === 0 || product.is_sold_out}
-              className={`w-full rounded-lg py-6 text-lg font-medium mb-6 ${
-                getCurrentStock() === 0 || product.is_sold_out
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-[#1A1A1A] hover:bg-[#333] text-white'
-              }`}
-              data-testid="buy-now-btn"
-            >
-              {getCurrentStock() === 0 || product.is_sold_out ? 'Out of Stock' : 'Buy It Now'}
-            </Button>
+            {/* Order on WhatsApp Button - replaces the old direct "Buy Now" flow */}
+            {whatsappSettings?.ordering_enabled && whatsappSettings?.show_on_product_page && whatsappSettings?.notify_number ? (
+              <Button
+                onClick={handleOrderOnWhatsApp}
+                disabled={getCurrentStock() === 0 || product.is_sold_out}
+                className={`w-full rounded-lg py-6 text-lg font-medium mb-6 flex items-center justify-center gap-2 ${
+                  getCurrentStock() === 0 || product.is_sold_out
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-[#25D366] hover:bg-[#1ebe5a] text-white'
+                }`}
+                data-testid="order-whatsapp-btn"
+              >
+                {getCurrentStock() === 0 || product.is_sold_out ? 'Out of Stock' : (
+                  <>
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.14 1.587 5.945L0 24l6.192-1.562A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.79 0-3.545-.475-5.086-1.375l-.365-.213-3.674.928.98-3.583-.238-.375A9.777 9.777 0 012.182 12C2.182 6.585 6.585 2.182 12 2.182S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+                    Order on WhatsApp
+                  </>
+                )}
+              </Button>
+            ) : (
+              <Button
+                onClick={() => {
+                  handleAddToCart();
+                  setTimeout(() => {
+                    window.location.href = '/checkout';
+                  }, 500);
+                }}
+                disabled={getCurrentStock() === 0 || product.is_sold_out}
+                className={`w-full rounded-lg py-6 text-lg font-medium mb-6 ${
+                  getCurrentStock() === 0 || product.is_sold_out
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-[#1A1A1A] hover:bg-[#333] text-white'
+                }`}
+                data-testid="buy-now-btn"
+              >
+                {getCurrentStock() === 0 || product.is_sold_out ? 'Out of Stock' : 'Buy It Now'}
+              </Button>
+            )}
 
             {/* Delivery & Services - Right after Buy It Now */}
             <div className="mb-6 bg-gray-50 rounded-xl p-4 border border-gray-200">

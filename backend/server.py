@@ -2310,6 +2310,17 @@ class WhatsAppSettings(BaseModel):
         "Delivery Address: {address}\n\n"
         "Please check the Admin Panel for complete order details."
     )
+    # Customer-facing "Order on WhatsApp" button controls
+    ordering_enabled: bool = True  # master toggle for the customer-facing order button
+    show_on_product_page: bool = True
+    show_floating_button: bool = True
+    order_message_template: str = (
+        "Hello, I want to order:\n\n"
+        "Product: {{product_name}}\n"
+        "Price: Rs. {{price}}\n"
+        "Quantity: {{quantity}}\n"
+        "Product Link: {{product_url}}"
+    )
 
 @api_router.get("/admin/settings/whatsapp")
 async def get_whatsapp_settings(request: Request):
@@ -2329,6 +2340,21 @@ async def update_whatsapp_settings(settings: WhatsAppSettings, request: Request)
         upsert=True
     )
     return {"message": "WhatsApp settings updated"}
+
+@api_router.get("/settings/whatsapp")
+async def get_public_whatsapp_settings():
+    """Public, read-only: only exposes what the storefront needs to build an
+    'Order on WhatsApp' link. Never exposes API tokens/credentials."""
+    settings = await db.settings.find_one({"type": "whatsapp"}, {"_id": 0})
+    if not settings:
+        settings = WhatsAppSettings().model_dump()
+    return {
+        "ordering_enabled": settings.get("ordering_enabled", True),
+        "notify_number": settings.get("notify_number"),
+        "show_on_product_page": settings.get("show_on_product_page", True),
+        "show_floating_button": settings.get("show_floating_button", True),
+        "order_message_template": settings.get("order_message_template", WhatsAppSettings().order_message_template),
+    }
 
 async def send_whatsapp_order_notification(order: dict) -> bool:
     """

@@ -229,59 +229,6 @@ export default function HomePage() {
         <DealCountdown />
       </div>
 
-      {categories.length > 0 && (
-        <section className="py-16 lg:py-24" data-testid="categories-section">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[#1A1A1A] mb-4">
-                Categories
-              </h2>
-              <p className="text-[#6B7280] text-lg mb-6">Choose your favorite category</p>
-              <Link to="/categories">
-                <Button 
-                  variant="outline" 
-                  className="border-[#FFD166] text-[#1A1A1A] hover:bg-[#FFD166]/10 rounded-full px-6"
-                >
-                  View All Categories
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-              {categories
-                .filter(cat => !cat.parent_id && cat.parent_id !== "")
-                .map((category, index) => {
-                const bgColors = ["#FF8FAB", "#FFD166", "#06D6A0", "#4ECDC4", "#9B59B6"];
-                const bgColor = bgColors[index % 5];
-                return (
-                  <div key={category.id} className="relative group">
-                    <Link 
-                      to={`/products/${category.id}`} 
-                      className="block relative overflow-hidden rounded-2xl aspect-square"
-                      data-testid={`category-${category.id}`}
-                    >
-                      <img 
-                        src={category.image_url || getCategoryImage(category.name?.toLowerCase())} 
-                        alt={category.name} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="font-heading text-lg font-bold text-white mb-0.5 line-clamp-1">{category.name}</h3>
-                        {category.product_count > 0 && (
-                          <p className="text-gray-200 text-xs">{category.product_count} items</p>
-                        )}
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
       {featuredProducts.length > 0 && (
         <section className="py-16 bg-white" data-testid="featured-section">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
