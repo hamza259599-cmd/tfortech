@@ -63,6 +63,10 @@ export default function AdminSidebar() {
           <Video className="w-5 h-5" />
           Review Videos
         </Link>
+        <Link to="/admin/testimonials" className={linkClass("/admin/testimonials")}>
+          <Star className="w-5 h-5" />
+          Testimonials
+        </Link>
         <Link to="/admin/hero" className={linkClass("/admin/hero")}>
           <GalleryHorizontal className="w-5 h-5" />
           Hero Section

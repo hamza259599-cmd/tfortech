@@ -20,6 +20,7 @@ import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
 import DealCountdown from "../components/DealCountdown";
 import CustomerReviewVideos from "../components/CustomerReviewVideos";
+import TestimonialsSection from "../components/TestimonialsSection";
 import HeroImageLayer, { getBreakpoint } from "../components/HeroImageLayer";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -268,6 +269,7 @@ export default function HomePage() {
       )}
 
       <CustomerReviewVideos />
+      <TestimonialsSection />
 
       <section className="py-16 lg:py-24" data-testid="features-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
