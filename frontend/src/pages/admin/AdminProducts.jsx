@@ -417,7 +417,7 @@ export default function AdminProducts() {
       try {
         const productData = {
           name: product.name,
-          description: product.description || `${product.name} - Quality product for kids`,
+          description: product.description || `${product.name} - Quality tech product`,
           price: parseFloat(product.price),
           category: product.category,
           image_url: product.image_url || "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400",

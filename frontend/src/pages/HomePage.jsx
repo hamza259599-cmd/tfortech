@@ -166,8 +166,8 @@ export default function HomePage() {
   return (
     <Layout>
       <SEO 
-        title="Kids Clothes, Toys & Educational Items"
-        description="Shop quality kids' clothes, toys, bags, and educational items at Tfortech. Cash on Delivery available across Pakistan. Free shipping on orders over Rs. 5000."
+        title="Tech & Gadgets Store - Pakistan"
+        description="Shop the latest laptops, tech, and gadgets at Tfortech. Cash on Delivery available across Pakistan. Free shipping on orders over Rs. 5000."
         url="/"
       />
       

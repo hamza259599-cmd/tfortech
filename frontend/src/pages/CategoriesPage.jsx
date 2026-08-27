@@ -40,8 +40,8 @@ export default function CategoriesPage() {
     <Layout>
       {/* SEO Meta Tags */}
       <SEO 
-        title="Shop by Category - Kids Clothes, Toys & More"
-        description="Browse all categories at T For Tech. Find kids' clothes, toys, bags, educational items and more. Quality products with Cash on Delivery across Pakistan."
+        title="Shop by Category - Laptops, Tech & Gadgets"
+        description="Browse all categories at T For Tech. Find laptops, phones, accessories and more tech products with Cash on Delivery across Pakistan."
         url="/categories"
       />
       

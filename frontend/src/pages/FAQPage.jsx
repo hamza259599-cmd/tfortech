@@ -46,7 +46,7 @@ export default function FAQPage() {
       {/* SEO Meta Tags */}
       <SEO 
         title="FAQs - Frequently Asked Questions"
-        description="Find answers to common questions about T For Tech products, shipping, returns, and Cash on Delivery. Get help with your kids' shopping needs."
+        description="Find answers to common questions about T For Tech products, shipping, returns, and Cash on Delivery. Get help with your tech shopping needs."
         url="/faq"
       />
       

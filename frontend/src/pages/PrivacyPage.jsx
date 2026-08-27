@@ -43,7 +43,7 @@ export default function PrivacyPage() {
       {/* SEO Meta Tags */}
       <SEO 
         title="Privacy Policy - T For Tech"
-        description="Read T For Tech Privacy Policy. Learn how we protect your personal information and data when shopping for kids' products on our platform."
+        description="Read T For Tech Privacy Policy. Learn how we protect your personal information and data when shopping for tech products on our platform."
         url="/privacy"
       />
       

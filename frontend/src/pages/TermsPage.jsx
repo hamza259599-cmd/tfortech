@@ -43,7 +43,7 @@ export default function TermsPage() {
       {/* SEO Meta Tags */}
       <SEO 
         title="Terms & Conditions - T For Tech"
-        description="Read T For Tech Terms and Conditions. Learn about our policies for orders, shipping, returns, and use of our kids' e-commerce platform."
+        description="Read T For Tech Terms and Conditions. Learn about our policies for orders, shipping, returns, and use of our tech e-commerce platform."
         url="/terms"
       />
       

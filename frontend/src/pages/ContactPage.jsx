@@ -64,7 +64,7 @@ export default function ContactPage() {
       {/* SEO Meta Tags */}
       <SEO 
         title="Contact Us - T For Tech Customer Support"
-        description="Contact T For Tech for any questions about kids' clothes, toys, orders or shipping. Reach us via phone, email or our contact form. We're here to help!"
+        description="Contact T For Tech for any questions about laptops, tech products, orders or shipping. Reach us via phone, email or our contact form. We're here to help!"
         url="/contact"
       />
       

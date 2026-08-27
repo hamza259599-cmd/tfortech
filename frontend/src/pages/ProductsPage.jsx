@@ -159,16 +159,16 @@ export default function ProductsPage() {
   // Generate SEO title and description based on current category
   const getSEOTitle = () => {
     if (currentCategory) {
-      return `${currentCategory.name} - Shop Kids Products`;
+      return `${currentCategory.name} - Shop Tech & Gadgets`;
     }
-    return "All Products - Kids Clothes, Toys & More";
+    return "All Products - Laptops, Tech & Gadgets";
   };
 
   const getSEODescription = () => {
     if (currentCategory) {
-      return `Shop ${currentCategory.name} at T For Tech. ${currentCategory.product_count || ''} quality kids' products with Cash on Delivery across Pakistan. Free shipping on orders over Rs. 5000.`;
+      return `Shop ${currentCategory.name} at T For Tech. ${currentCategory.product_count || ''} quality tech products with Cash on Delivery across Pakistan. Free shipping on orders over Rs. 5000.`;
     }
-    return "Browse all products at T For Tech. Quality kids' clothes, toys, bags, and educational items with Cash on Delivery across Pakistan.";
+    return "Browse all products at T For Tech. Quality laptops, tech, and gadgets with Cash on Delivery across Pakistan.";
   };
 
   return (
