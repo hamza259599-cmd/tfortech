@@ -17,10 +17,10 @@ export default function AnnouncementBar() {
   const combinedText = announcements.map((a) => a.text).join("   •   ");
 
   return (
-    <div className="w-full bg-[#1A1A1A] text-white overflow-hidden py-3.5 border-y-2 border-[#FFD166]" data-testid="announcement-bar">
+    <div className="w-full bg-[#FF3B7F] text-white overflow-hidden py-3.5" data-testid="announcement-bar">
       <div className="flex whitespace-nowrap animate-[marquee_28s_linear_infinite] hover:[animation-play-state:paused]">
-        <span className="text-base sm:text-lg font-bold px-6 tracking-wide">{combinedText}</span>
-        <span className="text-base sm:text-lg font-bold px-6 tracking-wide" aria-hidden="true">{combinedText}</span>
+        <span className="text-base sm:text-lg font-semibold px-6 tracking-wide">{combinedText}</span>
+        <span className="text-base sm:text-lg font-semibold px-6 tracking-wide" aria-hidden="true">{combinedText}</span>
       </div>
       <style>{`
         @keyframes marquee {
