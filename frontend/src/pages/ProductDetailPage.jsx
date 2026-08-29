@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Layout from "../components/Layout";
@@ -765,10 +766,10 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Fullscreen Zoom Modal */}
-            {isZoomOpen && (
+            {/* Fullscreen Zoom Modal - rendered via portal to escape any stacking context */}
+            {isZoomOpen && createPortal(
               <div
-                className="fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-4"
+                className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
                 onClick={() => setIsZoomOpen(false)}
                 data-testid="zoom-modal"
               >
@@ -815,7 +816,8 @@ export default function ProductDetailPage() {
                     {selectedImage + 1} / {getCurrentImages().length}
                   </div>
                 )}
-              </div>
+              </div>,
+              document.body
             )}
             
             {product.is_sold_out && (
