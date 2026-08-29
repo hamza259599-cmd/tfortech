@@ -2,10 +2,18 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { Plus, ArrowLeft, Trash2, Megaphone, Eye, EyeOff, Pencil, ChevronUp, ChevronDown } from "lucide-react";
+import { Plus, ArrowLeft, Trash2, Megaphone, Eye, EyeOff, Pencil, ChevronUp, ChevronDown, Palette, RotateCcw } from "lucide-react";
 import AdminSidebar from "../../components/AdminSidebar";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+
+const DEFAULT_STYLE = {
+  background_color: "#FF3B7F",
+  text_color: "#FFFFFF",
+  button_color: "#FFD166",
+  hover_color: "#FFFFFF",
+  border_color: "#FF3B7F"
+};
 
 export default function AdminAnnouncements() {
   const [items, setItems] = useState([]);
@@ -14,10 +22,51 @@ export default function AdminAnnouncements() {
   const [editingId, setEditingId] = useState(null);
   const [text, setText] = useState("");
   const [saving, setSaving] = useState(false);
+  const [style, setStyle] = useState(DEFAULT_STYLE);
+  const [savingStyle, setSavingStyle] = useState(false);
 
   useEffect(() => {
     fetchItems();
+    fetchStyle();
   }, []);
+
+  const fetchStyle = async () => {
+    try {
+      const res = await axios.get(`${API}/admin/settings/announcement-bar`);
+      setStyle({ ...DEFAULT_STYLE, ...res.data });
+    } catch (e) {
+      setStyle(DEFAULT_STYLE);
+    }
+  };
+
+  const handleStyleChange = (field, value) => {
+    setStyle((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const saveStyle = async () => {
+    setSavingStyle(true);
+    try {
+      await axios.post(`${API}/admin/settings/announcement-bar`, style);
+      toast.success("Announcement bar colors saved");
+    } catch (e) {
+      toast.error("Failed to save colors");
+    } finally {
+      setSavingStyle(false);
+    }
+  };
+
+  const resetStyle = async () => {
+    setStyle(DEFAULT_STYLE);
+    setSavingStyle(true);
+    try {
+      await axios.post(`${API}/admin/settings/announcement-bar`, DEFAULT_STYLE);
+      toast.success("Reset to default colors");
+    } catch (e) {
+      toast.error("Failed to reset");
+    } finally {
+      setSavingStyle(false);
+    }
+  };
 
   const fetchItems = async () => {
     try {
@@ -118,6 +167,76 @@ export default function AdminAnnouncements() {
           >
             <Plus className="w-5 h-5" /> New Announcement
           </button>
+        </div>
+
+        {/* Announcement Bar Color Settings */}
+        <div className="bg-white rounded-2xl border p-6 mb-8">
+          <h2 className="font-heading text-lg font-bold flex items-center gap-2 mb-4">
+            <Palette className="w-5 h-5 text-[#FF8FAB]" /> Announcement Bar Colors
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {[
+              { key: "background_color", label: "Background Color" },
+              { key: "text_color", label: "Text Color" },
+              { key: "button_color", label: "Button/Link Color" },
+              { key: "hover_color", label: "Hover Color" },
+              { key: "border_color", label: "Border Color" }
+            ].map(({ key, label }) => (
+              <div key={key}>
+                <label className="text-sm font-medium text-gray-700 block mb-1.5">{label}</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="color"
+                    value={style[key] && style[key] !== "transparent" ? style[key] : "#ffffff"}
+                    onChange={(e) => handleStyleChange(key, e.target.value)}
+                    className="w-10 h-10 rounded-lg border cursor-pointer shrink-0"
+                    data-testid={`${key}-picker`}
+                  />
+                  <input
+                    type="text"
+                    value={style[key] || ""}
+                    onChange={(e) => handleStyleChange(key, e.target.value)}
+                    placeholder="#FFFFFF"
+                    className="flex-1 border rounded-lg px-3 py-2 text-sm font-mono"
+                    data-testid={`${key}-hex`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Live Preview */}
+          <label className="text-sm font-medium text-gray-700 block mb-1.5">Live Preview</label>
+          <div
+            className="w-full rounded-xl overflow-hidden py-3 px-4 text-center font-semibold text-sm mb-6 border-2"
+            style={{
+              backgroundColor: style.background_color,
+              color: style.text_color,
+              borderColor: style.border_color && style.border_color !== "transparent" ? style.border_color : style.background_color
+            }}
+          >
+            {items.find((i) => i.is_active)?.text || "🔥 Flash Deals Available — Order Now on WhatsApp"}
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              onClick={saveStyle}
+              disabled={savingStyle}
+              className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full px-6 py-2.5 font-medium disabled:opacity-60"
+              data-testid="save-bar-colors-btn"
+            >
+              {savingStyle ? "Saving..." : "Save Changes"}
+            </button>
+            <button
+              onClick={resetStyle}
+              disabled={savingStyle}
+              className="flex items-center gap-1.5 px-6 py-2.5 rounded-full border font-medium text-gray-600 hover:bg-gray-50"
+              data-testid="reset-bar-colors-btn"
+            >
+              <RotateCcw className="w-4 h-4" /> Reset to Default
+            </button>
+          </div>
         </div>
 
         {loading ? (
