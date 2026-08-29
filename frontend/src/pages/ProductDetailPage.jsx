@@ -7,7 +7,7 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { useCart, useAuth } from "../App";
 import { toast } from "sonner";
-import { ShoppingCart, Minus, Plus, ArrowLeft, Check, Truck, Shield, Heart, Share2, Star, MessageSquare, Copy, Facebook, Send, DollarSign, RotateCcw } from "lucide-react";
+import { ShoppingCart, Minus, Plus, ArrowLeft, Check, Truck, Shield, Heart, Share2, Star, MessageSquare, Copy, Facebook, Send, DollarSign, RotateCcw, ZoomIn, X } from "lucide-react";
 import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
 import { trackProductView, trackConversion } from "../components/VisitorTracker";
@@ -35,6 +35,7 @@ export default function ProductDetailPage() {
   
   const [addingToCart, setAddingToCart] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const [deliveryInfo, setDeliveryInfo] = useState({
@@ -361,6 +362,24 @@ export default function ProductDetailPage() {
     return product?.image_urls || [product?.image_url];
   };
 
+  // Auto-slide through product images every 4s (pauses while zoomed)
+  useEffect(() => {
+    const images = getCurrentImages();
+    if (!images || images.length <= 1 || isZoomOpen) return;
+    const interval = setInterval(() => {
+      setSelectedImage(prev => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [product, selectedVariation, selectedColor, isZoomOpen]);
+
+  // Close zoom on Escape key
+  useEffect(() => {
+    if (!isZoomOpen) return;
+    const onKey = (e) => { if (e.key === 'Escape') setIsZoomOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isZoomOpen]);
+
         const getYouTubeEmbedUrl = (url) => {
           if (!url) return null;
           const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -675,10 +694,21 @@ export default function ProductDetailPage() {
               <img 
                 src={getCurrentImages()[selectedImage] || product.image_url} 
                 alt={product.name}
-                className="w-full h-full object-cover select-none pointer-events-none"
+                className="w-full h-full object-cover select-none cursor-zoom-in"
                 data-testid="product-image"
                 draggable="false"
+                onClick={() => setIsZoomOpen(true)}
               />
+
+              {/* Zoom hint icon */}
+              <button
+                onClick={() => setIsZoomOpen(true)}
+                className="absolute top-3 right-3 w-9 h-9 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all"
+                data-testid="zoom-image-btn"
+                aria-label="Zoom image"
+              >
+                <ZoomIn className="w-5 h-5 text-gray-700" />
+              </button>
               
               {/* Left Arrow */}
               {getCurrentImages().length > 1 && (
@@ -732,6 +762,59 @@ export default function ProductDetailPage() {
                     />
                   </button>
                 ))}
+              </div>
+            )}
+
+            {/* Fullscreen Zoom Modal */}
+            {isZoomOpen && (
+              <div
+                className="fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-4"
+                onClick={() => setIsZoomOpen(false)}
+                data-testid="zoom-modal"
+              >
+                <button
+                  onClick={() => setIsZoomOpen(false)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white"
+                  aria-label="Close zoom"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {getCurrentImages().length > 1 && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setSelectedImage(prev => prev === 0 ? getCurrentImages().length - 1 : prev - 1); }}
+                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                )}
+
+                <img
+                  src={getCurrentImages()[selectedImage] || product.image_url}
+                  alt={product.name}
+                  className="max-w-full max-h-full object-contain"
+                  onClick={(e) => e.stopPropagation()}
+                  draggable="false"
+                />
+
+                {getCurrentImages().length > 1 && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setSelectedImage(prev => prev === getCurrentImages().length - 1 ? 0 : prev + 1); }}
+                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                )}
+
+                {getCurrentImages().length > 1 && (
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/10 text-white px-4 py-1.5 rounded-full text-sm">
+                    {selectedImage + 1} / {getCurrentImages().length}
+                  </div>
+                )}
               </div>
             )}
             
