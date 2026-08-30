@@ -19,6 +19,7 @@ import ProductCard from "../components/ProductCard";
 import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
 import FlashDealsSection from "../components/FlashDealsSection";
+import HeroDealsCarousel from "../components/HeroDealsCarousel";
 import CustomerReviewVideos from "../components/CustomerReviewVideos";
 import TestimonialsSection from "../components/TestimonialsSection";
 import HeroImageLayer, { getBreakpoint } from "../components/HeroImageLayer";
@@ -222,6 +223,10 @@ export default function HomePage() {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
+            </div>
+
+            <div className="mt-8">
+              <HeroDealsCarousel />
             </div>
           </div>
         </div>
