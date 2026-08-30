@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
@@ -49,6 +50,25 @@ export default function FAQPage() {
         description="Find answers to common questions about T For Tech products, shipping, returns, and Cash on Delivery. Get help with your tech shopping needs."
         url="/faq"
       />
+
+      {faqs.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": faqs.map((faq) => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer
+                }
+              }))
+            })}
+          </script>
+        </Helmet>
+      )}
       
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}

@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 /**
  * SEO Component - Dynamic meta tags for each page
+ * Covers traditional SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization)
  */
 export default function SEO({ 
   title, 
@@ -9,7 +10,8 @@ export default function SEO({
   image, 
   url,
   type = "website",
-  product = null // For product pages
+  product = null, // For product pages
+  breadcrumbs = null // Optional: [{ name, url }] for BreadcrumbList schema
 }) {
   const siteName = "T For Tech";
     const defaultDescription = "Shop the latest tech and gadgets at T For Tech. Quality products with Cash on Delivery across Pakistan.";
@@ -26,7 +28,7 @@ export default function SEO({
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": product.name,
-    "description": product.description?.replace(/<[^>]*>/g, '') || fullDescription,
+    "description": product.meta_description || product.description?.replace(/<[^>]*>/g, '') || fullDescription,
     "image": product.image_url || product.image_urls?.[0] || fullImage,
     "sku": product.product_id,
     "brand": {
@@ -57,13 +59,14 @@ export default function SEO({
     };
   }
 
-  // Organization structured data
+  // Organization structured data (helps AI/answer engines identify the business)
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": siteName,
     "url": baseUrl,
     "logo": defaultImage,
+    "description": "T For Tech is a Pakistan-based online store selling laptops, computers, and tech accessories with Cash on Delivery nationwide.",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+92-306-0634634",
@@ -73,6 +76,34 @@ export default function SEO({
     },
     "sameAs": []
   };
+
+  // WebSite structured data with SearchAction (enables sitelinks search box, helps AI understand search capability)
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": siteName,
+    "url": baseUrl,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/products?search={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  // BreadcrumbList structured data (helps both search engines and AI understand page hierarchy)
+  const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": b.name,
+      "item": b.url ? `${baseUrl}${b.url}` : undefined
+    }))
+  } : null;
 
   return (
     <Helmet>
@@ -103,10 +134,18 @@ export default function SEO({
       <meta name="geo.region" content="PK" />
       <meta name="geo.placename" content="Pakistan" />
       
-      {/* Structured Data (JSON-LD) - Product or Organization */}
+      {/* Structured Data (JSON-LD) */}
       <script type="application/ld+json">
         {JSON.stringify(product ? productSchema : organizationSchema)}
       </script>
+      <script type="application/ld+json">
+        {JSON.stringify(websiteSchema)}
+      </script>
+      {breadcrumbSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      )}
     </Helmet>
   );
 }

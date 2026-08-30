@@ -669,6 +669,11 @@ export default function ProductDetailPage() {
           rating: averageRating,
           review_count: reviews.length
         }}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Products", url: "/products" },
+          { name: product.name }
+        ]}
       />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
