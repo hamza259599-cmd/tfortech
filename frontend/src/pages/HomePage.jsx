@@ -18,7 +18,7 @@ import { toast } from "sonner";
 import ProductCard from "../components/ProductCard";
 import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
-import DealCountdown from "../components/DealCountdown";
+import FlashDealsSection from "../components/FlashDealsSection";
 import CustomerReviewVideos from "../components/CustomerReviewVideos";
 import TestimonialsSection from "../components/TestimonialsSection";
 import HeroImageLayer, { getBreakpoint } from "../components/HeroImageLayer";
@@ -229,9 +229,7 @@ export default function HomePage() {
 
       <AnnouncementBar />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <DealCountdown />
-      </div>
+      <FlashDealsSection />
 
       {featuredProducts.length > 0 && (
         <section className="py-16 bg-white" data-testid="featured-section">
