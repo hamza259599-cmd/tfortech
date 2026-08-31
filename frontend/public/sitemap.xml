@@ -1,63 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-          <loc>https://tfortech.store/</loc>
-          <changefreq>daily</changefreq>
-          <priority>1.0</priority>
+        <loc>https://tfortech.store/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/products</loc>
-          <changefreq>daily</changefreq>
-          <priority>0.9</priority>
+        <loc>https://tfortech.store/products</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/categories</loc>
-          <changefreq>weekly</changefreq>
-          <priority>0.8</priority>
+        <loc>https://tfortech.store/categories</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/about</loc>
-          <changefreq>monthly</changefreq>
-          <priority>0.5</priority>
+        <loc>https://tfortech.store/about</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/contact</loc>
-          <changefreq>monthly</changefreq>
-          <priority>0.5</priority>
+        <loc>https://tfortech.store/contact</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/faq</loc>
-          <changefreq>monthly</changefreq>
-          <priority>0.4</priority>
+        <loc>https://tfortech.store/faq</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/terms</loc>
-          <changefreq>yearly</changefreq>
-          <priority>0.2</priority>
+        <loc>https://tfortech.store/terms</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.2</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/privacy</loc>
-          <changefreq>yearly</changefreq>
-          <priority>0.2</priority>
+        <loc>https://tfortech.store/privacy</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.2</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/products/cat_510825bc819e</loc>
-          <changefreq>weekly</changefreq>
-          <priority>0.7</priority>
+        <loc>https://tfortech.store/products/cat_ea095729a8fc</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/product/prod_98ff24cf207d</loc>
-          <changefreq>weekly</changefreq>
-          <priority>0.6</priority>
+        <loc>https://tfortech.store/products/cat_faca1fa2dd64</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/product/prod_7a897cbd3460</loc>
-          <changefreq>weekly</changefreq>
-          <priority>0.6</priority>
+        <loc>https://tfortech.store/products/cat_7fce869344cd</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
-          <loc>https://tfortech.store/product/prod_2cc4bdac723b</loc>
-          <changefreq>weekly</changefreq>
-          <priority>0.6</priority>
+        <loc>https://tfortech.store/product/prod_8a988267663b</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_6c4b9879e0f7</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_a94b4c579538</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_e94cba79f104</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_cf06237af815</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_a287b41c561b</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_cbc7e34a8aeb</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_200713b4c6e8</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_47eb87c432a7</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_d25c5cd144b2</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_091ed1e5997f</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_952b9abab3c7</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_53ee64e10f14</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_a8696529871c</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_74f09e2bd152</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_7894835fce8e</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://tfortech.store/product/prod_aac1e41acea2</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
     </url>
 </urlset>
