@@ -109,7 +109,7 @@ const AuthCallback = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FDFBF7]">
       <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#FF8FAB] border-t-transparent mx-auto mb-4"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-[var(--color-primary)] border-t-transparent mx-auto mb-4"></div>
         <p className="font-heading text-lg">Logging you in...</p>
       </div>
     </div>
@@ -123,7 +123,7 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FDFBF7]">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#FF8FAB] border-t-transparent"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-[var(--color-primary)] border-t-transparent"></div>
       </div>
     );
   }
@@ -360,6 +360,11 @@ function ThemeProvider({ children }) {
         
         // Also set body background
         document.body.style.backgroundColor = theme.background_color || '#FDFBF7';
+
+                // Cache theme so next reload applies it instantly (no pink flash)
+                localStorage.setItem('tfortech_theme', JSON.stringify(theme));
+                const metaTag = document.querySelector('meta[name="theme-color"]');
+                if (metaTag) metaTag.setAttribute('content', theme.primary_color || '#FF8FAB');
       } catch (error) {
         console.error("Error fetching theme:", error);
       }
