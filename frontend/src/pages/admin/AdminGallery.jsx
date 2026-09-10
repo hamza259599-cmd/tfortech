@@ -154,7 +154,7 @@ export default function AdminGallery() {
           </div>
           <button
             onClick={() => setShowAddModal(true)}
-            className="bg-[#FF8FAB] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#FF8FAB]/90 transition-colors"
+            className="bg-[#3B82F6] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#3B82F6]/90 transition-colors"
           >
             <Plus className="w-5 h-5" />
             Upload Image
@@ -173,7 +173,7 @@ export default function AdminGallery() {
               onClick={() => setActiveTab("gallery")}
               className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors ${
                 activeTab === "gallery"
-                  ? "bg-[#FF8FAB] text-white"
+                  ? "bg-[#3B82F6] text-white"
                   : "text-gray-600 hover:bg-gray-100"
               }`}
             >
@@ -184,7 +184,7 @@ export default function AdminGallery() {
               onClick={() => setActiveTab("products")}
               className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors ${
                 activeTab === "products"
-                  ? "bg-[#FF8FAB] text-white"
+                  ? "bg-[#3B82F6] text-white"
                   : "text-gray-600 hover:bg-gray-100"
               }`}
             >
@@ -205,7 +205,7 @@ export default function AdminGallery() {
 
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#FF8FAB] border-t-transparent"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#3B82F6] border-t-transparent"></div>
             </div>
           ) : currentImages.length === 0 ? (
             <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
@@ -221,7 +221,7 @@ export default function AdminGallery() {
               {activeTab === "gallery" && (
                 <button
                   onClick={() => setShowAddModal(true)}
-                  className="bg-[#FF8FAB] text-white px-6 py-3 rounded-xl font-medium inline-flex items-center gap-2 hover:bg-[#FF8FAB]/90 transition-colors"
+                  className="bg-[#3B82F6] text-white px-6 py-3 rounded-xl font-medium inline-flex items-center gap-2 hover:bg-[#3B82F6]/90 transition-colors"
                 >
                   <Plus className="w-5 h-5" />
                   Upload First Image
@@ -370,7 +370,7 @@ export default function AdminGallery() {
                     </button>
                   </div>
                 ) : (
-                  <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                  <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#3B82F6] transition-colors">
                     <input
                       type="file"
                       accept="image/*"
@@ -379,7 +379,7 @@ export default function AdminGallery() {
                       disabled={uploading}
                     />
                     {uploading ? (
-                      <div className="animate-spin rounded-full h-8 w-8 border-4 border-[#FF8FAB] border-t-transparent"></div>
+                      <div className="animate-spin rounded-full h-8 w-8 border-4 border-[#3B82F6] border-t-transparent"></div>
                     ) : (
                       <>
                         <Upload className="w-10 h-10 text-gray-400 mb-2" />
@@ -401,7 +401,7 @@ export default function AdminGallery() {
                   value={newImage.title}
                   onChange={(e) => setNewImage({ ...newImage, title: e.target.value })}
                   placeholder="Enter image title"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
             </div>
@@ -419,7 +419,7 @@ export default function AdminGallery() {
               <button
                 onClick={handleAddImage}
                 disabled={!newImage.image_url}
-                className="flex-1 px-4 py-3 bg-[#FF8FAB] text-white rounded-xl font-medium hover:bg-[#FF8FAB]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 px-4 py-3 bg-[#3B82F6] text-white rounded-xl font-medium hover:bg-[#3B82F6]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Save to Gallery
               </button>

@@ -85,7 +85,7 @@ export default function AdminAnalytics() {
           <AdminSidebar />
           <main className="flex-1 p-8">
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#FF8FAB]"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#3B82F6]"></div>
             </div>
           </main>
         </div>
@@ -103,7 +103,7 @@ export default function AdminAnalytics() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="font-heading text-3xl font-bold text-[#1A1A1A] flex items-center gap-3">
-                <TrendingUp className="w-8 h-8 text-[#FF8FAB]" />
+                <TrendingUp className="w-8 h-8 text-[#3B82F6]" />
                 Visitor Analytics
               </h1>
               <p className="text-gray-500 mt-1">Track your website visitors in real-time</p>
@@ -111,7 +111,7 @@ export default function AdminAnalytics() {
             <Button 
               onClick={() => fetchAnalytics(true)}
               disabled={refreshing}
-              className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full"
+              className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
               Refresh
@@ -123,8 +123,8 @@ export default function AdminAnalytics() {
             {/* Today's Visitors */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
-                <div className="w-14 h-14 bg-[#FF8FAB]/10 rounded-xl flex items-center justify-center">
-                  <Calendar className="w-7 h-7 text-[#FF8FAB]" />
+                <div className="w-14 h-14 bg-[#3B82F6]/10 rounded-xl flex items-center justify-center">
+                  <Calendar className="w-7 h-7 text-[#3B82F6]" />
                 </div>
                 <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
                   Today
@@ -265,7 +265,7 @@ export default function AdminAnalytics() {
             {/* Last 7 Days Chart */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
               <h2 className="font-heading text-xl font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-[#FF8FAB]" />
+                <TrendingUp className="w-5 h-5 text-[#3B82F6]" />
                 Last 7 Days
               </h2>
               
@@ -282,7 +282,7 @@ export default function AdminAnalytics() {
                       </div>
                       <div className="flex-1 h-8 bg-gray-100 rounded-lg overflow-hidden relative">
                         <div 
-                          className={`h-full rounded-lg transition-all duration-500 ${isToday ? 'bg-[#FF8FAB]' : 'bg-[#4ECDC4]'}`}
+                          className={`h-full rounded-lg transition-all duration-500 ${isToday ? 'bg-[#3B82F6]' : 'bg-[#4ECDC4]'}`}
                           style={{ width: `${percentage}%` }}
                         />
                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600">

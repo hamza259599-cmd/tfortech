@@ -81,8 +81,8 @@ export default function AdminShipping() {
             <form onSubmit={handleSubmit} className="max-w-xl">
               <div className="bg-white rounded-2xl p-6 mb-6 space-y-6">
                 <div className="flex items-center gap-3 pb-4 border-b">
-                  <div className="w-12 h-12 rounded-xl bg-[#FF8FAB]/10 flex items-center justify-center">
-                    <Truck className="w-6 h-6 text-[#FF8FAB]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center">
+                    <Truck className="w-6 h-6 text-[#3B82F6]" />
                   </div>
                   <div>
                     <h2 className="font-heading text-lg font-semibold text-[#1A1A1A]">
@@ -141,7 +141,7 @@ export default function AdminShipping() {
               <Button
                 type="submit"
                 disabled={saving}
-                className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full px-8 h-12"
+                className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full px-8 h-12"
                 data-testid="save-shipping-btn"
               >
                 {saving ? (

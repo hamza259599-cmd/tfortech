@@ -6,7 +6,7 @@
 
 :root {
   /* Dynamic Theme Colors - Set by JavaScript */
-  --color-primary: #FF8FAB;
+  --color-primary: #3B82F6;
   --color-secondary: #FFD166;
   --color-accent: #06D6A0;
   --color-text: #1A1A1A;
@@ -206,7 +206,7 @@ code {
 }
 
 .description-editor .ql-toolbar .ql-formats button.ql-active {
-  background: #FF8FAB;
+  background: #3B82F6;
   color: white;
   border-radius: 6px;
 }

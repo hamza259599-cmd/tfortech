@@ -67,7 +67,7 @@ export default function WishlistPage() {
       <Layout>
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#FF8FAB] border-t-transparent"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#3B82F6] border-t-transparent"></div>
           </div>
         </div>
       </Layout>
@@ -84,7 +84,7 @@ export default function WishlistPage() {
             <h2 className="text-xl font-semibold text-gray-600 mb-2">Login to see your favourites</h2>
             <p className="text-gray-500 mb-6">Please login to view and manage your wishlist</p>
             <Link to="/login">
-              <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90">
+              <Button className="bg-[#3B82F6] hover:bg-[#3B82F6]/90">
                 Login
               </Button>
             </Link>
@@ -119,7 +119,7 @@ export default function WishlistPage() {
             <h2 className="text-xl font-semibold text-gray-600 mb-2">No favourites yet</h2>
             <p className="text-gray-500 mb-6">Start adding products to your wishlist!</p>
             <Link to="/products">
-              <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90">
+              <Button className="bg-[#3B82F6] hover:bg-[#3B82F6]/90">
                 Browse Products
               </Button>
             </Link>
@@ -150,14 +150,14 @@ export default function WishlistPage() {
                 {/* Product Info */}
                 <div className="p-4">
                   <Link to={`/product/${product.product_id}`}>
-                    <h3 className="font-medium text-[#1A1A1A] line-clamp-2 hover:text-[#FF8FAB] transition-colors mb-2">
+                    <h3 className="font-medium text-[#1A1A1A] line-clamp-2 hover:text-[#3B82F6] transition-colors mb-2">
                       {product.name}
                     </h3>
                   </Link>
 
                   {/* Price */}
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-lg font-bold text-[#FF8FAB]">
+                    <span className="text-lg font-bold text-[#3B82F6]">
                       Rs. {product.discount_price || product.price}
                     </span>
                     {product.discount_price && product.discount_price < product.price && (
@@ -171,7 +171,7 @@ export default function WishlistPage() {
                   <div className="flex gap-2">
                     <Button
                       onClick={() => handleAddToCart(product)}
-                      className="flex-1 bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white text-sm"
+                      className="flex-1 bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white text-sm"
                       disabled={product.stock === 0}
                     >
                       <ShoppingCart className="w-4 h-4 mr-1" />

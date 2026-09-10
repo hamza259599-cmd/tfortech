@@ -13,7 +13,7 @@ const API = `${BACKEND_URL}/api`;
 
 // Default theme colors
 const defaultTheme = {
-  primary_color: "#FF8FAB",
+  primary_color: "#3B82F6",
   secondary_color: "#FFD166",
   accent_color: "#06D6A0",
   text_color: "#1A1A1A",
@@ -27,7 +27,7 @@ const defaultTheme = {
 
 // Preset themes
 const presetThemes = [
-  { name: "Pink (Default)", primary: "#FF8FAB", secondary: "#FFD166", accent: "#06D6A0" },
+  { name: "Pink (Default)", primary: "#3B82F6", secondary: "#FFD166", accent: "#06D6A0" },
   { name: "Blue Ocean", primary: "#3B82F6", secondary: "#60A5FA", accent: "#10B981" },
   { name: "Purple Dreams", primary: "#8B5CF6", secondary: "#A78BFA", accent: "#EC4899" },
   { name: "Green Nature", primary: "#10B981", secondary: "#34D399", accent: "#F59E0B" },

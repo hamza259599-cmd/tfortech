@@ -324,7 +324,7 @@ export default function AdminDevices() {
           <AdminSidebar />
           <main className="flex-1 p-8">
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#FF8FAB]"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#3B82F6]"></div>
             </div>
           </main>
         </div>
@@ -343,7 +343,7 @@ export default function AdminDevices() {
             <div>
               <h1 className="font-heading text-3xl font-bold text-[#1A1A1A] flex items-center gap-3">
                 {activeTab === "mobile" ? (
-                  <Smartphone className="w-8 h-8 text-[#FF8FAB]" />
+                  <Smartphone className="w-8 h-8 text-[#3B82F6]" />
                 ) : (
                   <Laptop className="w-8 h-8 text-[#4ECDC4]" />
                 )}
@@ -354,7 +354,7 @@ export default function AdminDevices() {
             <Button 
               onClick={() => saveConfig(activeTab)}
               disabled={saving}
-              className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full px-6"
+              className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full px-6"
             >
               {saving ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
               Save {activeTab === "mobile" ? "Mobile" : "Laptop"} Config
@@ -367,7 +367,7 @@ export default function AdminDevices() {
               onClick={() => setActiveTab("mobile")}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
                 activeTab === "mobile"
-                  ? "bg-[#FF8FAB] text-white shadow-lg"
+                  ? "bg-[#3B82F6] text-white shadow-lg"
                   : "bg-white text-gray-600 hover:bg-gray-100 border"
               }`}
             >
@@ -1033,13 +1033,13 @@ export default function AdminDevices() {
           </div>
 
           {/* Summary */}
-          <div className="mt-6 p-4 bg-gradient-to-r from-[#FF8FAB]/10 to-[#4ECDC4]/10 rounded-xl border">
+          <div className="mt-6 p-4 bg-gradient-to-r from-[#3B82F6]/10 to-[#4ECDC4]/10 rounded-xl border">
             <h3 className="font-bold text-[#1A1A1A] mb-2">
               {activeTab === "mobile" ? "📱 Mobile" : "💻 Laptop"} Configuration Summary
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 text-sm">
               <div className="text-center p-3 bg-white rounded-lg">
-                <div className="text-2xl font-bold text-[#FF8FAB]">{currentConfig.brands.length}</div>
+                <div className="text-2xl font-bold text-[#3B82F6]">{currentConfig.brands.length}</div>
                 <div className="text-gray-500">Brands</div>
               </div>
               <div className="text-center p-3 bg-white rounded-lg">

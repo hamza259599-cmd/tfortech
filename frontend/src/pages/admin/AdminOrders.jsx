@@ -173,7 +173,7 @@ export default function AdminOrders() {
                         </p>
                       </div>
                       <div className="flex items-center gap-4">
-                        <span className="font-heading text-xl font-bold text-[#FF8FAB]">
+                        <span className="font-heading text-xl font-bold text-[#3B82F6]">
                           Rs. {order.total_amount.toFixed(0)}
                         </span>
                       </div>
@@ -194,7 +194,7 @@ export default function AdminOrders() {
                             className="w-10 h-10 object-cover rounded"
                           />
                           <div>
-                            <p className="text-sm font-medium text-[#1A1A1A] line-clamp-1 group-hover:text-[#FF8FAB]">
+                            <p className="text-sm font-medium text-[#1A1A1A] line-clamp-1 group-hover:text-[#3B82F6]">
                               {item.name}
                               <ExternalLink className="w-3 h-3 inline ml-1 opacity-0 group-hover:opacity-100" />
                             </p>

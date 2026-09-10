@@ -78,7 +78,7 @@ const SimpleRichEditor = ({ value, onChange, placeholder }) => {
           onMouseDown={(e) => e.preventDefault()}
           className={`px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${
             isBoldActive 
-              ? 'bg-[#FF8FAB] text-white shadow-sm' 
+              ? 'bg-[#3B82F6] text-white shadow-sm' 
               : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100'
           }`}
           title="Bold (Ctrl+B)"
@@ -91,7 +91,7 @@ const SimpleRichEditor = ({ value, onChange, placeholder }) => {
           onMouseDown={(e) => e.preventDefault()}
           className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
             isListActive 
-              ? 'bg-[#FF8FAB] text-white shadow-sm' 
+              ? 'bg-[#3B82F6] text-white shadow-sm' 
               : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100'
           }`}
           title="Bullet List"
@@ -110,7 +110,7 @@ const SimpleRichEditor = ({ value, onChange, placeholder }) => {
         onSelect={checkFormatStatus}
         onKeyUp={checkFormatStatus}
         onMouseUp={checkFormatStatus}
-        className="min-h-[180px] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#FF8FAB]/20 rich-editor-content"
+        className="min-h-[180px] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/20 rich-editor-content"
         data-placeholder={placeholder}
         suppressContentEditableWarning
       />
@@ -973,7 +973,7 @@ export default function ProductPublish() {
               <Button 
                 onClick={handleSubmit} 
                 disabled={saving}
-                className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-lg"
+                className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-lg"
               >
                 {saving ? (
                   <span className="flex items-center gap-2">
@@ -1000,7 +1000,7 @@ export default function ProductPublish() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === tab.id
-                      ? "border-[#FF8FAB] text-[#FF8FAB]"
+                      ? "border-[#3B82F6] text-[#3B82F6]"
                       : "border-transparent text-gray-500 hover:text-gray-700"
                   }`}
                 >
@@ -1044,7 +1044,7 @@ export default function ProductPublish() {
                           type="button"
                           onClick={() => setCategoryModalOpen(true)}
                           className={`w-full flex items-center justify-between px-4 py-3 border rounded-lg text-left transition-colors ${
-                            formData.categoryPath ? 'border-[#FF8FAB] bg-[#FF8FAB]/5' : 'border-gray-200 hover:border-gray-300'
+                            formData.categoryPath ? 'border-[#3B82F6] bg-[#3B82F6]/5' : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
                           <span className={formData.categoryPath ? 'text-[#1A1A1A]' : 'text-gray-400'}>
@@ -1108,7 +1108,7 @@ export default function ProductPublish() {
                                       }}
                                       className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
                         formData.category === (cat.category_id || cat.id)
-                                          ? 'bg-[#FF8FAB]/10 text-[#FF8FAB] border-2 border-[#FF8FAB]' 
+                                          ? 'bg-[#3B82F6]/10 text-[#3B82F6] border-2 border-[#3B82F6]' 
                                           : 'hover:bg-gray-50 text-gray-700 border border-gray-200'
                                       }`}
                                     >
@@ -1178,7 +1178,7 @@ export default function ProductPublish() {
                     <p className="text-xs text-gray-400 mt-1 mb-4">
                       Upload at least 1 image. First image will be the cover photo.
                       {hasVariations && variationTypes.colors && (
-                        <span className="text-[#FF8FAB]"> You can also add images per color in Variations tab.</span>
+                        <span className="text-[#3B82F6]"> You can also add images per color in Variations tab.</span>
                       )}
                     </p>
                     
@@ -1186,11 +1186,11 @@ export default function ProductPublish() {
                       {/* Uploaded Images */}
                       {formData.image_urls.map((img, index) => (
                         <div key={index} className="relative group">
-                          <div className={`aspect-square rounded-xl overflow-hidden border-2 ${index === 0 ? 'border-[#FF8FAB]' : 'border-gray-200'}`}>
+                          <div className={`aspect-square rounded-xl overflow-hidden border-2 ${index === 0 ? 'border-[#3B82F6]' : 'border-gray-200'}`}>
                             <img src={img} alt={`Product ${index + 1}`} className="w-full h-full object-cover" />
                           </div>
                           {index === 0 && (
-                            <span className="absolute top-2 left-2 bg-[#FF8FAB] text-white text-xs px-2 py-1 rounded">
+                            <span className="absolute top-2 left-2 bg-[#3B82F6] text-white text-xs px-2 py-1 rounded">
                               Cover
                             </span>
                           )}
@@ -1206,7 +1206,7 @@ export default function ProductPublish() {
                       {/* Upload Button */}
                       <label className="aspect-square rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors">
                         {imageUploading && currentColorImageUpload === null ? (
-                          <div className="w-8 h-8 border-2 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                          <div className="w-8 h-8 border-2 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
                         ) : (
                           <>
                             <Plus className="w-8 h-8 text-gray-400 mb-2" />
@@ -1274,7 +1274,7 @@ export default function ProductPublish() {
                         <div className="p-6 overflow-y-auto max-h-[50vh]">
                           {galleryLoading ? (
                             <div className="flex items-center justify-center py-12">
-                              <div className="w-10 h-10 border-4 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                              <div className="w-10 h-10 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
                             </div>
                           ) : galleryImages.length === 0 ? (
                             <div className="text-center py-12">
@@ -1290,14 +1290,14 @@ export default function ProductPublish() {
                                   onClick={() => toggleGalleryImageSelection(image.url)}
                                   className={`relative aspect-square rounded-xl overflow-hidden cursor-pointer border-4 transition-all ${
                                     selectedGalleryImages.includes(image.url)
-                                      ? 'border-[#FF8FAB] ring-4 ring-[#FF8FAB]/30'
+                                      ? 'border-[#3B82F6] ring-4 ring-[#3B82F6]/30'
                                       : 'border-transparent hover:border-gray-300'
                                   }`}
                                 >
                                   <img src={image.url} alt={image.title || "Gallery"} className="w-full h-full object-cover" />
                                   {selectedGalleryImages.includes(image.url) && (
-                                    <div className="absolute inset-0 bg-[#FF8FAB]/20 flex items-center justify-center">
-                                      <div className="w-8 h-8 bg-[#FF8FAB] rounded-full flex items-center justify-center">
+                                    <div className="absolute inset-0 bg-[#3B82F6]/20 flex items-center justify-center">
+                                      <div className="w-8 h-8 bg-[#3B82F6] rounded-full flex items-center justify-center">
                                         <Check className="w-5 h-5 text-white" />
                                       </div>
                                     </div>
@@ -1319,7 +1319,7 @@ export default function ProductPublish() {
                             <Button 
                               onClick={addSelectedGalleryImages}
                               disabled={selectedGalleryImages.length === 0}
-                              className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white"
+                              className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white"
                             >
                               Add Selected ({selectedGalleryImages.length})
                             </Button>
@@ -1337,7 +1337,7 @@ export default function ProductPublish() {
                   {/* Base Pricing Section */}
                   <div className="bg-white rounded-xl border p-4">
                     <h4 className="font-medium text-lg mb-4 flex items-center gap-2">
-                      <DollarSign className="w-5 h-5 text-[#FF8FAB]" />
+                      <DollarSign className="w-5 h-5 text-[#3B82F6]" />
                       Base Price & Stock
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1397,7 +1397,7 @@ export default function ProductPublish() {
                         name="is_sold_out"
                         checked={formData.is_sold_out}
                         onChange={handleInputChange}
-                        className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                        className="w-5 h-5 rounded border-gray-300 text-[#3B82F6] focus:ring-[#3B82F6]"
                       />
                       <label htmlFor="is_sold_out" className="text-sm font-medium cursor-pointer">
                         Mark as Sold Out
@@ -1416,7 +1416,7 @@ export default function ProductPublish() {
                         name="is_featured"
                         checked={formData.is_featured}
                         onChange={handleInputChange}
-                        className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                        className="w-5 h-5 rounded border-gray-300 text-[#3B82F6] focus:ring-[#3B82F6]"
                         data-testid="is-featured-checkbox"
                       />
                       <label htmlFor="is_featured" className="text-sm font-medium cursor-pointer">
@@ -1488,7 +1488,7 @@ export default function ProductPublish() {
                     {deviceConfig && (
                       <div className="mt-6 pt-6 border-t-2 border-[#4ECDC4]/20">
                         <h4 className="font-medium text-lg mb-4 flex items-center gap-2">
-                          <Tag className="w-5 h-5 text-[#FF8FAB]" />
+                          <Tag className="w-5 h-5 text-[#3B82F6]" />
                           Select Specifications for This Product
                         </h4>
                         
@@ -1724,10 +1724,10 @@ export default function ProductPublish() {
                         id="hasVariations"
                         checked={hasVariations}
                         onChange={(e) => setHasVariations(e.target.checked)}
-                        className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                        className="w-5 h-5 rounded border-gray-300 text-[#3B82F6] focus:ring-[#3B82F6]"
                       />
                       <label htmlFor="hasVariations" className="text-sm font-medium cursor-pointer flex items-center gap-2">
-                        <Palette className="w-5 h-5 text-[#FF8FAB]" />
+                        <Palette className="w-5 h-5 text-[#3B82F6]" />
                         This product has variations (different colors, sizes with different prices)
                       </label>
                     </div>
@@ -1736,27 +1736,27 @@ export default function ProductPublish() {
                       <div className="space-y-6 pt-4 border-t">
                         {/* Variation Type Selection */}
                         <div className="grid grid-cols-2 gap-4">
-                          <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${variationTypes.colors ? 'border-[#FF8FAB] bg-[#FF8FAB]/5' : 'border-gray-200'}`}>
+                          <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${variationTypes.colors ? 'border-[#3B82F6] bg-[#3B82F6]/5' : 'border-gray-200'}`}>
                             <input
                               type="checkbox"
                               checked={variationTypes.colors}
                               onChange={(e) => setVariationTypes(prev => ({...prev, colors: e.target.checked}))}
-                              className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                              className="w-5 h-5 rounded border-gray-300 text-[#3B82F6] focus:ring-[#3B82F6]"
                             />
                             <div>
-                              <Palette className="w-5 h-5 text-[#FF8FAB] mb-1" />
+                              <Palette className="w-5 h-5 text-[#3B82F6] mb-1" />
                               <span className="font-medium">Color</span>
                             </div>
                           </label>
-                          <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${variationTypes.sizes ? 'border-[#FF8FAB] bg-[#FF8FAB]/5' : 'border-gray-200'}`}>
+                          <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${variationTypes.sizes ? 'border-[#3B82F6] bg-[#3B82F6]/5' : 'border-gray-200'}`}>
                             <input
                               type="checkbox"
                               checked={variationTypes.sizes}
                               onChange={(e) => setVariationTypes(prev => ({...prev, sizes: e.target.checked}))}
-                              className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                              className="w-5 h-5 rounded border-gray-300 text-[#3B82F6] focus:ring-[#3B82F6]"
                             />
                             <div>
-                              <Ruler className="w-5 h-5 text-[#FF8FAB] mb-1" />
+                              <Ruler className="w-5 h-5 text-[#3B82F6] mb-1" />
                               <span className="font-medium">Size</span>
                             </div>
                           </label>
@@ -1903,7 +1903,7 @@ export default function ProductPublish() {
                                     ))}
                                     <label className="w-20 h-20 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100">
                                       {imageUploading && currentColorImageUpload === index ? (
-                                        <div className="w-5 h-5 border-2 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                                        <div className="w-5 h-5 border-2 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
                                       ) : (
                                         <>
                                           <Plus className="w-5 h-5 text-gray-400" />
@@ -2025,7 +2025,7 @@ export default function ProductPublish() {
                                   variant="outline" 
                                   size="sm" 
                                   onClick={() => setShowCustomBulkInput(!showCustomBulkInput)}
-                                  className={showCustomBulkInput ? "bg-[#FF8FAB]/10 border-[#FF8FAB] text-[#FF8FAB]" : ""}
+                                  className={showCustomBulkInput ? "bg-[#3B82F6]/10 border-[#3B82F6] text-[#3B82F6]" : ""}
                                   data-testid="custom-bulk-btn"
                                 >
                                   <Plus className="w-4 h-4 mr-1" /> Custom Bulk
@@ -2054,9 +2054,9 @@ export default function ProductPublish() {
 
                             {/* Custom Bulk Add Input */}
                             {showCustomBulkInput && (
-                              <div className="bg-[#FF8FAB]/5 border-2 border-[#FF8FAB]/30 rounded-xl p-4 space-y-3">
+                              <div className="bg-[#3B82F6]/5 border-2 border-[#3B82F6]/30 rounded-xl p-4 space-y-3">
                                 <div className="flex items-center justify-between">
-                                  <h5 className="font-medium text-[#FF8FAB]">Custom Bulk Add Sizes</h5>
+                                  <h5 className="font-medium text-[#3B82F6]">Custom Bulk Add Sizes</h5>
                                   <button
                                     type="button"
                                     onClick={() => setShowCustomBulkInput(false)}
@@ -2072,7 +2072,7 @@ export default function ProductPublish() {
                                   value={customBulkSizes}
                                   onChange={(e) => setCustomBulkSizes(e.target.value)}
                                   placeholder="Enter sizes here...&#10;Example: XS, S, M, L, XL&#10;or&#10;28&#10;30&#10;32&#10;34"
-                                  className="w-full h-24 rounded-lg border border-gray-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[#FF8FAB] focus:border-transparent"
+                                  className="w-full h-24 rounded-lg border border-gray-200 px-3 py-2 text-sm focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent"
                                   data-testid="custom-bulk-textarea"
                                 />
                                 <div className="flex items-center gap-2">
@@ -2108,7 +2108,7 @@ export default function ProductPublish() {
                                         toast.info("All these sizes already exist");
                                       }
                                     }}
-                                    className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white"
+                                    className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white"
                                     data-testid="add-custom-bulk-btn"
                                   >
                                     <Plus className="w-4 h-4 mr-1" /> Add All Sizes
@@ -2230,12 +2230,12 @@ export default function ProductPublish() {
 
                         {/* Combined Variations Matrix - EDITABLE */}
                         {variationTypes.colors && variationTypes.sizes && colors.filter(c => c.name.trim()).length > 0 && sizes.filter(s => s.name.trim()).length > 0 && (
-                          <div className="bg-gradient-to-r from-[#FF8FAB]/5 to-[#4CC9F0]/5 border-2 border-[#FF8FAB]/20 rounded-xl p-4 space-y-4" data-testid="combined-variations-matrix">
+                          <div className="bg-gradient-to-r from-[#3B82F6]/5 to-[#4CC9F0]/5 border-2 border-[#3B82F6]/20 rounded-xl p-4 space-y-4" data-testid="combined-variations-matrix">
                             <div className="flex items-center justify-between flex-wrap gap-2">
                               <h4 className="font-medium text-lg flex items-center gap-2">
-                                <span className="w-8 h-8 rounded-lg bg-[#FF8FAB]/20 flex items-center justify-center">🎨</span>
+                                <span className="w-8 h-8 rounded-lg bg-[#3B82F6]/20 flex items-center justify-center">🎨</span>
                                 Combined Variations Matrix
-                                <span className="text-xs bg-[#FF8FAB] text-white px-2 py-1 rounded-full">EDITABLE</span>
+                                <span className="text-xs bg-[#3B82F6] text-white px-2 py-1 rounded-full">EDITABLE</span>
                               </h4>
                               <div className="flex items-center gap-2">
                                 <span className="text-sm text-gray-500">
@@ -2246,7 +2246,7 @@ export default function ProductPublish() {
                                   variant="outline"
                                   size="sm"
                                   onClick={applyPriceToAll}
-                                  className="text-[#FF8FAB] border-[#FF8FAB]/30 hover:bg-[#FF8FAB]/10"
+                                  className="text-[#3B82F6] border-[#3B82F6]/30 hover:bg-[#3B82F6]/10"
                                   data-testid="apply-price-all-btn"
                                 >
                                   <DollarSign className="w-4 h-4 mr-1" />
@@ -2334,7 +2334,7 @@ export default function ProductPublish() {
                             {/* Summary */}
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-white/50 rounded-lg p-3">
                               <div className="text-center">
-                                <div className="text-2xl font-bold text-[#FF8FAB]">{combinedVariations.length}</div>
+                                <div className="text-2xl font-bold text-[#3B82F6]">{combinedVariations.length}</div>
                                 <div className="text-xs text-gray-500">Total Variants</div>
                               </div>
                               <div className="text-center">
@@ -2510,9 +2510,9 @@ export default function ProductPublish() {
                                 enabled={true}
                                 intensity={stylishSettings.intensity}
                                 colors={
-                                  stylishSettings.preset === "playful" ? ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6"] :
+                                  stylishSettings.preset === "playful" ? ["#3B82F6", "#FFD166", "#4ECDC4", "#9B59B6"] :
                                   stylishSettings.preset === "rainbow" ? ["#FF6B6B", "#FFA500", "#FFD700", "#4ECDC4", "#45B7D1"] :
-                                  ["#FF8FAB", "#4ECDC4"]
+                                  ["#3B82F6", "#4ECDC4"]
                                 }
                               />
                               <button
@@ -2542,9 +2542,9 @@ export default function ProductPublish() {
                                     enabled={true}
                                     intensity={stylishSettings.intensity}
                                     colors={
-                                      stylishSettings.preset === "playful" ? ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6"] :
+                                      stylishSettings.preset === "playful" ? ["#3B82F6", "#FFD166", "#4ECDC4", "#9B59B6"] :
                                       stylishSettings.preset === "rainbow" ? ["#FF6B6B", "#FFA500", "#FFD700", "#4ECDC4", "#45B7D1"] :
-                                      ["#FF8FAB", "#4ECDC4"]
+                                      ["#3B82F6", "#4ECDC4"]
                                     }
                                   />
                                   {i < stylishWords.length - 1 ? ", " : ""}
@@ -2562,7 +2562,7 @@ export default function ProductPublish() {
                   <div className="bg-white rounded-xl border p-4">
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="font-medium text-lg flex items-center gap-2">
-                        <List className="w-5 h-5 text-[#FF8FAB]" />
+                        <List className="w-5 h-5 text-[#3B82F6]" />
                         Product Highlights
                       </h4>
                       <Button
@@ -2579,7 +2579,7 @@ export default function ProductPublish() {
                     <div className="space-y-2">
                       {highlights.map((highlight, index) => (
                         <div key={index} className="flex items-center gap-2">
-                          <span className="text-[#FF8FAB] font-bold">•</span>
+                          <span className="text-[#3B82F6] font-bold">•</span>
                           <button
                             type="button"
                             onClick={() => {
@@ -2593,7 +2593,7 @@ export default function ProductPublish() {
                             }}
                             className={`px-2 py-1 rounded text-xs font-bold border transition-colors ${
                               (typeof highlight === 'object' && highlight.bold) 
-                                ? 'bg-[#FF8FAB] text-white border-[#FF8FAB]' 
+                                ? 'bg-[#3B82F6] text-white border-[#3B82F6]' 
                                 : 'bg-gray-100 text-gray-600 border-gray-300 hover:bg-gray-200'
                             }`}
                             title="Toggle Bold"
@@ -2703,7 +2703,7 @@ export default function ProductPublish() {
                   {/* Additional Product Details */}
                   <div className="bg-white rounded-xl border p-4">
                     <h4 className="font-medium text-lg mb-4 flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-[#FF8FAB]" />
+                      <FileText className="w-5 h-5 text-[#3B82F6]" />
                       Additional Details
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -2750,7 +2750,7 @@ export default function ProductPublish() {
                           name="warranty"
                           value={formData.warranty}
                           onChange={handleInputChange}
-                          className="mt-2 w-full h-10 px-3 rounded-md border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#FF8FAB] focus:border-transparent"
+                          className="mt-2 w-full h-10 px-3 rounded-md border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent"
                           data-testid="warranty-input"
                         >
                           <option value="">Select return days</option>
@@ -2767,7 +2767,7 @@ export default function ProductPublish() {
                   {customAttributes.length > 0 && (
                     <div className="bg-white rounded-xl border p-4">
                       <h4 className="font-medium text-lg flex items-center gap-2 mb-4">
-                        <Settings className="w-5 h-5 text-[#FF8FAB]" />
+                        <Settings className="w-5 h-5 text-[#3B82F6]" />
                         Custom Attributes
                       </h4>
                       <p className="text-sm text-gray-500 mb-3">Fill in custom fields added by admin</p>
@@ -2872,7 +2872,7 @@ export default function ProductPublish() {
                       id="dangerous_goods"
                       checked={shippingData.dangerous_goods}
                       onChange={(e) => setShippingData(prev => ({...prev, dangerous_goods: e.target.checked}))}
-                      className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                      className="w-5 h-5 rounded border-gray-300 text-[#3B82F6] focus:ring-[#3B82F6]"
                     />
                     <label htmlFor="dangerous_goods" className="text-sm font-medium cursor-pointer">
                       This product contains dangerous goods (batteries, liquids, etc.)
@@ -2899,7 +2899,7 @@ export default function ProductPublish() {
             <Button 
               onClick={handleSubmit} 
               disabled={saving}
-              className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-lg px-8"
+              className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-lg px-8"
             >
               {saving ? "Saving..." : (isEditing ? "Update Product" : "Publish Product")}
             </Button>

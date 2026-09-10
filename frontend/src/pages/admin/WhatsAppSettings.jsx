@@ -184,7 +184,7 @@ export default function WhatsAppSettings() {
       <Button
         onClick={handleSave}
         disabled={saving}
-        className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full"
+        className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full"
         data-testid="whatsapp-save-btn"
       >
         {saving ? "Saving..." : "Save Settings"}

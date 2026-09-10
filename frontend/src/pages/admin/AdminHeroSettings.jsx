@@ -60,7 +60,7 @@ function Slider({ label, value, onChange, min = 0, max = 100, step = 1, suffix =
       <input
         type="range" min={min} max={max} step={step} value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full accent-[#FF8FAB]"
+        className="w-full accent-[#3B82F6]"
       />
     </div>
   );
@@ -237,7 +237,7 @@ export default function AdminHeroSettings() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="bg-[#FF8FAB] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#FF8FAB]/90 transition-colors disabled:opacity-50"
+              className="bg-[#3B82F6] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#3B82F6]/90 transition-colors disabled:opacity-50"
             >
               {saving ? "Saving..." : "Save Changes"}
             </button>
@@ -333,7 +333,7 @@ export default function AdminHeroSettings() {
                       onClick={() => setSettings((s) => ({ ...s, media_type: opt.key }))}
                       className={`px-4 py-2.5 rounded-xl font-medium transition-colors border ${
                         settings.media_type === opt.key
-                          ? "bg-[#FF8FAB]/10 border-[#FF8FAB] text-[#FF8FAB]"
+                          ? "bg-[#3B82F6]/10 border-[#3B82F6] text-[#3B82F6]"
                           : "border-gray-200 text-gray-600 hover:bg-gray-50"
                       }`}
                       data-testid={`hero-media-type-${opt.key}`}
@@ -353,7 +353,7 @@ export default function AdminHeroSettings() {
                   id="media_enabled"
                   checked={settings.media_enabled}
                   onChange={(e) => setSettings((s) => ({ ...s, media_enabled: e.target.checked }))}
-                  className="w-5 h-5 rounded border-gray-300 text-[#FF8FAB] focus:ring-[#FF8FAB]"
+                  className="w-5 h-5 rounded border-gray-300 text-[#3B82F6] focus:ring-[#3B82F6]"
                   data-testid="hero-media-enabled"
                 />
                 <label htmlFor="media_enabled" className="text-sm font-medium cursor-pointer">
@@ -370,7 +370,7 @@ export default function AdminHeroSettings() {
                       type="button"
                       onClick={() => videoFileRef.current?.click()}
                       disabled={uploadingVideo}
-                      className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#3B82F6] hover:text-[#3B82F6] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                       data-testid="hero-video-upload-btn"
                     >
                       {uploadingVideo ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
@@ -393,7 +393,7 @@ export default function AdminHeroSettings() {
                     value={settings.video_url || ""}
                     onChange={(e) => setSettings((s) => ({ ...s, video_url: e.target.value }))}
                     placeholder="https://... .mp4"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                   {settings.video_url && (
                     <video src={settings.video_url} autoPlay muted loop playsInline className="w-full mt-4 rounded-xl max-h-64 object-cover" />
@@ -411,7 +411,7 @@ export default function AdminHeroSettings() {
                       type="button"
                       onClick={() => animationFileRef.current?.click()}
                       disabled={uploadingAnimation}
-                      className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#3B82F6] hover:text-[#3B82F6] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                       data-testid="hero-animation-upload-btn"
                     >
                       {uploadingAnimation ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
@@ -434,7 +434,7 @@ export default function AdminHeroSettings() {
                     value={settings.animation_url || ""}
                     onChange={(e) => setSettings((s) => ({ ...s, animation_url: e.target.value }))}
                     placeholder="https://... .gif or .webp"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                   {settings.animation_url && (
                     <img src={settings.animation_url} alt="Animation preview" className="w-full mt-4 rounded-xl max-h-64 object-cover" />
@@ -458,7 +458,7 @@ export default function AdminHeroSettings() {
                     type="button"
                     onClick={() => imageFileRef.current?.click()}
                     disabled={uploadingImage}
-                    className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#3B82F6] hover:text-[#3B82F6] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {uploadingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                     {uploadingImage ? "Loading..." : "Upload from your computer"}
@@ -470,7 +470,7 @@ export default function AdminHeroSettings() {
                   value={settings.image.url || ""}
                   onChange={(e) => setSettings((s) => ({ ...s, image: { ...s.image, url: e.target.value } }))}
                   placeholder="https://..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -483,7 +483,7 @@ export default function AdminHeroSettings() {
                       onClick={() => setSettings((s) => ({ ...s, image: { ...s.image, fit_mode: mode } }))}
                       className={`px-4 py-2.5 rounded-xl font-medium capitalize transition-colors border ${
                         settings.image.fit_mode === mode
-                          ? "bg-[#FF8FAB]/10 border-[#FF8FAB] text-[#FF8FAB]"
+                          ? "bg-[#3B82F6]/10 border-[#3B82F6] text-[#3B82F6]"
                           : "border-gray-200 text-gray-600 hover:bg-gray-50"
                       }`}
                     >
@@ -550,7 +550,7 @@ export default function AdminHeroSettings() {
                     type="button"
                     onClick={() => watermarkFileRef.current?.click()}
                     disabled={uploadingWatermark}
-                    className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#FF8FAB] hover:text-[#FF8FAB] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="flex-1 px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-[#3B82F6] hover:text-[#3B82F6] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {uploadingWatermark ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                     {uploadingWatermark ? "Loading..." : "Upload from your computer"}
@@ -562,7 +562,7 @@ export default function AdminHeroSettings() {
                   value={settings.watermark.url || ""}
                   onChange={(e) => setSettings((s) => ({ ...s, watermark: { ...s.watermark, url: e.target.value } }))}
                   placeholder="https://... (leave empty to hide watermark)"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 

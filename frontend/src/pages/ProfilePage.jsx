@@ -90,8 +90,8 @@ export default function ProfilePage() {
                     className="w-24 h-24 rounded-full mx-auto mb-4"
                   />
                 ) : (
-                  <div className="w-24 h-24 bg-[#FF8FAB]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <User className="w-12 h-12 text-[#FF8FAB]" />
+                  <div className="w-24 h-24 bg-[#3B82F6]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <User className="w-12 h-12 text-[#3B82F6]" />
                   </div>
                 )}
                 
@@ -126,7 +126,7 @@ export default function ProfilePage() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl p-6">
               <h2 className="font-heading text-xl font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
-                <Package className="w-6 h-6 text-[#FF8FAB]" />
+                <Package className="w-6 h-6 text-[#3B82F6]" />
                 My Orders
               </h2>
 
@@ -144,7 +144,7 @@ export default function ProfilePage() {
                   </h3>
                   <p className="text-[#6B7280] mb-4">Start shopping now!</p>
                   <Link to="/products">
-                    <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full">
+                    <Button className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full">
                       Shop Now
                     </Button>
                   </Link>
@@ -173,7 +173,7 @@ export default function ProfilePage() {
                               <StatusIcon className="w-4 h-4" />
                               {statusLabels[order.status]}
                             </span>
-                            <span className="font-heading font-bold text-[#FF8FAB]">
+                            <span className="font-heading font-bold text-[#3B82F6]">
                               Rs. {order.total_amount.toFixed(0)}
                             </span>
                           </div>
@@ -208,7 +208,7 @@ export default function ProfilePage() {
                             <Link 
                               key={idx}
                               to={`/product/${item.product_id}`}
-                              className="block text-sm text-[#1A1A1A] hover:text-[#FF8FAB] transition-colors"
+                              className="block text-sm text-[#1A1A1A] hover:text-[#3B82F6] transition-colors"
                               data-testid={`order-item-name-link-${item.product_id}`}
                             >
                               {item.name} × {item.quantity}

@@ -128,7 +128,7 @@ export default function AdminTestimonials() {
       <main className="flex-1 p-4 sm:p-8">
         <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
           <div>
-            <Link to="/admin" className="text-sm text-gray-500 flex items-center gap-1 mb-2 hover:text-[#FF8FAB]">
+            <Link to="/admin" className="text-sm text-gray-500 flex items-center gap-1 mb-2 hover:text-[#3B82F6]">
               <ArrowLeft className="w-4 h-4" /> Back to Dashboard
             </Link>
             <h1 className="font-heading text-3xl font-bold">Customer Testimonials</h1>
@@ -136,7 +136,7 @@ export default function AdminTestimonials() {
           </div>
           <button
             onClick={openNew}
-            className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full px-5 py-2.5 font-medium flex items-center gap-2"
+            className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full px-5 py-2.5 font-medium flex items-center gap-2"
             data-testid="new-testimonial-btn"
           >
             <Plus className="w-5 h-5" /> New Testimonial
@@ -269,7 +269,7 @@ export default function AdminTestimonials() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex-1 bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full py-2.5 font-medium"
+                  className="flex-1 bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full py-2.5 font-medium"
                   data-testid="save-testimonial-btn"
                 >
                   {saving ? "Saving..." : "Save"}

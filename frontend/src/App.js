@@ -351,7 +351,7 @@ function ThemeProvider({ children }) {
         
         // Apply theme colors as CSS variables
         const root = document.documentElement;
-        root.style.setProperty('--color-primary', theme.primary_color || '#FF8FAB');
+        root.style.setProperty('--color-primary', theme.primary_color || '#3B82F6');
         root.style.setProperty('--color-secondary', theme.secondary_color || '#FFD166');
         root.style.setProperty('--color-accent', theme.accent_color || '#06D6A0');
         root.style.setProperty('--color-text', theme.text_color || '#1A1A1A');
@@ -364,7 +364,7 @@ function ThemeProvider({ children }) {
                 // Cache theme so next reload applies it instantly (no pink flash)
                 localStorage.setItem('tfortech_theme', JSON.stringify(theme));
                 const metaTag = document.querySelector('meta[name="theme-color"]');
-                if (metaTag) metaTag.setAttribute('content', theme.primary_color || '#FF8FAB');
+                if (metaTag) metaTag.setAttribute('content', theme.primary_color || '#3B82F6');
       } catch (error) {
         console.error("Error fetching theme:", error);
       }

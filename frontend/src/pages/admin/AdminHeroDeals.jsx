@@ -234,7 +234,7 @@ export default function AdminHeroDeals() {
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-2 bg-[#FF8FAB] text-white px-5 py-2.5 rounded-full font-semibold hover:bg-[#FF8FAB]/90"
+            className="flex items-center gap-2 bg-[#3B82F6] text-white px-5 py-2.5 rounded-full font-semibold hover:bg-[#3B82F6]/90"
           >
             <Plus className="w-4 h-4" /> New Flash Deal
           </button>
@@ -275,7 +275,7 @@ export default function AdminHeroDeals() {
                   <p className="text-sm text-gray-400 truncate">{deal.description}</p>
                   <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
                     {deal.discount_value ? (
-                      <span className="bg-[#FF8FAB]/10 text-[#FF8FAB] px-2 py-0.5 rounded-full font-semibold">
+                      <span className="bg-[#3B82F6]/10 text-[#3B82F6] px-2 py-0.5 rounded-full font-semibold">
                         {deal.discount_type === "percent" ? `${deal.discount_value}% OFF` : `Rs. ${deal.discount_value} OFF`}
                       </span>
                     ) : null}
@@ -325,7 +325,7 @@ export default function AdminHeroDeals() {
                   type="text" value={form.title}
                   onChange={(e) => setForm({ ...form, title: e.target.value })}
                   placeholder="e.g. Gaming Laptop Deal"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -335,7 +335,7 @@ export default function AdminHeroDeals() {
                   type="text" value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   placeholder="Short line, e.g. Core i7, 16GB RAM, 512GB SSD"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -344,7 +344,7 @@ export default function AdminHeroDeals() {
                 <select
                   value={form.product_id}
                   onChange={(e) => setForm({ ...form, product_id: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 >
                   <option value="">No linked product</option>
                   {products.map((p) => (
@@ -373,7 +373,7 @@ export default function AdminHeroDeals() {
                     </label>
                   </div>
                 ) : (
-                  <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 rounded-xl py-8 cursor-pointer hover:border-[#FF8FAB] hover:bg-[#FF8FAB]/5 transition-colors">
+                  <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 rounded-xl py-8 cursor-pointer hover:border-[#3B82F6] hover:bg-[#3B82F6]/5 transition-colors">
                     {imageUploading ? (
                       <span className="text-sm text-gray-500">Uploading image...</span>
                     ) : (
@@ -395,7 +395,7 @@ export default function AdminHeroDeals() {
                     type="number" value={form.original_price}
                     onChange={(e) => setForm({ ...form, original_price: e.target.value })}
                     placeholder="e.g. 250000"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
                 <div>
@@ -404,7 +404,7 @@ export default function AdminHeroDeals() {
                     type="number" value={form.sale_price}
                     onChange={(e) => setForm({ ...form, sale_price: e.target.value })}
                     placeholder="e.g. 210000"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
                 <div>
@@ -413,7 +413,7 @@ export default function AdminHeroDeals() {
                     type="number" value={form.discount_value}
                     onChange={(e) => setForm({ ...form, discount_value: e.target.value })}
                     placeholder="e.g. 20"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
               </div>
@@ -424,7 +424,7 @@ export default function AdminHeroDeals() {
                   <input
                     type="datetime-local" value={form.start_time}
                     onChange={(e) => setForm({ ...form, start_time: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
                 <div>
@@ -432,7 +432,7 @@ export default function AdminHeroDeals() {
                   <input
                     type="datetime-local" value={form.end_time}
                     onChange={(e) => setForm({ ...form, end_time: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
               </div>
@@ -441,7 +441,7 @@ export default function AdminHeroDeals() {
                 <input
                   type="checkbox" checked={form.countdown_enabled}
                   onChange={(e) => setForm({ ...form, countdown_enabled: e.target.checked })}
-                  className="w-4 h-4 rounded accent-[#FF8FAB]"
+                  className="w-4 h-4 rounded accent-[#3B82F6]"
                 />
                 <span className="text-sm text-gray-700">Show countdown timer on this deal</span>
               </label>
@@ -452,7 +452,7 @@ export default function AdminHeroDeals() {
                   <input
                     type="text" value={form.shop_now_text}
                     onChange={(e) => setForm({ ...form, shop_now_text: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
                 <div>
@@ -461,7 +461,7 @@ export default function AdminHeroDeals() {
                     type="text" value={form.shop_now_link}
                     onChange={(e) => setForm({ ...form, shop_now_link: e.target.value })}
                     placeholder="/products or leave empty to use linked product"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
               </div>
@@ -473,7 +473,7 @@ export default function AdminHeroDeals() {
                     type="text" value={form.review_video_url}
                     onChange={(e) => { setForm({ ...form, review_video_url: e.target.value }); setVideoCheckResult(null); }}
                     placeholder="https://www.youtube.com/watch?v=... or https://youtu.be/..."
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                   <button
                     type="button" onClick={handleValidateVideo} disabled={videoChecking}
@@ -493,7 +493,7 @@ export default function AdminHeroDeals() {
                 <input
                   type="checkbox" checked={form.is_active}
                   onChange={(e) => setForm({ ...form, is_active: e.target.checked })}
-                  className="w-4 h-4 rounded accent-[#FF8FAB]"
+                  className="w-4 h-4 rounded accent-[#3B82F6]"
                 />
                 <span className="text-sm text-gray-700">Active (visible on the site)</span>
               </label>
@@ -505,7 +505,7 @@ export default function AdminHeroDeals() {
               </button>
               <button
                 onClick={handleSave} disabled={saving}
-                className="px-6 py-2.5 bg-[#FF8FAB] text-white rounded-full font-semibold hover:bg-[#FF8FAB]/90 disabled:opacity-50"
+                className="px-6 py-2.5 bg-[#3B82F6] text-white rounded-full font-semibold hover:bg-[#3B82F6]/90 disabled:opacity-50"
               >
                 {saving ? "Saving..." : editingId ? "Save Changes" : "Create Deal"}
               </button>

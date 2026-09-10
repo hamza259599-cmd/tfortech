@@ -345,7 +345,7 @@ handleChange("about_stats", newStats);
         <main className="flex-1 p-6 lg:p-8">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-[#FF8FAB] rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#3B82F6] rounded-xl flex items-center justify-center">
                 <FileText className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -368,7 +368,7 @@ handleChange("about_stats", newStats);
               <Button 
                 onClick={handleSave}
                 disabled={saving}
-                className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white"
+                className="rounded-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white"
               >
                 <Save className="w-4 h-4 mr-2" />
                 {saving ? "Saving..." : "Save All"}
@@ -384,7 +384,7 @@ handleChange("about_stats", newStats);
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
                   activeTab === tab.id
-                    ? "bg-[#FF8FAB] text-white"
+                    ? "bg-[#3B82F6] text-white"
                     : "text-gray-600 hover:bg-gray-100"
                 }`}
               >
@@ -439,7 +439,7 @@ handleChange("about_stats", newStats);
                       </button>
                     </div>
                   ) : (
-                    <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                    <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#3B82F6] transition-colors">
                       <input
                         type="file"
                         accept="image/*"
@@ -448,7 +448,7 @@ handleChange("about_stats", newStats);
                         disabled={uploading}
                       />
                       {uploading ? (
-                        <div className="animate-spin rounded-full h-8 w-8 border-4 border-[#FF8FAB] border-t-transparent"></div>
+                        <div className="animate-spin rounded-full h-8 w-8 border-4 border-[#3B82F6] border-t-transparent"></div>
                       ) : (
                         <>
                           <Upload className="w-10 h-10 text-gray-400 mb-2" />
@@ -523,7 +523,7 @@ handleChange("about_stats", newStats);
                           })}
                           className={`p-3 rounded-lg border-2 text-center capitalize transition-all ${
                             content.stylish_text?.intensity === level
-                              ? 'border-[#FF8FAB] bg-[#FF8FAB]/10 text-[#FF8FAB]'
+                              ? 'border-[#3B82F6] bg-[#3B82F6]/10 text-[#3B82F6]'
                               : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
@@ -586,7 +586,7 @@ handleChange("about_stats", newStats);
                             }}
                             className={`px-4 py-2 rounded-full text-sm transition-all ${
                               isSelected
-                                ? 'bg-[#FF8FAB] text-white'
+                                ? 'bg-[#3B82F6] text-white'
                                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                             }`}
                           >
@@ -605,8 +605,8 @@ handleChange("about_stats", newStats);
                         {content.stylish_text?.enabled ? (
                           "T For Tech".split('').map((letter, i) => {
                             const colors = {
-                              playful: ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"],
-                              subtle: ["#FF8FAB", "#4ECDC4"],
+                              playful: ["#3B82F6", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"],
+                              subtle: ["#3B82F6", "#4ECDC4"],
                               rainbow: ["#FF6B6B", "#FFA500", "#FFD700", "#4ECDC4", "#45B7D1", "#9B59B6"],
                               monochrome: ["#1A1A1A", "#4A4A4A", "#6B7280"]
                             };
@@ -738,7 +738,7 @@ handleChange("about_stats", newStats);
               <div className="space-y-6">
                 <div>
                   <h2 className="font-heading text-xl font-bold text-[#1A1A1A] flex items-center gap-2">
-                    <Type className="w-6 h-6 text-[#FF8FAB]" />
+                    <Type className="w-6 h-6 text-[#3B82F6]" />
                     Popularity Badge Settings
                   </h2>
                   <p className="text-gray-500 text-sm">Configure the "100+ bought" style badges on product cards</p>
@@ -785,7 +785,7 @@ handleChange("about_stats", newStats);
                           })}
                           className={`p-4 rounded-lg border-2 text-left transition-all ${
                             content.popularity_badge?.badge_type === option.value
-                              ? 'border-[#FF8FAB] bg-[#FF8FAB]/10'
+                              ? 'border-[#3B82F6] bg-[#3B82F6]/10'
                               : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
@@ -879,7 +879,7 @@ handleChange("about_stats", newStats);
                   <div className="border-t pt-6">
                     <Label className="text-sm font-medium mb-3 block">Preview</Label>
                     <div className="bg-gray-100 rounded-lg p-4 flex items-center justify-center">
-                      <div className="bg-[#FF8FAB] text-white text-xs px-3 py-1.5 rounded-full font-medium">
+                      <div className="bg-[#3B82F6] text-white text-xs px-3 py-1.5 rounded-full font-medium">
                         {content.popularity_badge?.badge_type === "hide" 
                           ? "(Badge Hidden)" 
                           : content.popularity_badge?.badge_type === "fixed"
@@ -906,7 +906,7 @@ handleChange("about_stats", newStats);
                     <h2 className="font-heading text-xl font-bold text-[#1A1A1A]">Service Features</h2>
                     <p className="text-gray-500 text-sm">These badges appear on homepage below hero section</p>
                   </div>
-                  <Button onClick={addService} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                  <Button onClick={addService} className="rounded-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white">
                     + Add Service
                   </Button>
                 </div>
@@ -937,7 +937,7 @@ handleChange("about_stats", newStats);
                                 key={emoji}
                                 type="button"
                                 onClick={() => handleServiceChange(index, "icon", emoji)}
-                                className={`w-8 h-8 text-lg rounded hover:bg-gray-200 transition-colors ${service.icon === emoji ? 'bg-[#FF8FAB]/20 ring-2 ring-[#FF8FAB]' : 'bg-gray-100'}`}
+                                className={`w-8 h-8 text-lg rounded hover:bg-gray-200 transition-colors ${service.icon === emoji ? 'bg-[#3B82F6]/20 ring-2 ring-[#3B82F6]' : 'bg-gray-100'}`}
                               >
                                 {emoji}
                               </button>
@@ -1115,7 +1115,7 @@ handleChange("about_stats", newStats);
                         </button>
                       </div>
                     ) : (
-                      <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                      <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#3B82F6] transition-colors">
                         <input
                           type="file"
                           accept="image/*"
@@ -1171,7 +1171,7 @@ handleChange("about_stats", newStats);
                         </button>
                       </div>
                     ) : (
-                      <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                      <label className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#3B82F6] transition-colors">
                         <input
                           type="file"
                           accept="image/*"
@@ -1189,7 +1189,7 @@ handleChange("about_stats", newStats);
 
                   <div className="flex items-center justify-between">
                     <h3 className="font-heading text-lg font-bold text-[#1A1A1A]">Our Values</h3>
-                    <Button onClick={addValue} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                    <Button onClick={addValue} className="rounded-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white">
                       + Add Value
                     </Button>
                   </div>
@@ -1279,7 +1279,7 @@ handleChange("about_stats", newStats);
                           </button>
                         </div>
                       ) : (
-                        <label className="border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                        <label className="border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#3B82F6] transition-colors">
                           <input
                             type="file"
                             accept="image/*"
@@ -1310,7 +1310,7 @@ handleChange("about_stats", newStats);
                           </button>
                         </div>
                       ) : (
-                        <label className="border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF8FAB] transition-colors">
+                        <label className="border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-[#3B82F6] transition-colors">
                           <input
                             type="file"
                             accept="image/*"
@@ -1327,7 +1327,7 @@ handleChange("about_stats", newStats);
 
                   <div className="flex items-center justify-between">
                     <h4 className="font-heading text-base font-bold text-[#1A1A1A]">Stats</h4>
-                    <Button onClick={addStat} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                    <Button onClick={addStat} className="rounded-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white">
                       + Add Stat
                     </Button>
                   </div>
@@ -1369,7 +1369,7 @@ handleChange("about_stats", newStats);
 
                   <div className="flex items-center justify-between">
                     <h3 className="font-heading text-lg font-bold text-[#1A1A1A]">Our Journey</h3>
-                    <Button onClick={addJourneyItem} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                    <Button onClick={addJourneyItem} className="rounded-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white">
                       + Add Journey Item
                     </Button>
                   </div>
@@ -1472,7 +1472,7 @@ handleChange("about_stats", newStats);
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="font-heading text-xl font-bold text-[#1A1A1A]">Frequently Asked Questions</h2>
-                  <Button onClick={addFAQ} className="rounded-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                  <Button onClick={addFAQ} className="rounded-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white">
                     + Add FAQ
                   </Button>
                 </div>

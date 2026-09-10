@@ -15,7 +15,7 @@ export default function AdminSidebar() {
   const linkClass = (path) => {
     return `flex items-center gap-3 px-4 py-3 rounded-xl transition-colors mb-2 ${
       isActive(path)
-        ? "bg-[#FF8FAB]/10 text-[#FF8FAB] font-medium"
+        ? "bg-[#3B82F6]/10 text-[#3B82F6] font-medium"
         : "text-[#6B7280] hover:bg-gray-100"
     }`;
   };

@@ -161,7 +161,7 @@ export default function AdminDeals() {
           </div>
           <button
             onClick={() => { setForm(emptyDeal); setShowModal(true); }}
-            className="bg-[#FF8FAB] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#FF8FAB]/90 transition-colors"
+            className="bg-[#3B82F6] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#3B82F6]/90 transition-colors"
           >
             <Plus className="w-5 h-5" />
             New Deal
@@ -191,7 +191,7 @@ export default function AdminDeals() {
                         <h3 className="font-bold text-gray-800">{deal.title}</h3>
                         {deal.description && <p className="text-sm text-gray-500">{deal.description}</p>}
                       </div>
-                      <span className="bg-[#FF8FAB]/10 text-[#FF8FAB] text-xs font-bold px-2 py-1 rounded-full whitespace-nowrap">
+                      <span className="bg-[#3B82F6]/10 text-[#3B82F6] text-xs font-bold px-2 py-1 rounded-full whitespace-nowrap">
                         {deal.discount_type === "percent" ? `${deal.discount_value}% OFF` : `Rs. ${deal.discount_value} OFF`}
                       </span>
                     </div>
@@ -250,7 +250,7 @@ export default function AdminDeals() {
                   type="text" value={form.title}
                   onChange={(e) => setForm({ ...form, title: e.target.value })}
                   placeholder="e.g. 8.8 Azadi Sale"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -260,7 +260,7 @@ export default function AdminDeals() {
                   type="text" value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   placeholder="Short line shown under the title"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -283,7 +283,7 @@ export default function AdminDeals() {
                                             </label>
                           </div>
                         ) : (
-                          <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 rounded-xl py-8 cursor-pointer hover:border-[#FF8FAB] hover:bg-[#FF8FAB]/5 transition-colors">
+                          <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 rounded-xl py-8 cursor-pointer hover:border-[#3B82F6] hover:bg-[#3B82F6]/5 transition-colors">
                             {imageUploading ? (
                                                 <span className="text-sm text-gray-500">Uploading image...</span>
                                               ) : (
@@ -304,7 +304,7 @@ export default function AdminDeals() {
                   <select
                     value={form.discount_type}
                     onChange={(e) => setForm({ ...form, discount_type: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   >
                     <option value="percent">Percent (%)</option>
                     <option value="fixed">Fixed (Rs.)</option>
@@ -316,7 +316,7 @@ export default function AdminDeals() {
                     type="number" value={form.discount_value}
                     onChange={(e) => setForm({ ...form, discount_value: e.target.value })}
                     placeholder={form.discount_type === "percent" ? "e.g. 20" : "e.g. 500"}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                   />
                 </div>
               </div>
@@ -329,7 +329,7 @@ export default function AdminDeals() {
                   type="number" value={form.duration_hours}
                   onChange={(e) => setForm({ ...form, duration_hours: e.target.value })}
                   placeholder="24"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
                 <p className="text-xs text-gray-400 mt-1">Countdown starts the moment you save this deal.</p>
               </div>
@@ -365,7 +365,7 @@ export default function AdminDeals() {
               <button
                 onClick={handleCreate}
                 disabled={saving}
-                className="flex-1 px-4 py-3 bg-[#FF8FAB] text-white rounded-xl font-medium hover:bg-[#FF8FAB]/90 transition-colors disabled:opacity-50"
+                className="flex-1 px-4 py-3 bg-[#3B82F6] text-white rounded-xl font-medium hover:bg-[#3B82F6]/90 transition-colors disabled:opacity-50"
               >
                 {saving ? "Creating..." : "Start Deal"}
               </button>

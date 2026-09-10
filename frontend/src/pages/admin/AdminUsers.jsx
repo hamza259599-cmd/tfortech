@@ -182,7 +182,7 @@ export default function AdminUsers() {
             </div>
             <Button
               onClick={() => setShowAddAdminModal(true)}
-              className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white"
+              className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white"
               data-testid="add-admin-btn"
             >
               <UserPlus className="w-4 h-4 mr-2" />
@@ -236,7 +236,7 @@ export default function AdminUsers() {
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
             {loading ? (
               <div className="flex items-center justify-center py-12">
-                <div className="w-8 h-8 border-4 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-8 h-8 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
               </div>
             ) : filteredUsers.length === 0 ? (
               <div className="text-center py-12">
@@ -260,7 +260,7 @@ export default function AdminUsers() {
                       <tr key={user.user_id} className="border-b border-gray-50 hover:bg-gray-50/50">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF8FAB] to-[#FFD166] flex items-center justify-center text-white font-semibold">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#3B82F6] to-[#FFD166] flex items-center justify-center text-white font-semibold">
                               {user.name?.charAt(0).toUpperCase() || "U"}
                             </div>
                             <div>
@@ -346,7 +346,7 @@ export default function AdminUsers() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <UserPlus className="w-5 h-5 text-[#FF8FAB]" />
+              <UserPlus className="w-5 h-5 text-[#3B82F6]" />
               Add New Admin
             </DialogTitle>
             <DialogDescription>
@@ -409,7 +409,7 @@ export default function AdminUsers() {
               <Button
                 type="submit"
                 disabled={addingAdmin}
-                className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white"
+                className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white"
                 data-testid="confirm-add-admin-btn"
               >
                 {addingAdmin ? (

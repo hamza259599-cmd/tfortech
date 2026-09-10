@@ -88,7 +88,7 @@ export default function AdminCampaigns() {
           <AdminSidebar />
           <main className="flex-1 p-8">
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#FF8FAB]"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#3B82F6]"></div>
             </div>
           </main>
         </div>
@@ -106,7 +106,7 @@ export default function AdminCampaigns() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="font-heading text-3xl font-bold text-[#1A1A1A] flex items-center gap-3">
-                <Megaphone className="w-8 h-8 text-[#FF8FAB]" />
+                <Megaphone className="w-8 h-8 text-[#3B82F6]" />
                 Ad Campaign Tracking
               </h1>
               <p className="text-gray-500 mt-1">Track your Google Ads, Facebook Ads, and other campaigns</p>
@@ -114,7 +114,7 @@ export default function AdminCampaigns() {
             <Button 
               onClick={() => fetchData(true)}
               disabled={refreshing}
-              className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full"
+              className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
               Refresh
@@ -226,7 +226,7 @@ export default function AdminCampaigns() {
                         />
                         <button
                           onClick={() => copyLink(link, linkId)}
-                          className="p-1.5 bg-[#FF8FAB] text-white rounded hover:bg-[#FF8FAB]/90"
+                          className="p-1.5 bg-[#3B82F6] text-white rounded hover:bg-[#3B82F6]/90"
                         >
                           {copiedLink === linkId ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                         </button>
@@ -247,7 +247,7 @@ export default function AdminCampaigns() {
             {/* Last 7 Days Ad Visitors */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
               <h2 className="font-heading text-xl font-bold text-[#1A1A1A] mb-4 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-[#FF8FAB]" />
+                <TrendingUp className="w-5 h-5 text-[#3B82F6]" />
                 Ad Visitors - Last 7 Days
               </h2>
               
@@ -264,7 +264,7 @@ export default function AdminCampaigns() {
                       </div>
                       <div className="flex-1 h-8 bg-gray-100 rounded-lg overflow-hidden relative">
                         <div 
-                          className={`h-full rounded-lg transition-all duration-500 ${isToday ? 'bg-[#FF8FAB]' : 'bg-[#4ECDC4]'}`}
+                          className={`h-full rounded-lg transition-all duration-500 ${isToday ? 'bg-[#3B82F6]' : 'bg-[#4ECDC4]'}`}
                           style={{ width: `${percentage}%` }}
                         />
                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600">
@@ -363,8 +363,8 @@ export default function AdminCampaigns() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {data.campaigns.flatMap(c => c.products_viewed || []).slice(0, 9).map((product, index) => (
                   <div key={index} className="p-4 bg-gray-50 rounded-lg flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#FF8FAB]/20 rounded-lg flex items-center justify-center">
-                      <Eye className="w-5 h-5 text-[#FF8FAB]" />
+                    <div className="w-10 h-10 bg-[#3B82F6]/20 rounded-lg flex items-center justify-center">
+                      <Eye className="w-5 h-5 text-[#3B82F6]" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-sm text-[#1A1A1A] truncate">
@@ -379,7 +379,7 @@ export default function AdminCampaigns() {
           )}
 
           {/* How to Use Guide */}
-          <div className="mt-6 p-6 bg-gradient-to-r from-[#FF8FAB]/10 to-[#4ECDC4]/10 rounded-2xl border border-[#FF8FAB]/20">
+          <div className="mt-6 p-6 bg-gradient-to-r from-[#3B82F6]/10 to-[#4ECDC4]/10 rounded-2xl border border-[#3B82F6]/20">
             <h3 className="font-bold text-[#1A1A1A] mb-3 flex items-center gap-2">
               📖 How to Track Your Ads
             </h3>

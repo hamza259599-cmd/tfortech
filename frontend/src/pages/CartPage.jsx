@@ -94,7 +94,7 @@ export default function CartPage() {
               Looks like you haven't added anything to your cart yet
             </p>
             <Link to="/products">
-              <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full px-8">
+              <Button className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full px-8">
                 Continue Shopping
               </Button>
             </Link>
@@ -123,7 +123,7 @@ export default function CartPage() {
                   {/* Product Details */}
                   <div className="flex-1 min-w-0">
                     <Link to={`/product/${item.product_id}`}>
-                      <h3 className="font-heading text-lg font-semibold text-[#1A1A1A] hover:text-[#FF8FAB] transition-colors truncate">
+                      <h3 className="font-heading text-lg font-semibold text-[#1A1A1A] hover:text-[#3B82F6] transition-colors truncate">
                         {item.name}
                       </h3>
                     </Link>
@@ -136,7 +136,7 @@ export default function CartPage() {
 
                     {item.discount_price ? (
                       <div className="flex items-center gap-2 mt-2">
-                        <p className="font-heading text-lg font-bold text-[#FF8FAB]">
+                        <p className="font-heading text-lg font-bold text-[#3B82F6]">
                           Rs. {item.discount_price.toFixed(0)}
                         </p>
                         <p className="text-sm text-gray-400 line-through">
@@ -147,7 +147,7 @@ export default function CartPage() {
                         </span>
                       </div>
                     ) : (
-                      <p className="font-heading text-lg font-bold text-[#FF8FAB] mt-2">
+                      <p className="font-heading text-lg font-bold text-[#3B82F6] mt-2">
                         Rs. {item.price.toFixed(0)}
                       </p>
                     )}
@@ -240,7 +240,7 @@ export default function CartPage() {
                 <div className="border-t border-gray-200 pt-4 mb-6">
                   <div className="flex justify-between">
                     <span className="font-heading text-lg font-bold text-[#1A1A1A]">Total</span>
-                    <span className="font-heading text-xl font-bold text-[#FF8FAB]" data-testid="cart-total">
+                    <span className="font-heading text-xl font-bold text-[#3B82F6]" data-testid="cart-total">
                       Rs. {grandTotal.toFixed(0)}
                     </span>
                   </div>
@@ -248,14 +248,14 @@ export default function CartPage() {
 
                 <Button
                   onClick={handleCheckout}
-                  className="w-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full py-6 text-lg"
+                  className="w-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full py-6 text-lg"
                   data-testid="checkout-btn"
                 >
                   Proceed to Checkout
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
 
-                <Link to="/products" className="block text-center mt-4 text-[#6B7280] hover:text-[#FF8FAB] transition-colors">
+                <Link to="/products" className="block text-center mt-4 text-[#6B7280] hover:text-[#3B82F6] transition-colors">
                   Continue Shopping
                 </Link>
               </div>

@@ -174,7 +174,7 @@ export default function ProductVariationsEditor({ variations = [], onChange }) {
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="font-heading text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
-            <Settings className="w-5 h-5 text-[#FF8FAB]" />
+            <Settings className="w-5 h-5 text-[#3B82F6]" />
             Product Variations
           </h3>
           <p className="text-sm text-gray-500">Add up to 5 variations (Color, Size, Material, etc.)</p>
@@ -217,7 +217,7 @@ export default function ProductVariationsEditor({ variations = [], onChange }) {
                 onClick={() => toggleExpand(varIndex)}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#FF8FAB]/20 flex items-center justify-center text-[#FF8FAB] font-bold text-sm">
+                  <div className="w-8 h-8 rounded-full bg-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] font-bold text-sm">
                     {varIndex + 1}
                   </div>
                   <div>
@@ -363,7 +363,7 @@ export default function ProductVariationsEditor({ variations = [], onChange }) {
 
       {/* Summary */}
       {localVariations.length > 0 && (
-        <div className="mt-4 p-3 bg-gradient-to-r from-[#FF8FAB]/10 to-[#4ECDC4]/10 rounded-lg">
+        <div className="mt-4 p-3 bg-gradient-to-r from-[#3B82F6]/10 to-[#4ECDC4]/10 rounded-lg">
           <p className="text-sm text-gray-600">
             <strong>Summary:</strong> {localVariations.length} variation(s) with{" "}
             {localVariations.reduce((sum, v) => sum + v.values.length, 0)} total options

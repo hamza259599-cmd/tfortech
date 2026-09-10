@@ -467,7 +467,7 @@ export default function AdminProducts() {
               {/* New Category Button + Dialog */}
               <Dialog open={categoryDialogOpen} onOpenChange={(open) => { setCategoryDialogOpen(open); if (!open) { setCategoryFormData({ name: "", icon: "📦", image_url: "" }); setCategoryImagePreview(null); } }}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="rounded-full border-[#FF8FAB] text-[#FF8FAB] hover:bg-[#FF8FAB]/10" data-testid="new-category-btn">
+                  <Button variant="outline" className="rounded-full border-[#3B82F6] text-[#3B82F6] hover:bg-[#3B82F6]/10" data-testid="new-category-btn">
                     <Plus className="w-5 h-5 mr-2" />
                     New Category
                   </Button>
@@ -498,7 +498,7 @@ export default function AdminProducts() {
                             type="button"
                             onClick={() => setCategoryFormData({ ...categoryFormData, icon: emoji })}
                             className={`w-8 h-8 text-base rounded-lg border transition-all hover:scale-110 ${
-                              categoryFormData.icon === emoji ? "border-[#FF8FAB] bg-[#FF8FAB]/10 border-2" : "border-gray-200"
+                              categoryFormData.icon === emoji ? "border-[#3B82F6] bg-[#3B82F6]/10 border-2" : "border-gray-200"
                             }`}
                           >
                             {emoji}
@@ -512,7 +512,7 @@ export default function AdminProducts() {
                         <label className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:bg-gray-50">
                           {categoryImageUploading ? (
                             <div className="flex items-center gap-2">
-                              <div className="w-5 h-5 border-2 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                              <div className="w-5 h-5 border-2 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
                               <span className="text-sm text-gray-500">Uploading...</span>
                             </div>
                           ) : categoryImagePreview ? (
@@ -528,7 +528,7 @@ export default function AdminProducts() {
                       </div>
                     </div>
                     <div className="flex gap-4 pt-4">
-                      <Button type="submit" className="flex-1 bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full" data-testid="submit-category-btn">
+                      <Button type="submit" className="flex-1 bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full" data-testid="submit-category-btn">
                         Add
                       </Button>
                       <Button type="button" variant="outline" onClick={() => setCategoryDialogOpen(false)} className="rounded-full">
@@ -541,7 +541,7 @@ export default function AdminProducts() {
 
               {/* Single Product Add Button - Links to Daraz-style page */}
               <Link to="/admin/products/new">
-                <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full" data-testid="add-product-btn">
+                <Button className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full" data-testid="add-product-btn">
                   <Plus className="w-5 h-5 mr-2" />
                   New Product
                 </Button>
@@ -555,7 +555,7 @@ export default function AdminProducts() {
             <Button
               onClick={toggleSelectAll}
               variant="outline"
-              className={`rounded-full ${selectedProducts.size === products.length && products.length > 0 ? 'bg-[#FF8FAB]/10 border-[#FF8FAB] text-[#FF8FAB]' : ''}`}
+              className={`rounded-full ${selectedProducts.size === products.length && products.length > 0 ? 'bg-[#3B82F6]/10 border-[#3B82F6] text-[#3B82F6]' : ''}`}
               data-testid="select-all-btn"
             >
               {selectedProducts.size === products.length && products.length > 0 ? (
@@ -610,7 +610,7 @@ export default function AdminProducts() {
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     {products.map((product) => (
-                      <tr key={product.product_id} className={`hover:bg-gray-50 ${selectedProducts.has(product.product_id) ? 'bg-[#FF8FAB]/5' : ''}`}>
+                      <tr key={product.product_id} className={`hover:bg-gray-50 ${selectedProducts.has(product.product_id) ? 'bg-[#3B82F6]/5' : ''}`}>
                         <td className="px-4 py-4">
                           <button
                             onClick={() => toggleSelectProduct(product.product_id)}
@@ -618,7 +618,7 @@ export default function AdminProducts() {
                             data-testid={`select-${product.product_id}`}
                           >
                             {selectedProducts.has(product.product_id) ? (
-                              <CheckSquare className="w-5 h-5 text-[#FF8FAB]" />
+                              <CheckSquare className="w-5 h-5 text-[#3B82F6]" />
                             ) : (
                               <Square className="w-5 h-5 text-gray-400" />
                             )}
@@ -640,7 +640,7 @@ export default function AdminProducts() {
                             return cat ? cat.name : product.category;
                           })()}
                         </td>
-                        <td className="px-6 py-4 font-medium text-[#FF8FAB]">
+                        <td className="px-6 py-4 font-medium text-[#3B82F6]">
                           Rs. {typeof product.price === 'number' ? product.price.toFixed(0) : product.price}
                         </td>
                         <td className="px-6 py-4">
@@ -650,7 +650,7 @@ export default function AdminProducts() {
                                 type="number"
                                 value={stockValue}
                                 onChange={(e) => setStockValue(e.target.value)}
-                                className="w-24 h-9 text-sm border-2 border-[#FF8FAB]"
+                                className="w-24 h-9 text-sm border-2 border-[#3B82F6]"
                                 min="0"
                                 autoFocus
                                 data-testid={`stock-input-${product.product_id}`}

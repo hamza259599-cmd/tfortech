@@ -184,7 +184,7 @@ export default function ProductsPage() {
         {/* Breadcrumb */}
         {breadcrumb.length > 0 && (
           <nav className="flex items-center gap-2 text-sm mb-4 flex-wrap" data-testid="breadcrumb">
-            <Link to="/products" className="text-[#6B7280] hover:text-[#FF8FAB]">
+            <Link to="/products" className="text-[#6B7280] hover:text-[#3B82F6]">
               All Products
             </Link>
             {breadcrumb.map((crumb, index) => (
@@ -197,7 +197,7 @@ export default function ProductsPage() {
                 ) : (
                   <Link 
                     to={`/products/${crumb.category_id || crumb.id}`}
-                    className="text-[#6B7280] hover:text-[#FF8FAB]"
+                    className="text-[#6B7280] hover:text-[#3B82F6]"
                   >
                     {crumb.name}
                   </Link>
@@ -220,14 +220,14 @@ export default function ProductsPage() {
 
         {/* Subcategories Grid - Show when category has subcategories */}
         {subcategories.length > 0 && (
-          <div className="mb-10 bg-gradient-to-r from-[#FF8FAB]/5 to-[#FFD166]/5 rounded-3xl p-6">
+          <div className="mb-10 bg-gradient-to-r from-[#3B82F6]/5 to-[#FFD166]/5 rounded-3xl p-6">
             <h2 className="font-heading text-xl font-semibold text-[#1A1A1A] mb-4 flex items-center gap-2">
-              <span className="w-8 h-8 bg-[#FF8FAB] rounded-lg flex items-center justify-center text-white text-sm">📂</span>
+              <span className="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center text-white text-sm">📂</span>
               Browse Subcategories
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" data-testid="subcategories-grid">
               {subcategories.map((subcat, index) => {
-                const borderColors = ["#FF8FAB", "#FFD166", "#06D6A0", "#4ECDC4", "#9B59B6"];
+                const borderColors = ["#3B82F6", "#FFD166", "#06D6A0", "#4ECDC4", "#9B59B6"];
                 const borderColor = borderColors[index % 5];
                 return (
                   <Link
@@ -246,11 +246,11 @@ export default function ProductsPage() {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
-                    <span className="text-sm md:text-base font-semibold text-[#1A1A1A] text-center group-hover:text-[#FF8FAB] transition-colors line-clamp-2">
+                    <span className="text-sm md:text-base font-semibold text-[#1A1A1A] text-center group-hover:text-[#3B82F6] transition-colors line-clamp-2">
                       {subcat.name}
                     </span>
                     {subcat.product_count > 0 && (
-                      <span className="text-xs text-white bg-[#FF8FAB] px-2 py-0.5 rounded-full mt-1">
+                      <span className="text-xs text-white bg-[#3B82F6] px-2 py-0.5 rounded-full mt-1">
                         {subcat.product_count} items
                       </span>
                     )}
@@ -320,7 +320,7 @@ export default function ProductsPage() {
               {subcategories.length > 0 && " Browse the subcategories above!"}
             </p>
             <Link to="/products">
-              <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full">
+              <Button className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full">
                 Browse All Products
               </Button>
             </Link>

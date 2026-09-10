@@ -162,7 +162,7 @@ export default function DeviceConfigEditor({ initialDeviceType = "mobile", onCon
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#FF8FAB]"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#3B82F6]"></div>
       </div>
     );
   }
@@ -174,7 +174,7 @@ export default function DeviceConfigEditor({ initialDeviceType = "mobile", onCon
         <div>
           <h2 className="font-heading text-xl font-bold text-[#1A1A1A] flex items-center gap-2">
             {activeTab === "mobile" ? (
-              <Smartphone className="w-6 h-6 text-[#FF8FAB]" />
+              <Smartphone className="w-6 h-6 text-[#3B82F6]" />
             ) : (
               <Laptop className="w-6 h-6 text-[#4ECDC4]" />
             )}
@@ -185,7 +185,7 @@ export default function DeviceConfigEditor({ initialDeviceType = "mobile", onCon
         <Button 
           onClick={() => saveConfig(activeTab)}
           disabled={saving}
-          className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full px-6"
+          className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full px-6"
         >
           {saving ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
           Save {activeTab === "mobile" ? "Mobile" : "Laptop"} Config
@@ -199,7 +199,7 @@ export default function DeviceConfigEditor({ initialDeviceType = "mobile", onCon
           onClick={() => setActiveTab("mobile")}
           className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
             activeTab === "mobile"
-              ? "bg-[#FF8FAB] text-white shadow-lg"
+              ? "bg-[#3B82F6] text-white shadow-lg"
               : "bg-white text-gray-600 hover:bg-gray-100 border"
           }`}
         >
@@ -695,13 +695,13 @@ export default function DeviceConfigEditor({ initialDeviceType = "mobile", onCon
       </div>
 
       {/* Summary */}
-      <div className="p-4 bg-gradient-to-r from-[#FF8FAB]/10 to-[#4ECDC4]/10 rounded-xl border">
+      <div className="p-4 bg-gradient-to-r from-[#3B82F6]/10 to-[#4ECDC4]/10 rounded-xl border">
         <h3 className="font-bold text-[#1A1A1A] mb-2">
           {activeTab === "mobile" ? "📱 Mobile" : "💻 Laptop"} Configuration Summary
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 text-sm">
           <div className="text-center p-2 bg-white rounded-lg">
-            <div className="text-xl font-bold text-[#FF8FAB]">{currentConfig.brands.length}</div>
+            <div className="text-xl font-bold text-[#3B82F6]">{currentConfig.brands.length}</div>
             <div className="text-gray-500 text-xs">Brands</div>
           </div>
           <div className="text-center p-2 bg-white rounded-lg">

@@ -156,8 +156,8 @@ export default function AdminDashboard() {
               <p className="text-sm text-gray-500">Live Time</p>
               <p className="font-medium text-[#1A1A1A]">{liveTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>
             </div>
-            <div className="w-10 h-10 bg-[#FF8FAB]/10 rounded-xl flex items-center justify-center">
-              <Clock className="w-5 h-5 text-[#FF8FAB]" />
+            <div className="w-10 h-10 bg-[#3B82F6]/10 rounded-xl flex items-center justify-center">
+              <Clock className="w-5 h-5 text-[#3B82F6]" />
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-500">Lahore Weather</p>
@@ -199,7 +199,7 @@ export default function AdminDashboard() {
                     <p className="text-sm text-gray-500">Latest 5 orders</p>
                   </div>
                   <Link to="/admin/orders">
-                    <Button variant="outline" size="sm" className="text-[#FF8FAB] border-[#FF8FAB]">
+                    <Button variant="outline" size="sm" className="text-[#3B82F6] border-[#3B82F6]">
                       View All
                       <ArrowUpRight className="w-4 h-4 ml-1" />
                     </Button>
@@ -209,7 +209,7 @@ export default function AdminDashboard() {
               <div className="p-6">
                 {loading ? (
                   <div className="flex items-center justify-center py-8">
-                    <div className="w-8 h-8 border-4 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-8 h-8 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 ) : recentOrders.length === 0 ? (
                   <div className="text-center py-8">
@@ -221,8 +221,8 @@ export default function AdminDashboard() {
                     {recentOrders.map((order) => (
                       <div key={order.order_id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-[#FF8FAB]/10 rounded-lg flex items-center justify-center">
-                            <ShoppingCart className="w-5 h-5 text-[#FF8FAB]" />
+                          <div className="w-10 h-10 bg-[#3B82F6]/10 rounded-lg flex items-center justify-center">
+                            <ShoppingCart className="w-5 h-5 text-[#3B82F6]" />
                           </div>
                           <div>
                             <p className="font-medium text-[#1A1A1A]">#{order.order_id?.slice(-8)}</p>
@@ -251,7 +251,7 @@ export default function AdminDashboard() {
                     <p className="text-sm text-gray-500">Best selling items</p>
                   </div>
                   <Link to="/admin/products">
-                    <Button variant="outline" size="sm" className="text-[#FF8FAB] border-[#FF8FAB]">
+                    <Button variant="outline" size="sm" className="text-[#3B82F6] border-[#3B82F6]">
                       View All
                       <ArrowUpRight className="w-4 h-4 ml-1" />
                     </Button>
@@ -261,7 +261,7 @@ export default function AdminDashboard() {
               <div className="p-6">
                 {loading ? (
                   <div className="flex items-center justify-center py-8">
-                    <div className="w-8 h-8 border-4 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-8 h-8 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 ) : topProducts.length === 0 ? (
                   <div className="text-center py-8">
@@ -282,7 +282,7 @@ export default function AdminDashboard() {
                           <p className="text-sm text-gray-500">{product.category}</p>
                         </div>
                         <div className="text-right">
-                          <p className="font-semibold text-[#FF8FAB]">Rs. {product.discount_price || product.price}</p>
+                          <p className="font-semibold text-[#3B82F6]">Rs. {product.discount_price || product.price}</p>
                           <p className="text-xs text-gray-500">{product.stock} in stock</p>
                         </div>
                       </div>
@@ -294,12 +294,12 @@ export default function AdminDashboard() {
           </div>
 
           {/* Quick Actions */}
-          <div className="mt-8 bg-gradient-to-r from-[#FF8FAB] to-[#FFD166] rounded-2xl p-6 text-white">
+          <div className="mt-8 bg-gradient-to-r from-[#3B82F6] to-[#FFD166] rounded-2xl p-6 text-white">
             <h3 className="font-heading text-xl font-bold mb-2">Quick Actions</h3>
             <p className="text-white/80 mb-4">Manage your store efficiently</p>
             <div className="flex flex-wrap gap-3">
               <Link to="/admin/products/new">
-                <Button className="bg-white text-[#FF8FAB] hover:bg-white/90">
+                <Button className="bg-white text-[#3B82F6] hover:bg-white/90">
                   <Package className="w-4 h-4 mr-2" />
                   Add Product
                 </Button>

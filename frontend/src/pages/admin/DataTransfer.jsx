@@ -97,7 +97,7 @@ export default function DataTransfer() {
             </Link>
             <div>
               <h1 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                <Database className="w-6 h-6 text-[#FF8FAB]" />
+                <Database className="w-6 h-6 text-[#3B82F6]" />
                 Data Export for Deployment
               </h1>
               <p className="text-sm text-gray-500">Export data - it will auto-sync on deployment!</p>

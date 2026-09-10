@@ -108,7 +108,7 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full py-6 text-lg font-medium btn-hover-lift"
+                className="w-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full py-6 text-lg font-medium btn-hover-lift"
                 data-testid="login-submit-btn"
               >
                 {loading ? (
@@ -124,7 +124,7 @@ export default function LoginPage() {
 
             <p className="text-center mt-6 text-[#6B7280]">
               Don't have an account?{" "}
-              <Link to="/register" className="text-[#FF8FAB] hover:underline font-medium" data-testid="register-link">
+              <Link to="/register" className="text-[#3B82F6] hover:underline font-medium" data-testid="register-link">
                 Register
               </Link>
             </p>

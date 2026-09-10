@@ -85,7 +85,7 @@ export default function DealCountdown() {
                 )}
           
                 <div className="absolute top-3 left-3 md:top-5 md:left-5 flex items-center gap-2 max-w-[70%]">
-                        <div className="bg-[#FF8FAB] p-1.5 md:p-2 rounded-full flex-shrink-0 shadow-lg">
+                        <div className="bg-[#3B82F6] p-1.5 md:p-2 rounded-full flex-shrink-0 shadow-lg">
                                   <Zap className="w-4 h-4 md:w-5 md:h-5 text-white" fill="white" />
                         </div>
                         <div className="bg-black/40 backdrop-blur-sm rounded-lg px-2.5 py-1 md:px-3 md:py-1.5">
@@ -95,7 +95,7 @@ export default function DealCountdown() {
                                   )}
                         </div>
                   {deal.discount_value ? (
-                      <span className="bg-[#FF8FAB] text-white text-[10px] md:text-xs font-bold px-2 py-1 rounded-full shadow-lg flex-shrink-0">
+                      <span className="bg-[#3B82F6] text-white text-[10px] md:text-xs font-bold px-2 py-1 rounded-full shadow-lg flex-shrink-0">
                         {discountLabel}
                       </span>
                     ) : null}

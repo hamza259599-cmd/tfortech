@@ -192,11 +192,11 @@ export default function HomePage() {
                   enabled={true}
                   intensity={siteContent?.stylish_text?.intensity || "medium"}
                   colors={
-                    siteContent?.stylish_text?.preset === "playful" ? ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"] :
-                    siteContent?.stylish_text?.preset === "subtle" ? ["#FF8FAB", "#4ECDC4", "#FFFFFF"] :
+                    siteContent?.stylish_text?.preset === "playful" ? ["#3B82F6", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"] :
+                    siteContent?.stylish_text?.preset === "subtle" ? ["#3B82F6", "#4ECDC4", "#FFFFFF"] :
                     siteContent?.stylish_text?.preset === "rainbow" ? ["#FF6B6B", "#FFA500", "#FFD700", "#4ECDC4", "#45B7D1", "#9B59B6"] :
                     siteContent?.stylish_text?.preset === "monochrome" ? ["#FFFFFF", "#E5E5E5", "#CCCCCC"] :
-                    ["#FF8FAB", "#FFD166", "#4ECDC4"]
+                    ["#3B82F6", "#FFD166", "#4ECDC4"]
                   }
                 />
               ) : siteContent?.hero_title ? (
@@ -282,7 +282,7 @@ export default function HomePage() {
               { icon: "b", title: "Free Shipping", description: "On order over Rs. 2000" },
               { icon: "c", title: "Quality Guarantee", description: "30-day return policy" }
             ]).map((feature, index) => {
-              const bgColors = ["#FF8FAB", "#FFD166", "#06D6A0"];
+              const bgColors = ["#3B82F6", "#FFD166", "#06D6A0"];
               const bgColor = bgColors[index % 3];
               return (
                 <div key={index} className="text-center p-8 bg-white rounded-3xl shadow-sm">

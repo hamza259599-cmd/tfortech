@@ -118,7 +118,7 @@ export default function AdminReviewVideos() {
           </div>
           <button
             onClick={openNew}
-            className="bg-[#FF8FAB] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#FF8FAB]/90 transition-colors"
+            className="bg-[#3B82F6] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#3B82F6]/90 transition-colors"
           >
             <Plus className="w-5 h-5" />
             Add Video
@@ -216,7 +216,7 @@ export default function AdminReviewVideos() {
                   type="text" value={form.customer_name}
                   onChange={(e) => setForm({ ...form, customer_name: e.target.value })}
                   placeholder="e.g. Ayesha K."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -226,7 +226,7 @@ export default function AdminReviewVideos() {
                   type="text" value={form.video_url}
                   onChange={(e) => setForm({ ...form, video_url: e.target.value })}
                   placeholder="YouTube, Vimeo, or direct video URL"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -236,7 +236,7 @@ export default function AdminReviewVideos() {
                   type="text" value={form.thumbnail_url}
                   onChange={(e) => setForm({ ...form, thumbnail_url: e.target.value })}
                   placeholder="https://..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -246,7 +246,7 @@ export default function AdminReviewVideos() {
                   type="text" value={form.caption}
                   onChange={(e) => setForm({ ...form, caption: e.target.value })}
                   placeholder="e.g. Loved the quality and fast delivery!"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF8FAB]/50 focus:border-[#FF8FAB] outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/50 focus:border-[#3B82F6] outline-none"
                 />
               </div>
 
@@ -277,7 +277,7 @@ export default function AdminReviewVideos() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="flex-1 px-4 py-3 bg-[#FF8FAB] text-white rounded-xl font-medium hover:bg-[#FF8FAB]/90 transition-colors disabled:opacity-50"
+                className="flex-1 px-4 py-3 bg-[#3B82F6] text-white rounded-xl font-medium hover:bg-[#3B82F6]/90 transition-colors disabled:opacity-50"
               >
                 {saving ? "Saving..." : editingId ? "Save Changes" : "Add Video"}
               </button>

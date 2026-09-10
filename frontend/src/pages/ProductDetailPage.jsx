@@ -638,7 +638,7 @@ export default function ProductDetailPage() {
             Product not found
           </h2>
           <Link to="/products">
-            <Button className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full">
+            <Button className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full">
               Go Back
             </Button>
           </Link>
@@ -758,7 +758,7 @@ export default function ProductDetailPage() {
                     key={index}
                     onClick={() => setSelectedImage(index)}
                     className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
-                      selectedImage === index ? 'border-[#FF8FAB] ring-2 ring-[#FF8FAB]/30' : 'border-gray-200 hover:border-gray-300'
+                      selectedImage === index ? 'border-[#3B82F6] ring-2 ring-[#3B82F6]/30' : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
                     <img 
@@ -831,7 +831,7 @@ export default function ProductDetailPage() {
               </span>
             )}
             {!product.is_sold_out && product.stock < 10 && (
-              <span className="absolute top-4 left-4 bg-[#FF8FAB] text-white px-4 py-2 rounded-full font-medium">
+              <span className="absolute top-4 left-4 bg-[#3B82F6] text-white px-4 py-2 rounded-full font-medium">
                 Only {product.stock} left!
               </span>
             )}
@@ -873,10 +873,10 @@ export default function ProductDetailPage() {
                           enabled={true}
                           intensity={product.stylish_settings?.intensity || "medium"}
                           colors={
-                            product.stylish_settings?.preset === "playful" ? ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"] :
+                            product.stylish_settings?.preset === "playful" ? ["#3B82F6", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"] :
                             product.stylish_settings?.preset === "rainbow" ? ["#FF6B6B", "#FFA500", "#FFD700", "#4ECDC4", "#45B7D1", "#9B59B6"] :
-                            product.stylish_settings?.preset === "subtle" ? ["#FF8FAB", "#4ECDC4"] :
-                            ["#FF8FAB", "#FFD166", "#4ECDC4"]
+                            product.stylish_settings?.preset === "subtle" ? ["#3B82F6", "#4ECDC4"] :
+                            ["#3B82F6", "#FFD166", "#4ECDC4"]
                           }
                         />
                         {" "}
@@ -904,7 +904,7 @@ export default function ProductDetailPage() {
             {product.description?.replace(/<[^>]*>/g, '')?.length > 150 && (
               <button 
                 onClick={() => document.getElementById('product-details-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-[#FF8FAB] hover:underline text-sm mb-4 flex items-center gap-1"
+                className="text-[#3B82F6] hover:underline text-sm mb-4 flex items-center gap-1"
               >
                 View full product details ↓
               </button>
@@ -961,7 +961,7 @@ export default function ProductDetailPage() {
                 
                 return (
                   <>
-                    <span className="font-heading text-4xl font-bold text-[#FF8FAB]" data-testid="product-price">
+                    <span className="font-heading text-4xl font-bold text-[#3B82F6]" data-testid="product-price">
                       Rs. {displayPrice?.toFixed(0)}
                     </span>
                     {originalPrice && (
@@ -996,7 +996,7 @@ export default function ProductDetailPage() {
                         {variation.required && <span className="text-red-500 ml-1">*</span>}
                       </h3>
                       {selectedProductVariations[variation.id] && (
-                        <span className="text-xs bg-[#FF8FAB]/10 text-[#FF8FAB] px-2 py-0.5 rounded-full">
+                        <span className="text-xs bg-[#3B82F6]/10 text-[#3B82F6] px-2 py-0.5 rounded-full">
                           {selectedProductVariations[variation.id].name}
                         </span>
                       )}
@@ -1021,10 +1021,10 @@ export default function ProductDetailPage() {
                             disabled={isOutOfStock}
                             className={`px-4 py-2 rounded-lg border-2 font-medium transition-all ${
                               isSelected
-                                ? "border-[#FF8FAB] bg-[#FF8FAB]/10 text-[#FF8FAB]"
+                                ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#3B82F6]"
                                 : isOutOfStock
                                 ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed line-through"
-                                : "border-gray-200 bg-white text-gray-700 hover:border-[#FF8FAB]"
+                                : "border-gray-200 bg-white text-gray-700 hover:border-[#3B82F6]"
                             }`}
                             data-testid={`variation-${variation.id}-${value.value}`}
                           >
@@ -1048,7 +1048,7 @@ export default function ProductDetailPage() {
                     <div className="flex flex-wrap items-center gap-4">
                       <div>
                         <span className="text-sm text-gray-500">Total Price: </span>
-                        <span className="font-bold text-xl text-[#FF8FAB]">
+                        <span className="font-bold text-xl text-[#3B82F6]">
                           Rs. {(() => {
                             let total = product.discount_price || product.price;
                             Object.values(selectedProductVariations).forEach(v => {
@@ -1111,8 +1111,8 @@ export default function ProductDetailPage() {
                           onClick={() => handleColorSelect(color)}
                           className={`relative rounded-lg border-2 transition-all overflow-hidden ${
                             selectedColor === color
-                              ? "border-[#FF8FAB] ring-2 ring-[#FF8FAB]/30"
-                              : "border-gray-200 hover:border-[#FF8FAB]"
+                              ? "border-[#3B82F6] ring-2 ring-[#3B82F6]/30"
+                              : "border-gray-200 hover:border-[#3B82F6]"
                           }`}
                           title={color}
                           data-testid={`color-${color}`}
@@ -1139,7 +1139,7 @@ export default function ProductDetailPage() {
                             {color}
                           </span>
                           {selectedColor === color && hasImage && (
-                            <span className="absolute top-1 right-1 w-5 h-5 bg-[#FF8FAB] rounded-full flex items-center justify-center">
+                            <span className="absolute top-1 right-1 w-5 h-5 bg-[#3B82F6] rounded-full flex items-center justify-center">
                               <Check className="w-3 h-3 text-white" />
                             </span>
                           )}
@@ -1168,8 +1168,8 @@ export default function ProductDetailPage() {
                             !isAvailable 
                               ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed"
                               : selectedSize === size
-                                ? "border-[#FF8FAB] bg-[#FF8FAB]/10 text-[#FF8FAB]"
-                                : "border-gray-200 hover:border-[#FF8FAB] hover:text-[#FF8FAB]"
+                                ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#3B82F6]"
+                                : "border-gray-200 hover:border-[#3B82F6] hover:text-[#3B82F6]"
                           }`}
                           data-testid={`size-${size}`}
                         >
@@ -1192,7 +1192,7 @@ export default function ProductDetailPage() {
                       <span className="font-semibold text-[#1A1A1A]">
                         {selectedColor} / {selectedSize}
                       </span>
-                      <span className="text-[#FF8FAB] font-bold text-lg">
+                      <span className="text-[#3B82F6] font-bold text-lg">
                         Rs. {selectedVariation.discount_price || selectedVariation.price}
                         {selectedVariation.discount_price && (
                           <span className="text-gray-400 line-through ml-2 text-sm font-normal">
@@ -1228,8 +1228,8 @@ export default function ProductDetailPage() {
                             onClick={() => handleColorSelect(colorVar.name)}
                             className={`relative rounded-lg border-2 transition-all overflow-hidden ${
                               selectedColor === colorVar.name
-                                ? "border-[#FF8FAB] ring-2 ring-[#FF8FAB]/30"
-                                : "border-gray-200 hover:border-[#FF8FAB]"
+                                ? "border-[#3B82F6] ring-2 ring-[#3B82F6]/30"
+                                : "border-gray-200 hover:border-[#3B82F6]"
                             }`}
                             title={colorVar.name}
                             data-testid={`color-${colorVar.name}`}
@@ -1266,8 +1266,8 @@ export default function ProductDetailPage() {
                             onClick={() => handleColorSelect(color)}
                             className={`relative w-10 h-10 rounded-lg border-2 transition-all ${
                               selectedColor === color
-                                ? "border-[#FF8FAB] ring-2 ring-[#FF8FAB]/30"
-                                : "border-gray-200 hover:border-[#FF8FAB]"
+                                ? "border-[#3B82F6] ring-2 ring-[#3B82F6]/30"
+                                : "border-gray-200 hover:border-[#3B82F6]"
                             }`}
                             style={{ backgroundColor: colorCodes[color] || color }}
                             title={color}
@@ -1305,8 +1305,8 @@ export default function ProductDetailPage() {
                                 isOutOfStock 
                                   ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed line-through"
                                   : selectedSize === size
-                                    ? "border-[#FF8FAB] bg-[#FF8FAB]/10 text-[#FF8FAB]"
-                                    : "border-gray-200 hover:border-[#FF8FAB] hover:text-[#FF8FAB]"
+                                    ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#3B82F6]"
+                                    : "border-gray-200 hover:border-[#3B82F6] hover:text-[#3B82F6]"
                               }`}
                               data-testid={`size-${size}`}
                             >
@@ -1364,7 +1364,7 @@ export default function ProductDetailPage() {
                 className={`flex-1 rounded-lg py-6 text-lg font-medium ${
                   getCurrentStock() === 0 || product.is_sold_out
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white'
+                    : 'bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white'
                 }`}
                 data-testid="add-to-cart-btn"
               >
@@ -1508,7 +1508,7 @@ export default function ProductDetailPage() {
               <h2 className="font-heading text-xl font-bold">
                 You Might Also Like
               </h2>
-              <Link to={`/products?category=${product.category}`} className="text-[#FF8FAB] hover:underline text-sm font-medium">
+              <Link to={`/products?category=${product.category}`} className="text-[#3B82F6] hover:underline text-sm font-medium">
                 View All →
               </Link>
             </div>
@@ -1531,14 +1531,14 @@ export default function ProductDetailPage() {
                       
                       {/* Popular Badge - Dynamic from Admin */}
                       {getPopularityBadgeText(relProduct.product_id) && (
-                        <div className="absolute top-2 left-2 bg-[#FF8FAB] text-white text-[10px] px-2 py-1 rounded-full font-medium">
+                        <div className="absolute top-2 left-2 bg-[#3B82F6] text-white text-[10px] px-2 py-1 rounded-full font-medium">
                           {getPopularityBadgeText(relProduct.product_id)}
                         </div>
                       )}
                       
                       {/* Quick Add Button */}
                       <button 
-                        className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#FF8FAB] hover:text-white"
+                        className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#3B82F6] hover:text-white"
                         onClick={(e) => {
                           e.preventDefault();
                           addToCart(relProduct.product_id, 1);
@@ -1551,7 +1551,7 @@ export default function ProductDetailPage() {
                     
                     {/* Product Info */}
                     <div className="p-3">
-                      <h3 className="font-medium text-[#1A1A1A] text-sm line-clamp-2 mb-2 group-hover:text-[#FF8FAB] transition-colors">
+                      <h3 className="font-medium text-[#1A1A1A] text-sm line-clamp-2 mb-2 group-hover:text-[#3B82F6] transition-colors">
                         {relProduct.name}
                       </h3>
                       
@@ -1566,7 +1566,7 @@ export default function ProductDetailPage() {
                       
                       {/* Price */}
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-[#FF8FAB]">
+                        <span className="font-bold text-[#3B82F6]">
                           Rs. {relProduct.discount_price || relProduct.price}
                         </span>
                         {relProduct.discount_price && (
@@ -1586,7 +1586,7 @@ export default function ProductDetailPage() {
         {/* Product Details Section - Full Description (Daraz Style Footer) */}
         <div id="product-details-section" className="mt-8 border-t border-gray-200 pt-8">
           <h2 className="font-heading text-2xl font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
-            <span className="w-1 h-6 bg-[#FF8FAB] rounded-full"></span>
+            <span className="w-1 h-6 bg-[#3B82F6] rounded-full"></span>
             Product Details
           </h2>
           
@@ -1759,7 +1759,7 @@ export default function ProductDetailPage() {
               <Button
                 onClick={() => setShowReviewForm(true)}
                 variant="outline"
-                className="border-[#FF8FAB] text-[#FF8FAB] hover:bg-[#FF8FAB]/10"
+                className="border-[#3B82F6] text-[#3B82F6] hover:bg-[#3B82F6]/10"
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 Write a Review
@@ -1807,7 +1807,7 @@ export default function ProductDetailPage() {
                 <Button
                   onClick={handleSubmitReview}
                   disabled={submittingReview}
-                  className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white"
+                  className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white"
                 >
                   {submittingReview ? 'Submitting...' : 'Submit Review'}
                 </Button>
@@ -1854,7 +1854,7 @@ export default function ProductDetailPage() {
               <p className="text-gray-500">No reviews yet. Be the first to review this product!</p>
               {!isAuthenticated && (
                 <Link to="/login">
-                  <Button className="mt-4 bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                  <Button className="mt-4 bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white">
                     Login to Write a Review
                   </Button>
                 </Link>

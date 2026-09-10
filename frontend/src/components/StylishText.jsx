@@ -8,7 +8,7 @@ export default function StylishText({
   text, 
   enabled = true,
   intensity = "medium", // low, medium, high
-  colors = ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"],
+  colors = ["#3B82F6", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"],
   className = ""
 }) {
   
@@ -73,11 +73,11 @@ export default function StylishText({
 export const StylishPresets = {
   playful: {
     intensity: "high",
-    colors: ["#FF8FAB", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"]
+    colors: ["#3B82F6", "#FFD166", "#4ECDC4", "#9B59B6", "#06D6A0"]
   },
   subtle: {
     intensity: "low", 
-    colors: ["#FF8FAB", "#4ECDC4"]
+    colors: ["#3B82F6", "#4ECDC4"]
   },
   rainbow: {
     intensity: "medium",

@@ -50,7 +50,7 @@ export default function OrderSuccessPage() {
         <div className="bg-white rounded-3xl p-8 sm:p-12 text-center">
           {loading ? (
             <>
-              <div className="animate-spin rounded-full h-16 w-16 border-4 border-[#FF8FAB] border-t-transparent mx-auto mb-6"></div>
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-[#3B82F6] border-t-transparent mx-auto mb-6"></div>
               <h1 className="font-heading text-2xl sm:text-3xl font-bold text-[#1A1A1A] mb-4">
                 Verifying Payment...
               </h1>
@@ -73,7 +73,7 @@ export default function OrderSuccessPage() {
               {(orderId || paymentStatus) && (
                 <div className="bg-[#FDFBF7] rounded-2xl p-6 mb-8">
                   <div className="flex items-center justify-center gap-3 mb-4">
-                    <Package className="w-6 h-6 text-[#FF8FAB]" />
+                    <Package className="w-6 h-6 text-[#3B82F6]" />
                     <span className="font-heading font-semibold text-[#1A1A1A]">Order Details</span>
                   </div>
                   
@@ -106,7 +106,7 @@ export default function OrderSuccessPage() {
                 </Link>
                 <Link to="/products">
                   <Button 
-                    className="bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white rounded-full px-8"
+                    className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white rounded-full px-8"
                     data-testid="continue-shopping-btn"
                   >
                     Continue Shopping

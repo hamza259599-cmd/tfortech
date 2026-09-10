@@ -171,7 +171,7 @@ export default function AdminReviews() {
           {/* Reviews List */}
           {loading ? (
             <div className="flex justify-center py-12">
-              <div className="w-10 h-10 border-4 border-[#FF8FAB] border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-10 h-10 border-4 border-[#3B82F6] border-t-transparent rounded-full animate-spin"></div>
             </div>
           ) : filteredReviews.length === 0 ? (
             <div className="bg-white rounded-xl p-12 text-center border">
@@ -267,7 +267,7 @@ export default function AdminReviews() {
                   <Button variant="outline" onClick={() => setEditingReview(null)} className="flex-1">
                     Cancel
                   </Button>
-                  <Button onClick={handleSaveEdit} className="flex-1 bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white">
+                  <Button onClick={handleSaveEdit} className="flex-1 bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white">
                     Save Changes
                   </Button>
                 </div>

@@ -53,7 +53,7 @@ function DealSlide({ deal, onWatchReview }) {
       )}
 
       <div className="absolute top-3 left-3 flex items-center gap-2 max-w-[75%]">
-        <div className="bg-[#FF8FAB] p-1.5 rounded-full flex-shrink-0">
+        <div className="bg-[#3B82F6] p-1.5 rounded-full flex-shrink-0">
           <Zap className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" fill="white" />
         </div>
         <div className="bg-black/50 backdrop-blur-sm rounded-xl px-2.5 py-1.5 md:px-3">
@@ -63,7 +63,7 @@ function DealSlide({ deal, onWatchReview }) {
       </div>
 
       {deal.discount_value ? (
-        <div className="absolute top-3 right-3 bg-[#FF8FAB] text-white text-[10px] md:text-sm font-bold px-2.5 md:px-3 py-1 md:py-1.5 rounded-full">
+        <div className="absolute top-3 right-3 bg-[#3B82F6] text-white text-[10px] md:text-sm font-bold px-2.5 md:px-3 py-1 md:py-1.5 rounded-full">
           {deal.discount_type === "percent" ? `${deal.discount_value}% OFF` : `Rs. ${deal.discount_value} OFF`}
         </div>
       ) : null}
@@ -207,7 +207,7 @@ export default function HeroDealsCarousel() {
               key={d.id}
               onClick={() => goTo(i)}
               aria-label={`Go to deal ${i + 1}`}
-              className={`h-2 rounded-full transition-all ${i === current ? "w-6 bg-[#FF8FAB]" : "w-2 bg-gray-300 hover:bg-gray-400"}`}
+              className={`h-2 rounded-full transition-all ${i === current ? "w-6 bg-[#3B82F6]" : "w-2 bg-gray-300 hover:bg-gray-400"}`}
             />
           ))}
         </div>

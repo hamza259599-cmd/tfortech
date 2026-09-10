@@ -77,7 +77,7 @@ export default function CategoriesPage() {
             {/* Main Categories Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
               {mainCategories.map((category, index) => {
-                const bgColors = ["#FF8FAB", "#FFD166", "#06D6A0", "#4ECDC4", "#9B59B6", "#E74C3C", "#3498DB"];
+                const bgColors = ["#3B82F6", "#FFD166", "#06D6A0", "#4ECDC4", "#9B59B6", "#E74C3C", "#3498DB"];
                 const bgColor = bgColors[index % bgColors.length];
                 const subcats = getSubcategories(category.category_id || category.id);
                 
@@ -156,7 +156,7 @@ export default function CategoriesPage() {
                     </h2>
                     <Link 
                       to={`/products/${mainCat.category_id || mainCat.id}`}
-                      className="text-[#FF8FAB] hover:underline text-sm font-medium flex items-center gap-1"
+                      className="text-[#3B82F6] hover:underline text-sm font-medium flex items-center gap-1"
                     >
                       View All <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -164,7 +164,7 @@ export default function CategoriesPage() {
                   
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     {subcats.map((subcat, index) => {
-                      const borderColors = ["#FF8FAB", "#FFD166", "#06D6A0", "#4ECDC4", "#9B59B6"];
+                      const borderColors = ["#3B82F6", "#FFD166", "#06D6A0", "#4ECDC4", "#9B59B6"];
                       const borderColor = borderColors[index % borderColors.length];
                       
                       return (
@@ -194,7 +194,7 @@ export default function CategoriesPage() {
                               <span className="text-3xl">{subcat.icon || '📦'}</span>
                             )}
                           </div>
-                          <span className="text-sm font-medium text-[#1A1A1A] text-center group-hover:text-[#FF8FAB] transition-colors line-clamp-2">
+                          <span className="text-sm font-medium text-[#1A1A1A] text-center group-hover:text-[#3B82F6] transition-colors line-clamp-2">
                             {subcat.name}
                           </span>
                           {(subcat.product_count > 0) && (

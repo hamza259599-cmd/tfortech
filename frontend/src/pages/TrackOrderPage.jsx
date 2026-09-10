@@ -66,7 +66,7 @@ export default function TrackOrderPage() {
                 value={orderId}
                 onChange={(e) => setOrderId(e.target.value)}
                 placeholder="e.g. order_a1b2c3d4e5f6"
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FF8FAB]"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
                 required
               />
             </div>
@@ -77,7 +77,7 @@ export default function TrackOrderPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FF8FAB]"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
                 required
               />
             </div>
@@ -85,7 +85,7 @@ export default function TrackOrderPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#FF8FAB] hover:bg-[#FF8FAB]/90 text-white font-semibold rounded-full py-3 flex items-center justify-center gap-2 transition-colors disabled:opacity-60"
+            className="w-full bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white font-semibold rounded-full py-3 flex items-center justify-center gap-2 transition-colors disabled:opacity-60"
           >
             {loading ? (
               <>
