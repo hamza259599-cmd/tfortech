@@ -28,7 +28,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const placeholderImage = "https://placehold.co/600x600/F8F9FA/6B7280?text=No+Image";
-const heroPlaceholder = "https://placehold.co/1200x600/FF8FAB/FFFFFF?text=Tfortech";
+const heroPlaceholder = "https://placehold.co/1200x600/1A1A1A/FFFFFF?text=Tfortech";
 
 export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -188,7 +188,7 @@ export default function HomePage() {
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               {siteContent?.stylish_text?.enabled && siteContent?.stylish_text?.apply_to?.includes('hero_title') ? (
                 <StylishText 
-                  text={siteContent?.hero_title || "More Than a Bag. It's Your Signature."}
+                  text={siteContent?.hero_title || "Welcome to T For Tech. Best Shopping Experience!"}
                   enabled={true}
                   intensity={siteContent?.stylish_text?.intensity || "medium"}
                   colors={
@@ -204,12 +204,12 @@ export default function HomePage() {
                   {siteContent.hero_title.split('.')[0]}. <span style={{color: 'var(--color-primary)'}}>{siteContent.hero_title.split('.').slice(1).join('.')}</span>
                 </>
               ) : (
-                <>More Than a Bag. <span style={{color: 'var(--color-primary)'}}>It's Your Signature.</span></>
+                <>Welcome to T For Tech. <span style={{color: 'var(--color-primary)'}}>Best Shopping Experience!</span></>
               )}
             </h1>
             
             <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-              {siteContent?.hero_subtitle || "Express your unique style with our collection of standout handbags."}
+              {siteContent?.hero_subtitle || "Shop the latest tech and gadgets with fast delivery across Pakistan."}
             </p>
             
             <div className="flex flex-wrap gap-4">
