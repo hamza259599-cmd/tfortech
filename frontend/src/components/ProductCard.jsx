@@ -4,6 +4,7 @@ import axios from "axios";
 import { Heart, ShoppingCart, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth, useCart } from "../App";
+import { optimizeImg } from "../lib/utils";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -95,7 +96,7 @@ export default function ProductCard({ product, categories = [] }) {
       <div className="relative aspect-square overflow-hidden">
         <Link to={`/product/${product.product_id}`}>
           <img 
-            src={product.image_url || "https://placehold.co/400x400/F8F9FA/6B7280?text=No+Image"} 
+            src={optimizeImg(product.image_url) || "https://placehold.co/400x400/F8F9FA/6B7280?text=No+Image"} 
             alt={product.name}
             loading="lazy"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
