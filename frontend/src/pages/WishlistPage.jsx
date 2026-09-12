@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import { Heart, Trash2, ShoppingCart, ArrowLeft } from "lucide-react";
 import { useCart, useAuth } from "../App";
 import { toast } from "sonner";
+import { optimizeImg } from "../lib/utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -135,7 +136,7 @@ export default function WishlistPage() {
                 <Link to={`/product/${product.product_id}`}>
                   <div className="aspect-square relative overflow-hidden bg-gray-100">
                     <img
-                      src={product.image_url || product.image_urls?.[0] || 'https://via.placeholder.com/300'}
+                      src={optimizeImg(product.image_url) || product.image_urls?.[0] || 'https://via.placeholder.com/300'}
                       alt={product.name}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
