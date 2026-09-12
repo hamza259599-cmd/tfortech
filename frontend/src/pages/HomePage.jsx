@@ -17,6 +17,7 @@ import { useAuth } from "../App";
 import { toast } from "sonner";
 import ProductCard from "../components/ProductCard";
 import StylishText from "../components/StylishText";
+import { optimizeImg } from "../lib/utils";
 import SEO from "../components/SEO";
 import FlashDealsSection from "../components/FlashDealsSection";
 import HeroDealsCarousel from "../components/HeroDealsCarousel";
@@ -146,7 +147,7 @@ export default function HomePage() {
       p.category?.toLowerCase() === categoryKey?.toLowerCase() ||
       p.category === categoryKey
     );
-    if (categoryProduct?.image_url) return categoryProduct.image_url;
+    if (categoryProduct?.image_url) return optimizeImg(categoryProduct.image_url);
     
     const dbCategory = categories.find(c => 
       c.name?.toLowerCase() === categoryKey?.toLowerCase() ||
