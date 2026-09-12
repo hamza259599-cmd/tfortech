@@ -12,6 +12,7 @@ import { ShoppingCart, Minus, Plus, ArrowLeft, Check, Truck, Shield, Heart, Shar
 import StylishText from "../components/StylishText";
 import SEO from "../components/SEO";
 import { trackProductView, trackConversion } from "../components/VisitorTracker";
+import { optimizeImg } from "../lib/utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -353,14 +354,14 @@ export default function ProductDetailPage() {
   // Get current images based on selected variation or color
   const getCurrentImages = () => {
     if (selectedVariation?.images?.length > 0) {
-      return selectedVariation.images;
+      return selectedVariation.images.map(optimizeImg);
     }
     // Fallback: get any image from same color
     if (product?.variations && selectedColor) {
       const colorVar = product.variations.find(v => v.color === selectedColor && v.images?.length > 0);
-      if (colorVar?.images?.length > 0) return colorVar.images;
+      if (colorVar?.images?.length > 0) return colorVar.images.map(optimizeImg);
     }
-    return product?.image_urls || [product?.image_url];
+    return (product?.image_urls || [product?.image_url]).map(optimizeImg);
   };
 
   // Auto-slide through product images every 4s (pauses while zoomed)
